@@ -1,3 +1,6 @@
+// Section RNA
+// Naman Shah , n01392496
+
 package ca.codingcomrades.it.buscareplus.ui.home;
 
 import android.os.Bundle;
