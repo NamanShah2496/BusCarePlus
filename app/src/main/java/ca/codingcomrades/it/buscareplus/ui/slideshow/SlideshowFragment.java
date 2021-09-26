@@ -1,6 +1,7 @@
 // Section RNA
 // Naman Shah , n01392496
 // Aryan Sood , n01393003
+// Jaskirat Singh , N01403975 , Section RNB
 
 package ca.codingcomrades.it.buscareplus.ui.slideshow;
 
