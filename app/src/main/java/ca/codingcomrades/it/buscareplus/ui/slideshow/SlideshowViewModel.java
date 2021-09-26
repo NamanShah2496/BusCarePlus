@@ -1,5 +1,6 @@
 // Section RNA
 // Naman Shah , n01392496
+// Aryan Sood , n01393003
 
 package ca.codingcomrades.it.buscareplus.ui.slideshow;
 
