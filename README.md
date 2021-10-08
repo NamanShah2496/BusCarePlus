@@ -7,7 +7,7 @@
 
 
 ## Features
-Our project implements four sensors (Co2 sensor, Temperature, Ultrasonic and Accelerometer). 
+Our project implements four sensors (Co2 sensor, Temperature, Ultrasonic and Gps). 
 The sensors send data to raspberry pi which send it to the app via Firebase. 
 The app displays the data in 2 separate tabs, Safety and Maintenance. 
 The safety tab displays the Bus speed and the passenger count. 
