@@ -28,7 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 import ca.codingcomrades.it.buscareplus.ui.HelpActivity;
-// A test comment
+// A test comment for Aryan
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
