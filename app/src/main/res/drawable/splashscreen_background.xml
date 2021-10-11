@@ -11,7 +11,7 @@
             android:gravity="center"
 
             android:adjustViewBounds="true"
-            android:src="@drawable/buscare"/>
+            android:src="@drawable/splash_logo"/>
     </item>
 
 </layer-list>
