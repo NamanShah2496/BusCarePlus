@@ -23,7 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
-import ca.codingcomrades.it.buscareplus.ui.HelpActivity;
+import ca.codingcomrades.it.buscareplus.HelpActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,21 +83,27 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.help:
-                Intent intent = new Intent(this, HelpActivity.class);
-                startActivity(intent);
 
-        }
-        return true;
-    }
         @Override
         public void onBackPressed(){
             onBack();
         }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.help:
+                Onclick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void Onclick(){
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+    }
 
 
 }
