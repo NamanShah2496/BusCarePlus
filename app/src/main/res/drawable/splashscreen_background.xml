@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Background Color -->
     <item
-        android:drawable="@color/white"/>
+        android:drawable="@color/back"/>
 
     <!-- Logo -->
     <item>
