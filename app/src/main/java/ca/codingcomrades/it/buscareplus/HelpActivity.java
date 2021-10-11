@@ -1,11 +1,23 @@
-package ca.codingcomrades.it.buscareplus.ui;
+package ca.codingcomrades.it.buscareplus;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-import ca.codingcomrades.it.buscareplus.R;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.jetbrains.annotations.NotNull;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -21,4 +33,5 @@ public class HelpActivity extends AppCompatActivity {
         }
 
     }
+
 }
