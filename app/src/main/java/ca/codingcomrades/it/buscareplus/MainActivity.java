@@ -8,9 +8,11 @@ package ca.codingcomrades.it.buscareplus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -69,34 +71,36 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+     @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+        @Override
+        public void onBackPressed(){
+            onBack();
+        }
+    public void Onclick(){
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.help:
-                Intent intent = new Intent(this, HelpActivity.class);
-                startActivity(intent);
-
+                Onclick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
-        @Override
-        public void onBackPressed(){
-            onBack();
-        }
-
-
 
 }
