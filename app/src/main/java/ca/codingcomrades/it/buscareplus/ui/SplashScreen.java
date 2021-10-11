@@ -6,5 +6,37 @@
 
 package ca.codingcomrades.it.buscareplus.ui;
 
-public class SplashScreen {
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import ca.codingcomrades.it.buscareplus.MainActivity;
+
+
+public class SplashScreen extends AppCompatActivity {
+    private Handler handler =new  Handler();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    public Runnable runnable =new Runnable() {
+        @Override
+        public void run() {
+            if (!isFinishing()) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish(); //so that splash screen doesnt open on resuming
+            }
+        }
+    };
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        handler.postDelayed(runnable,3000);
+    }
+
 }
