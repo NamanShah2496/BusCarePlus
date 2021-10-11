@@ -6,6 +6,7 @@
 
 package ca.codingcomrades.it.buscareplus;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        toastPrint("Nav Selected");
     }
     public void onBack() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        toastPrint("Nav Selected!!");
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
@@ -97,11 +100,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-        @Override
-        public void onBackPressed(){
+    @Override
+    public void onBackPressed(){
             onBack();
         }
 
+    private void toastPrint(String msg) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, msg, duration);
+        toast.show();
+    }
 
 
 }
