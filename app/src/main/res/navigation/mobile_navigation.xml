@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="ca.codingcomrades.it.buscareplus.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_settings"
+        android:name="ca.codingcomrades.it.buscareplus.ui.settings.SettingFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_slideshow"

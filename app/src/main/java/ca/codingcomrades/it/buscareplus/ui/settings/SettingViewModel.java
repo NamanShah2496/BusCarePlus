@@ -4,17 +4,17 @@
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
 
-package ca.codingcomrades.it.buscareplus.ui.gallery;
+package ca.codingcomrades.it.buscareplus.ui.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 //merge
-public class GalleryViewModel extends ViewModel {
+public class SettingViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public SettingViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("Settings");
     }

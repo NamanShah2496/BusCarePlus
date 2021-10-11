@@ -18,5 +18,11 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="help">Help</string>
+    <string name="settings">Paramètres</string>
+    <string name="select_language">Choisir la langue:</string>
+    <string name="english_language">Anglais</string>
+    <string name="french_language">Français</string>
+    <string name="portrait_lock">Verrouillage portrait:</string>
+    <string name="dark_theme">Verrouillage portrait:</string>
 
 </resources>
