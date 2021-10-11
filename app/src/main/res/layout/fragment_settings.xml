@@ -15,8 +15,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:text="@string/settings"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/select_language"
         android:textSize="22dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
@@ -64,12 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:textSize="17sp"
             android:text="@string/english_language" />
 
         <RadioButton
             android:id="@+id/JaskiratRG1B2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:text="@string/french_language" />
     </RadioGroup>
 
@@ -79,6 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/portrait_lock"
         android:textSize="22dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
@@ -103,6 +108,7 @@
         android:layout_height="wrap_content"
         android:text="@string/dark_theme"
         android:textSize="22dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
@@ -115,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="false"
+        android:background="@color/jass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.32"
