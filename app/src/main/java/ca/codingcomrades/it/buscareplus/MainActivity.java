@@ -26,8 +26,11 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import ca.codingcomrades.it.buscareplus.data.model.LoggedInUser;
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 import ca.codingcomrades.it.buscareplus.ui.HelpActivity;
+import ca.codingcomrades.it.buscareplus.ui.login.LoginActivity;
+
 // A test comment
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
