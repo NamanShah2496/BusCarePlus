@@ -4,7 +4,7 @@
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
 
-package ca.codingcomrades.it.buscareplus.ui;
+package ca.codingcomrades.it.buscareplus;
 
 import android.content.Intent;
 import android.os.Bundle;

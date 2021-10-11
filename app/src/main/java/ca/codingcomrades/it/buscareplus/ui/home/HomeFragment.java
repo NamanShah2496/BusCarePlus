@@ -6,8 +6,10 @@
 
 package ca.codingcomrades.it.buscareplus.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Date;
 
+import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
@@ -51,4 +54,5 @@ public class HomeFragment extends Fragment {
         greeting.setText(msg3);
 return view;
     }
+
 }

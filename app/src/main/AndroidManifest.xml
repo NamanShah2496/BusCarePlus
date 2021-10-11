@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Buscareplus">
         <activity
-            android:name=".ui.SplashScreen"
+            android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
         <intent-filter>
@@ -19,7 +19,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".ui.HelpActivity"
+            android:name=".HelpActivity"
             android:exported="true"
             android:label="Help"
             android:parentActivityName=".MainActivity"/>
