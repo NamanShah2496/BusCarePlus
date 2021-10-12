@@ -9,21 +9,20 @@ package ca.codingcomrades.it.buscareplus;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.Menu;
-
-import com.google.android.material.navigation.NavigationView;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.navigation.NavigationView;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
-import ca.codingcomrades.it.buscareplus.HelpActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
@@ -94,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.help:
                 Onclick();
                 return true;
+            case R.id.Login:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }

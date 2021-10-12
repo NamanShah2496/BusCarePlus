@@ -9,26 +9,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Buscareplus">
         <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Login Page"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".HelpActivity"
             android:exported="true"
             android:label="Help"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Buscareplus.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Buscareplus.NoActionBar"></activity>
     </application>
 
 </manifest>
