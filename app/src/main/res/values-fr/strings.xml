@@ -30,13 +30,13 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="myaccount">My Account</string>
     <string name="aboutus">About us</string>
     <string name="logout">Log Out</string>
+    <string name="maintenance">Maintenance</string>
+    <string name="safety">Safety</string>
     <string name="settings">Paramètres</string>
     <string name="select_language">Choisir la langue:</string>
     <string name="english_language">Anglais</string>
     <string name="french_language">Français</string>
     <string name="portrait_lock">Verrouillage portrait:</string>
     <string name="dark_theme">Verrouillage portrait:</string>
-    <string name="maintenance">Maintenance</string>
-    <string name="safety">Safety</string>
 
 </resources>

@@ -17,10 +17,19 @@
             android:label="Help"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Login Page"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Buscareplus.NoActionBar">
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
