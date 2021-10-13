@@ -11,6 +11,7 @@
         android:layout_width="259dp"
         android:layout_height="43dp"
         android:ems="10"
+        android:hint="more than 5 characters"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +24,7 @@
         android:layout_width="258dp"
         android:layout_height="39dp"
         android:ems="10"
+        android:hint="Enter Valid Email Address"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,13 +49,14 @@
         android:id="@+id/Login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <TextView
         android:id="@+id/textView19"
@@ -79,7 +82,7 @@
         app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.424" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <TextView
         android:id="@+id/Guidelines_title"
@@ -92,17 +95,18 @@
         app:layout_constraintHorizontal_bias="0.349"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
+        app:layout_constraintVertical_bias="0.625" />
 
     <TextView
         android:id="@+id/Guidelines_text"
         android:layout_width="313dp"
         android:layout_height="81dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/Pass_Guidelines_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.736" />
 </androidx.constraintlayout.widget.ConstraintLayout>
