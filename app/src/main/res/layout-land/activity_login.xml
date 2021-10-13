@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/LoginPassword"
         android:layout_width="259dp"
         android:layout_height="43dp"
         android:ems="10"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.717" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/LoginEmail"
         android:layout_width="258dp"
         android:layout_height="39dp"
         android:ems="10"
@@ -33,7 +33,7 @@
         android:id="@+id/imageView3"
         android:layout_width="114dp"
         android:layout_height="83dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/LoginEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"

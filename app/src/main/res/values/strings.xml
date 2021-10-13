@@ -38,5 +38,10 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="french_language">French</string>
     <string name="portrait_lock">Portrait Lock:</string>
     <string name="dark_theme">Dark Theme:</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="userPass_5_error">Password must be more than 5 characters long</string>
+    <string name="empty_email_error">Value can\'t be empty</string>
+    <string name="userPass_empty_error">Password cannot be empty</string>
+    <string name="invalid_email_error">Invalid, must contain \'@\'</string>
+    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>
+
 </resources>
