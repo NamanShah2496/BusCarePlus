@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.codingcomrades.it.buscareplus">
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
+        android:label="@string/app_name"
         android:allowBackup="true"
         android:icon="@mipmap/busc"
         android:roundIcon="@mipmap/busc_round"
