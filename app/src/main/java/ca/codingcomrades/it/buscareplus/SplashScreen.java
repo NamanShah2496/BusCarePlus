@@ -13,14 +13,13 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import ca.codingcomrades.it.buscareplus.MainActivity;
-
 
 public class SplashScreen extends AppCompatActivity {
     private Handler handler =new  Handler();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handler.postDelayed(runnable,3000);
     }
 
     public Runnable runnable =new Runnable() {
@@ -32,11 +31,4 @@ public class SplashScreen extends AppCompatActivity {
             }
         }
     };
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        handler.postDelayed(runnable,3000);
-    }
-
 }
