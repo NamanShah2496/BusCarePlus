@@ -19,9 +19,10 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //handler.postDelayed(runnable,3000);
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        //handler.postDelayed(runnable,3000);
     }
 
     public Runnable runnable =new Runnable() {

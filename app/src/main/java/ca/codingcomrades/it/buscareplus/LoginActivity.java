@@ -16,7 +16,8 @@ public class LoginActivity extends AppCompatActivity {
 String userEmail,userPassword;
 Button login;
 EditText email,password;
-TextView forgotPass;
+TextView forgotPass,register;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
     @Override
@@ -26,13 +27,15 @@ TextView forgotPass;
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
         forgotPass = findViewById(R.id.Forgot_Password_Title);
+        register = findViewById(R.id.RegisterTitle);
+        register.setOnClickListener(v->toastPrint("Coming Soon!!"));
         forgotPass.setOnClickListener(v->toastPrint("Feature Coming soon"));
         login = findViewById(R.id.Login_btn);
         login.setOnClickListener(v-> callHome());
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(false);
 
         }
     }
@@ -49,15 +52,15 @@ TextView forgotPass;
         userEmail = email.getText().toString().trim();
         userPassword = password.getText().toString();
         boolean validate = true;
-        if(userPassword.length()<5){
-            password.setError(getString(R.string.userPass_5_error));
-            validate = false;
-        }else if (!(userEmail.contains("@"))){
-            validate = false;
-            email.setError(getString(R.string.invalid_email_error));
-        }else if (userEmail.isEmpty()){
+        if (userEmail.isEmpty()) {
             validate = false;
             email.setError(getString(R.string.empty_email_error));
+        }else if (!(userEmail.matches(emailPattern))){
+            validate = false;
+            email.setError(getString(R.string.invalid_email_error));
+        }else  if(userPassword.length()<5){
+        password.setError(getString(R.string.userPass_5_error));
+        validate = false;
         }else if(userPassword.isEmpty()){
             validate = false;
             password.setError(getString(R.string.userPass_empty_error));
