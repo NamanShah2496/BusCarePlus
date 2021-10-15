@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.352" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/LoginImage"
         android:layout_width="171dp"
         android:layout_height="130dp"
         app:layout_constraintBottom_toTopOf="@+id/LoginEmail"
@@ -56,10 +56,10 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.658" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/LoginEmailAdd_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email Address"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.292" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/LoginPasswordTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
@@ -109,4 +109,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.736" />
+
+    <TextView
+        android:id="@+id/Forgot_Password_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:linksClickable="true"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/blue"
+        android:text="@string/forgot_password_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
 </androidx.constraintlayout.widget.ConstraintLayout>
