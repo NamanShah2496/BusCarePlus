@@ -9,6 +9,7 @@ package ca.codingcomrades.it.buscareplus;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,17 +20,19 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handler.postDelayed(runnable,3000);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        //handler.postDelayed(runnable,3000);
+
     }
 
     public Runnable runnable =new Runnable() {
         @Override
         public void run() {
+            Log.d("TAG", "run: ");
             if (!isFinishing()) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                //  startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish(); //so that splash screen doesnt open on resuming
             }
         }

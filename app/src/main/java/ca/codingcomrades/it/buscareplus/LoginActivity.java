@@ -67,7 +67,7 @@ TextView forgotPass,register;
         }
         return validate;
     }
-    private void toastPrint(String msg) {
+    public void toastPrint(String msg) {
         Log.d("TAG", "toastPrint: ");
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
