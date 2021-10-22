@@ -17,7 +17,6 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="help">Help</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -45,5 +44,20 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>
     <string name="forgot_password_text"><b><u>Forgot Password?</u></b></string>
     <string name="register_text"><b><u>Register Now</u></b></string>
+    <string name="its">For I.T. Support, Please contact us by clicking the below button</string>
+    <string name="help">Help</string>
+    <string name="qbc">Q. What is BusCare+ ?</string>
+    <string name="abc">A. BusCare+ is an application that provides Maintenance and Safety of Bus and Passengers.</string>
+    <string name="qms">Q. What does the maintenance service includes in BusCare+ ?</string>
+    <string name="ams">A. The maintenance service includes features such as:</string>
+    <string name="sams">The temperature inside bus is convenient for human body</string>
+    <string name="sams1">The CO2 emission inside bus is suitable for human body</string>
+    <string name="qss">Q. What does the safety service includes in BusCare+ ?</string>
+    <string name="ass">A. The safety service includes features such as:</string>
+    <string name="sass">To keep count of passengers inside bus especially during COVID situation where physical distance is a must</string>
+    <string name="sass1">To maintain speed of bus under safety speed</string>
+    <string name="msg1">Welcome to BusCare+</string>
+    <string name="msg2">Name of User</string>
+    <string name="msg3">Hope you have a wonderful day!!</string>
 
 </resources>

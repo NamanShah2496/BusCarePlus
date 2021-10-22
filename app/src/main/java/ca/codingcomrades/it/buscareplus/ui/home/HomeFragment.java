@@ -39,9 +39,9 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        String msg1 = "Welcome to BusCare+";
-        String msg2 = "Name of User";
-        String msg3 = "Hope you have a wonderful day!!";
+        String msg1 = getString(R.string.msg1);
+        String msg2 = getString(R.string.msg2);
+        String msg3 = getString(R.string.msg3);
         view = inflater.inflate(R.layout.fragment_home,container,false);
         String currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
         final TextView time = view.findViewById(R.id.textView3);
