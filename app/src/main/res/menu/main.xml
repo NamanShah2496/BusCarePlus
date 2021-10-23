@@ -2,9 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/myaccount"
+        android:orderInCategory="100"
+        android:title="@string/myaccount"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_launcher_acc_foreground"/>
+    <item
         android:id="@+id/help"
         android:orderInCategory="100"
         android:title="@string/help"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/aboutus"
+        android:orderInCategory="100"
+        android:title="@string/aboutus"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:title="@string/logout"
         app:showAsAction="never" />
 
 </menu>

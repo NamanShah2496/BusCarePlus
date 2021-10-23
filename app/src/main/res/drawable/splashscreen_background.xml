@@ -9,7 +9,6 @@
         <bitmap
             android:id="@+id/splash"
             android:gravity="center"
-
             android:adjustViewBounds="true"
             android:src="@drawable/splash_logo"/>
     </item>

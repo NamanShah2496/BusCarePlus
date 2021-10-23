@@ -16,13 +16,47 @@ Jaskirat Singh , N01403975 , Section RNB
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="help">Help</string>
+    <string name="menu_slideshow">Slideshow</string><string name="userPass_5_error">Password must be more than 5 characters long</string>
+    <string name="empty_email_error">Value can\'t be empty</string>
+    <string name="userPass_empty_error">Password cannot be empty</string>
+    <string name="invalid_email_error">Invalid Email Address</string>
+    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>
+    <string name="forgot_password_text"><b><u>Forgot Password?</u></b></string>
+    <string name="register_text"><b><u>Register Now</u></b></string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="myaccount">My Account</string>
+    <string name="aboutus">About us</string>
+    <string name="logout">Log Out</string>
+    <string name="maintenance">Maintenance</string>
+    <string name="safety">Safety</string>
     <string name="settings">Paramètres</string>
     <string name="select_language">Choisir la langue:</string>
     <string name="english_language">Anglais</string>
     <string name="french_language">Français</string>
     <string name="portrait_lock">Verrouillage portrait:</string>
     <string name="dark_theme">Verrouillage portrait:</string>
+    <string name="its">For I.T. Support, Please contact us by clicking the below button</string>
+    <string name="help">Help</string>
+    <string name="qbc">Q. What is BusCare+ ?</string>
+    <string name="abc">A. BusCare+ is an application that provides Maintenance and Safety of Bus and Passengers.</string>
+    <string name="qms">Q. What does the maintenance service includes in BusCare+ ?</string>
+    <string name="ams">A. The maintenance service includes features such as:</string>
+    <string name="sams">The temperature inside bus is convenient for human body</string>
+    <string name="sams1">The CO2 emission inside bus is suitable for human body</string>
+    <string name="qss">Q. What does the safety service includes in BusCare+ ?</string>
+    <string name="ass">A. The safety service includes features such as:</string>
+    <string name="sass">To keep count of passengers inside bus especially during COVID situation where physical distance is a must</string>
+    <string name="sass1">To maintain speed of bus under safety speed</string>
+    <string name="msg1">Welcome to BusCare+</string>
+    <string name="msg2">Name of User</string>
+    <string name="msg3">Hope you have a wonderful day!!</string>
 
 </resources>
