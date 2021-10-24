@@ -108,6 +108,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.824" />
 
+    <com.google.android.gms.common.SignInButton
+
+        android:id="@+id/GoogleSignBtn"
+        android:layout_width="126dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.761" />
+
     <TextView
         android:id="@+id/Forgot_Password_Title"
         android:layout_width="wrap_content"

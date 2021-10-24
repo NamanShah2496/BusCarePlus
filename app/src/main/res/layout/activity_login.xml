@@ -45,18 +45,7 @@
         app:layout_constraintVertical_bias="0.4"
         app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
-    <Button
-        android:id="@+id/Login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
-        app:layout_constraintVertical_bias="0.658" />
+
 
     <TextView
         android:id="@+id/LoginEmailAdd_Title"
@@ -92,10 +81,34 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.629" />
+    <Button
+        android:id="@+id/Login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
+        app:layout_constraintVertical_bias="0.722" />
+
+    <com.google.android.gms.common.SignInButton
+
+        android:id="@+id/GoogleSignBtn"
+        android:layout_width="127dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.799"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878" />
 
     <TextView
         android:id="@+id/Guidelines_text"
@@ -105,37 +118,37 @@
         android:text="@string/Pass_Guidelines_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.741" />
 
     <TextView
         android:id="@+id/Forgot_Password_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:linksClickable="true"
         android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/blue"
+        android:linksClickable="true"
         android:text="@string/forgot_password_text"
+        android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />
+        app:layout_constraintVertical_bias="0.574" />
 
     <TextView
-        android:id="@+id/RegisterTitle"
+        android:id="@+id/OrTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:fontFamily="sans-serif-condensed"
-        android:linksClickable="true"
-        android:text="@string/register_text"
-        android:textColor="@color/blue"
+        android:text="@string/Or_text"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945" />
+        app:layout_constraintVertical_bias="0.876" />
 </androidx.constraintlayout.widget.ConstraintLayout>
