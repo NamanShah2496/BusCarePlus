@@ -59,5 +59,6 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="msg1">Welcome to BusCare+</string>
     <string name="msg2">Name of User</string>
     <string name="msg3">Hope you have a wonderful day!!</string>
+    <string name="Or_text">OR</string>
 
 </resources>
