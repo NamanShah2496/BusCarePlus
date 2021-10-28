@@ -95,9 +95,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.help:
                 Onclick();
                 return true;
-            case R.id.Login:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }
