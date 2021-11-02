@@ -6,22 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingFragment">
 
-    <!--    <TextView-->
-<!--        android:id="@+id/JaskiratTV2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text=""-->
-<!--        android:textSize="22dp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.074"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/JaskiratTV1"-->
-<!--        app:layout_constraintVertical_bias="0.21" />-->
 
     <TextView
-        android:id="@+id/JaskiratTV3"
+        android:id="@+id/PortraitLockTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/portrait_lock"
@@ -35,7 +22,7 @@
         app:layout_constraintVertical_bias="0.102" />
 
     <TextView
-        android:id="@+id/JaskiratTV4"
+        android:id="@+id/DarkThemeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dark_theme"
@@ -49,7 +36,7 @@
         app:layout_constraintVertical_bias="0.219" />
 
     <Switch
-        android:id="@+id/JaskiratSwitch1"
+        android:id="@+id/PortraitLockSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/jass"
@@ -62,7 +49,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/UnitsDataTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Units of data:"
@@ -76,7 +63,7 @@
         app:layout_constraintVertical_bias="0.333" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/DarkThemeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/jass"
@@ -118,7 +105,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/SetThresholdTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set Threshold values:"
@@ -184,6 +171,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.773" />
+
+    <Button
+        android:id="@+id/SettingsSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
