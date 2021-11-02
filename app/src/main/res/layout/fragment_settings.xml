@@ -29,7 +29,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.102" />
@@ -43,7 +43,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.219" />
@@ -70,7 +70,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.333" />
@@ -99,17 +99,19 @@
         app:layout_constraintVertical_bias="0.426">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/Unit_Metric_Radio_Btn"
             android:layout_width="match_parent"
             android:layout_height="37dp"
+            android:layout_marginLeft="50dp"
             android:text="Metric(Km/hrs)"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/Unit_Imperial_Radio_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
             android:text="Imperial(miles/hrs)"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -124,13 +126,13 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/MaxSpeedTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Maximum Speed:"
@@ -138,13 +140,13 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.649" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/MaxPeopleTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Maximum people:"
@@ -152,15 +154,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.759" />
 
     <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="91dp"
-        android:layout_height="30dp"
+        android:id="@+id/SpeedSeekBar"
+        android:layout_width="110dp"
+        android:layout_height="37dp"
         android:max="90"
         android:min="40"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,20 +170,20 @@
         app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.654" />
+        app:layout_constraintVertical_bias="0.661" />
 
     <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="90dp"
-        android:layout_height="26dp"
-        android:min="10"
-        android:max="50"
+        android:id="@+id/CapacitySeekbar"
+        android:layout_width="110dp"
+        android:layout_height="37dp"
+        android:max="90"
+        android:min="40"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.738"
+        app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintVertical_bias="0.773" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
