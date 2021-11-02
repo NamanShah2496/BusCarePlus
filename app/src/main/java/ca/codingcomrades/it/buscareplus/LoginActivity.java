@@ -61,6 +61,7 @@ TextView forgotPass;
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
     public void callHome(){
        if(validateName()){
@@ -106,9 +107,11 @@ TextView forgotPass;
 // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         updateUI(account);
+        toastPrint("Google Signed In");
     }
 
     private void updateUI(GoogleSignInAccount account) {
+
     }
 
 }
