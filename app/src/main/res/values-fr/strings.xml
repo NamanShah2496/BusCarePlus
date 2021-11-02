@@ -20,7 +20,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="empty_email_error">Value can\'t be empty</string>
     <string name="userPass_empty_error">Password cannot be empty</string>
     <string name="invalid_email_error">Invalid Email Address</string>
-    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>
+<!--    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>-->
     <string name="forgot_password_text"><b><u>Forgot Password?</u></b></string>
     <string name="register_text"><b><u>Register Now</u></b></string>
     <string name="title_activity_login">LoginActivity</string>

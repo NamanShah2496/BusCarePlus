@@ -11,8 +11,8 @@
         android:layout_width="259dp"
         android:layout_height="43dp"
         android:ems="10"
-        android:hint="more than 5 characters"
         android:inputType="textPassword"
+        android:hint="Longer than 5 Characters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.572"
@@ -24,7 +24,7 @@
         android:layout_width="258dp"
         android:layout_height="39dp"
         android:ems="10"
-        android:hint="Enter Valid Email Address"
+        android:hint=" Valid Email Address"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,18 +73,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.436" />
 
-    <TextView
-        android:id="@+id/Guidelines_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password Guidelines"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
     <Button
         android:id="@+id/Login_btn"
         android:layout_width="wrap_content"
@@ -93,10 +81,10 @@
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
-        app:layout_constraintVertical_bias="0.722" />
+        app:layout_constraintVertical_bias="0.334" />
 
     <com.google.android.gms.common.SignInButton
 
@@ -105,23 +93,9 @@
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.799"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878" />
-
-    <TextView
-        android:id="@+id/Guidelines_text"
-        android:layout_width="313dp"
-        android:layout_height="81dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/Pass_Guidelines_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741" />
+        app:layout_constraintVertical_bias="0.913" />
 
     <TextView
         android:id="@+id/Forgot_Password_Title"
@@ -147,8 +121,7 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.876" />
+        app:layout_constraintVertical_bias="0.816" />
 </androidx.constraintlayout.widget.ConstraintLayout>
