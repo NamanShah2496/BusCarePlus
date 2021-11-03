@@ -12,7 +12,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="Login Page"
+            android:label="Login"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SplashScreen"
