@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ReviewActivity"
+            android:exported="true"
+            android:label="Review"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".HelpActivity"
             android:exported="true"
             android:label="Help"

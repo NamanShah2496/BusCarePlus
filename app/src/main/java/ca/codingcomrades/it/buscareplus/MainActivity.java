@@ -95,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.help:
                 Onclick();
                 return true;
+
+            case R.id.feedback:
+                Onclick1();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -104,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
-
+    public void Onclick1(){
+        Intent intent = new Intent(this, ReviewActivity.class);
+        startActivity(intent);
+    }
 
 }

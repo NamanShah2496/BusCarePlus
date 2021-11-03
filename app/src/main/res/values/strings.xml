@@ -61,5 +61,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="msg3">Hope you have a wonderful day!!</string>
     <string name="Or_text">OR</string>
     <string name="menu_maintenance">Maintenance</string>
+    <string name="feedback">Review</string>
+
 
 </resources>
