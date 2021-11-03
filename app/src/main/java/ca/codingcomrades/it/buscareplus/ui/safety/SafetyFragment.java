@@ -4,7 +4,7 @@
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
 
-package ca.codingcomrades.it.buscareplus.ui.slideshow;
+package ca.codingcomrades.it.buscareplus.ui.safety;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,24 +18,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import ca.codingcomrades.it.buscareplus.R;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentSlideshowBinding;
+import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
 
-public class SlideshowFragment extends Fragment {
+public class SafetyFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private SafetyViewModel safetyViewModel;
+    private FragmentSafetyBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        safetyViewModel =
+                new ViewModelProvider(this).get(SafetyViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentSafetyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textSafety;
+        safetyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

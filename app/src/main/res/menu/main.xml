@@ -23,9 +23,9 @@
         android:title="@string/logout"
         app:showAsAction="never" />
     <item
-        android:id="@+id/Login"
+        android:id="@+id/feedback"
         android:orderInCategory="100"
-        android:title="Login"
+        android:title="@string/feedback"
         app:showAsAction="never" />
 
 </menu>

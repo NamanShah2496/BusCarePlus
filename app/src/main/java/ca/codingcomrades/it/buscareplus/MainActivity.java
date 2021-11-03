@@ -50,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_settings, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
+                R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
+                .setOpenableLayout(drawer)
+//                .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -93,9 +94,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.help:
                 Onclick();
                 return true;
-            case R.id.Login:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
+
+            case R.id.feedback:
+                Onclick1();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -103,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void Onclick(){
         Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+    }
+    public void Onclick1(){
+        Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
 
     }
