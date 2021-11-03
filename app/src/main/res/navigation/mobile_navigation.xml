@@ -18,8 +18,13 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="ca.codingcomrades.it.buscareplus.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_safety"
+        android:name="ca.codingcomrades.it.buscareplus.ui.safety.SafetyFragment"
+        android:label="@string/menu_safety"
+        tools:layout="@layout/fragment_safety" />
+    <fragment
+        android:id="@+id/nav_maintenance"
+        android:name="ca.codingcomrades.it.buscareplus.ui.maintenance.MaintenanceFragment"
+        android:label="@string/menu_maintenance"
+        tools:layout="@layout/fragment_maintenance" />
 </navigation>
