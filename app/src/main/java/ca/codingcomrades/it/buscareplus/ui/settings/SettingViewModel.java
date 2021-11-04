@@ -4,7 +4,7 @@
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
 
-package ca.codingcomrades.it.buscareplus.ui.gallery;
+package ca.codingcomrades.it.buscareplus.ui.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

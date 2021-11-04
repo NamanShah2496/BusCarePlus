@@ -58,7 +58,10 @@ public class HelpActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_PHONE_CALL && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            ConstraintLayout text = findViewById(R.id.constraintLayout);
+            Snackbar snackbar = Snackbar
+                    .make(text, "Permission Granted", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
         } else if (requestCode != REQUEST_PHONE_CALL && grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             ConstraintLayout text = findViewById(R.id.constraintLayout);
             Snackbar snackbar = Snackbar

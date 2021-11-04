@@ -20,14 +20,14 @@ import ca.codingcomrades.it.buscareplus.R;
 
 public class SettingFragment extends Fragment {
 
-    private ca.codingcomrades.it.buscareplus.ui.gallery.SettingViewModel settingViewModel;
+    private SettingViewModel settingViewModel;
 
     private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        settingViewModel = new ViewModelProvider(this).get(ca.codingcomrades.it.buscareplus.ui.gallery.SettingViewModel.class);
+        settingViewModel = new ViewModelProvider(this).get(SettingViewModel.class);
         settingViewModel.getText();
     }
 
