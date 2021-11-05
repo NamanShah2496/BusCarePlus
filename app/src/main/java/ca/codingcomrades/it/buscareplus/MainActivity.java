@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -104,8 +105,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Onclick(){
-        Intent intent = new Intent(this, HelpActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, HelpActivity.class);
+//        startActivity(intent);
+        //        getSupportFragmentManager().beginTransaction().replace(R.id.,new Help()).commit();
     }
     public void Onclick1(){
         Intent intent = new Intent(this, ReviewActivity.class);
