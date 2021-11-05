@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "745684332872",
-    "firebase_url": "https://buscareplus-default-rtdb.firebaseio.com",
-    "project_id": "buscareplus",
-    "storage_bucket": "buscareplus.appspot.com"
+    "project_number": "834359603560",
+    "project_id": "buscareplus-db77c",
+    "storage_bucket": "buscareplus-db77c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:745684332872:android:b0b5b8dc80f53ab1a7c37d",
+        "mobilesdk_app_id": "1:834359603560:android:1a33f9ae796fb475da66dd",
         "android_client_info": {
           "package_name": "ca.codingcomrades.it.buscareplus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "745684332872-sgtket652i36nkkusfudalp6ospuootm.apps.googleusercontent.com",
+          "client_id": "834359603560-i9k7v0532kgu3gdrph0vjb9lm4aeqq02.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjCqh-3hr4q8kl4xopPe8fWTp8Yl8SKn4"
+          "current_key": "AIzaSyAAwU8TUeIzGeLeDOvemJ8f9jaj8Qi0VRA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "745684332872-sgtket652i36nkkusfudalp6ospuootm.apps.googleusercontent.com",
+              "client_id": "834359603560-i9k7v0532kgu3gdrph0vjb9lm4aeqq02.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
