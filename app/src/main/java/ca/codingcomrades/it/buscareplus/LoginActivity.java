@@ -20,9 +20,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 private GoogleSignInClient mGoogleSignInClient;
     String userEmail,userPassword;
 Button login;
@@ -40,6 +44,12 @@ TextView forgotPass;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
+        database = FirebaseDatabase.getInstance();
+        myRef= database.getReference("Safety/Speed");
+        toastPrint("ran");
+        myRef.setValue("12");
+
+        myRef.setValue("12Km/h");
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         email = findViewById(R.id.LoginEmail);
