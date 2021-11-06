@@ -46,9 +46,7 @@ public class HelpActivity extends AppCompatActivity {
     }
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-//            Intent callIntent = new Intent(Intent.ACTION_CALL);
-//            callIntent.setData(Uri.parse("1234567890"));
-//            startActivity(callIntent);
+
             String phone = "+1234567890";
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", phone, null));
             startActivity(intent);
