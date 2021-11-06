@@ -49,12 +49,9 @@ public class HelpActivity extends AppCompatActivity {
 //            Intent callIntent = new Intent(Intent.ACTION_CALL);
 //            callIntent.setData(Uri.parse("1234567890"));
 //            startActivity(callIntent);
-
             String phone = "+1234567890";
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", phone, null));
             startActivity(intent);
-
-
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CALL_PHONE},  REQUEST_PHONE_CALL);
