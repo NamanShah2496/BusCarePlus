@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.help:
-                Onclick();
+                Onclick2();
                 return true;
             case R.id.myaccountImage:
                 Intent intent = new Intent(this, MyAccount.class);
@@ -112,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyAccount.class);
         startActivity(intent);
     }
-    public void Onclick(){
-//        Intent intent = new Intent(this, HelpActivity.class);
-//        startActivity(intent);
-        //        getSupportFragmentManager().beginTransaction().replace(R.id.,new Help()).commit();
+    public void Onclick2(){
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+
     }
     public void Onclick1(){
         Intent intent = new Intent(this, ReviewActivity.class);

@@ -61,7 +61,10 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="feedback">Feedback</string>
     <string name="Or_text">OR</string>
     <string name="menu_maintenance">Maintenance</string>
-    <string name="tel">+1 437-235-6780</string>
+    <string name="number">+1234567890</string>
+    <string name="tel">tel</string>
+    <string name="pg">Permission Granted</string>
+    <string name="pd">Permission Denied</string>
 
 
 </resources>
