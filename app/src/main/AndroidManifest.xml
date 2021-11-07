@@ -14,7 +14,8 @@
         <activity
             android:name=".MyAccount"
             android:label="My Account"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true"

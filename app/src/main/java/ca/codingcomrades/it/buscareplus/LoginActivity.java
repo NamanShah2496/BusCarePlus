@@ -65,8 +65,15 @@ public class LoginActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
         Map<String,Object> userInfo = new HashMap<>();
-        userInfo.put("FullName","Vishesh");
+        userInfo.put("FirstName","Test");
+        userInfo.put("LastName","User");
         userInfo.put("Phone", "94459945648");
+        userInfo.put("Age", "23");
+        userInfo.put("Address", "123 Jane St");
+        userInfo.put("City", "Toronto");
+        userInfo.put("Province", "Ontario");
+        userInfo.put("Country", "Canada");
+
         userInfo.put("isUser","1");
         df.set(userInfo);
         toastPrint(df.get().toString());
