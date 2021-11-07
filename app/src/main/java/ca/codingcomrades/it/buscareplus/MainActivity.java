@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -95,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.help:
                 Onclick();
                 return true;
-
+            case R.id.myaccountImage:
+                Intent intent = new Intent(this, MyAccount.class);
+                startActivity(intent);
             case R.id.feedback:
                 Onclick1();
                 return true;
@@ -103,7 +108,10 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    public void Onclick(View v){
+        Intent intent = new Intent(this, MyAccount.class);
+        startActivity(intent);
+    }
     public void Onclick(){
 //        Intent intent = new Intent(this, HelpActivity.class);
 //        startActivity(intent);
