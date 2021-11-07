@@ -24,7 +24,7 @@ import java.util.Date;
 
 import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.R;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
+//import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;

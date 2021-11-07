@@ -15,8 +15,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+<!--    <string name="menu_gallery">Gallery</string>-->
+    <string name="menu_safety">Safety</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -41,7 +41,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="empty_email_error">Value can\'t be empty</string>
     <string name="userPass_empty_error">Password cannot be empty</string>
     <string name="invalid_email_error">Invalid Email Address</string>
-    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>
+<!--    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>-->
     <string name="forgot_password_text"><b><u>Forgot Password?</u></b></string>
     <string name="register_text"><b><u>Register Now</u></b></string>
     <string name="its">For I.T. Support, Please contact us by clicking the below button</string>
@@ -60,5 +60,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="msg2">Name of User</string>
     <string name="msg3">Hope you have a wonderful day!!</string>
     <string name="Or_text">OR</string>
+    <string name="menu_maintenance">Maintenance</string>
+    <string name="feedback">Review</string>
+
 
 </resources>
