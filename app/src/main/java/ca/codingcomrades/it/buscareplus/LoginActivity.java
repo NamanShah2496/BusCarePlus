@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -41,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseAuth fAuth;
 
+    SharedPreferences sharedPreferences;
+    public static final String SHARED_PREFS = "sharedPrefs";
     String userEmail,userPassword;
     Button login;
     Boolean remember = false;
@@ -80,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("TAG",df.get().toString() );
 
         rememberMe = findViewById(R.id.RememberMeCheckBox);
-        remember = rememberMe.isChecked();
+
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
         forgotPass = findViewById(R.id.Forgot_Password_Title);
@@ -102,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
            fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                @Override
                public void onSuccess(AuthResult authResult) {
+                   savePreference();
                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                    startActivity(intent);
                }
@@ -116,6 +120,15 @@ public class LoginActivity extends AppCompatActivity {
        }
     }
 
+    public void savePreference(){
+        sharedPreferences = this.getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        remember = rememberMe.isChecked();
+        Log.d("TAG", "savePreference: " + remember);
+        editor.putBoolean("remember",remember);
+        editor.apply();
+
+    }
     public boolean validateName(){
         toastPrint("Validating");
         userEmail = email.getText().toString().trim();
@@ -143,10 +156,21 @@ public class LoginActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
     }
+
+    public boolean isRemember(){
+        Boolean rem;
+        Log.d("TAG", "isRemember: " + remember);
+        SharedPreferences sp = this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        rem =  sp.getBoolean("remember",false);
+        Log.d("TAG", "isRemember: Rem"+ rem);
+        return rem;
+    }
     @Override
     protected void onStart(){
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+        remember = isRemember();
+        Log.d("TAG", "onStart: "+ remember);
+        if((FirebaseAuth.getInstance().getCurrentUser() != null) && (remember)){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
     }
