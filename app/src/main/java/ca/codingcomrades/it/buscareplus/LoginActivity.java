@@ -123,14 +123,6 @@ public class LoginActivity extends AppCompatActivity {
         remember = rememberMe.isChecked();
         LocalData data = new LocalData();
         data.savePreferences(this,"remember",remember);
-//
-//        sharedPreferences = this.getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        Log.d("TAG", "savePreference: " + remember);
-//        editor.putBoolean("remember",remember);
-//        editor.apply();
-
     }
     public boolean validateName(){
         toastPrint("Validating");
