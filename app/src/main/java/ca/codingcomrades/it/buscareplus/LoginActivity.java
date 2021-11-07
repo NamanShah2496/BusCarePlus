@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
 
     String userEmail,userPassword;
     Button login;
-
+    Boolean remember = false;
+    CheckBox rememberMe;
     EditText email,password;
     TextView forgotPass;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -58,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         database = FirebaseDatabase.getInstance();
         myRef= database.getReference("Safety/Speed");
-        toastPrint("ran");
         myRef.setValue("12Km/h");
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -71,6 +72,8 @@ public class LoginActivity extends AppCompatActivity {
         toastPrint(df.get().toString());
         Log.d("TAG",df.get().toString() );
 
+        rememberMe = findViewById(R.id.RememberMeCheckBox);
+        remember = rememberMe.isChecked();
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
         forgotPass = findViewById(R.id.Forgot_Password_Title);

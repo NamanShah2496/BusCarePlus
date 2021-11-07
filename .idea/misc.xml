@@ -22,18 +22,28 @@
         <entry key="..\:/Users/Naman Shah/Downloads/buscareplus/app/src/main/res/layout/nav_header_main.xml" value="0.17391304347826086" />
         <entry key="..\:/Users/Naman Shah/Downloads/buscareplus/app/src/main/res/menu/activity_main_drawer.xml" value="0.8333333333333334" />
         <entry key="..\:/Users/Naman Shah/Downloads/buscareplus/app/src/main/res/menu/main.xml" value="0.175" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.175" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/drawable/ic_launcher_acc_background.xml" value="0.175" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/drawable/ic_launcher_acc_foreground.xml" value="0.175" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout-land/activity_login.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout-land/fragment_settings.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout-land/fragment_slideshow.xml" value="0.21516754850088182" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/activity_feedback.xml" value="0.1358695652173913" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/activity_my_account.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/content_main.xml" value="0.22418478260869565" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/fragment_maintenance.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/fragment_safety.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/fragment_settings.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/fragment_slideshow.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/maintenance_fragment.xml" value="0.24365942028985507" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/layout/nav_header_main.xml" value="0.22418478260869565" />
         <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/menu/activity_main_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/menu/custom_menu.xml" value="0.1" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/menu/custom_menu_layout.xml" value="0.264" />
+        <entry key="..\:/Users/vbroc/Desktop/BusCarePlus/app/src/main/res/menu/main.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/bus_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_acc_foreground.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/drawable/splashscreen_background.xml" value="0.11944444444444445" />
