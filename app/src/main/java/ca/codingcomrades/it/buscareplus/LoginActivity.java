@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         userInfo.put("Province", "Ontario");
         userInfo.put("Country", "Canada");
         userInfo.put("isUser","1");
+        toastPrint(userInfo.get("Country").toString());
         df.set(userInfo);
 
 
