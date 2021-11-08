@@ -58,8 +58,8 @@ public class HomeFragment extends Fragment {
         greeting.setText(msg3);
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port",null);
-        String ds = prefs.getString("ds",null);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
 
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port",null);
-        String ds = prefs.getString("ds",null);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
