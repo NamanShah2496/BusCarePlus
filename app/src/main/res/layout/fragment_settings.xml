@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.settings.SettingFragment">
 
 
@@ -14,6 +15,7 @@
         android:text="@string/portrait_lock"
         android:textSize="22dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.115"
@@ -28,6 +30,7 @@
         android:text="@string/dark_theme"
         android:textSize="22dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.112"
@@ -55,6 +58,7 @@
         android:text="Select Units of data:"
         android:textSize="22dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
@@ -92,6 +96,7 @@
             android:layout_marginLeft="50dp"
             android:text="Metric(Km/hrs)"
             android:textSize="18dp"
+
             android:textStyle="bold" />
 
         <RadioButton
@@ -101,6 +106,7 @@
             android:layout_marginLeft="50dp"
             android:text="Imperial(miles/hrs)"
             android:textSize="18dp"
+
             android:textStyle="bold" />
     </RadioGroup>
 
@@ -111,6 +117,7 @@
         android:text="Set Threshold values:"
         android:textSize="22dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.162"
@@ -125,6 +132,7 @@
         android:text="Maximum Speed:"
         android:textSize="18dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
@@ -139,6 +147,7 @@
         android:text="Maximum people:"
         android:textSize="18dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.179"
@@ -178,6 +187,7 @@
         android:layout_height="wrap_content"
         android:background="@color/settings_background"
         android:text="Save"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
