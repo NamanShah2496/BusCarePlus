@@ -6,6 +6,8 @@
 
 package ca.codingcomrades.it.buscareplus;
 
+import static com.google.firebase.auth.FirebaseAuth.*;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
@@ -104,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.feedback:
                 Onclick1();
                 return true;
+            case R.id.logout:
+                userLogout();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -119,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
     public void Onclick1(){
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
+    }
+    public void userLogout(){
+        FirebaseAuth.getInstance().signOut();
+        finish();
     }
 
 }

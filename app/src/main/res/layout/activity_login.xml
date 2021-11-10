@@ -86,21 +86,6 @@
         app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
         app:layout_constraintVertical_bias="0.516" />
 
-    <TextView
-        android:id="@+id/Forgot_Password_Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:linksClickable="true"
-        android:text="@string/forgot_password_text"
-        android:textColor="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.787"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63" />
-
     <CheckBox
         android:id="@+id/RememberMeCheckBox"
         android:layout_width="124dp"

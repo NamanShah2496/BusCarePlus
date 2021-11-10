@@ -11,7 +11,7 @@
       android:id="@+id/firstNameTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="FirstName"
+      android:text="@string/firstnameTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.172"
@@ -23,7 +23,7 @@
       android:id="@+id/cityTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="City"
+      android:text="@string/cityTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.152"
@@ -35,7 +35,7 @@
       android:id="@+id/provinceTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Province"
+      android:text="@string/provinceTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.17"
@@ -47,7 +47,7 @@
       android:id="@+id/countryTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Country"
+      android:text="@string/countryTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.162"
@@ -59,7 +59,7 @@
       android:id="@+id/addressTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Address"
+      android:text="@string/addressTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.164"
@@ -70,7 +70,7 @@
       android:id="@+id/phoneTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Phone"
+      android:text="@string/phoneTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.159"
@@ -85,7 +85,7 @@
       android:textStyle="bold"
       android:textColor="@color/common_google_signin_btn_text_dark_focused"
       android:fontFamily="sans-serif-condensed"
-      android:text="Personal Info"
+      android:text="@string/personal_infoTitle"
       android:textSize="19dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
       android:id="@+id/ageTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Age"
+      android:text="@string/ageTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.158"
@@ -110,7 +110,7 @@
       android:id="@+id/lastNameTitle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Last Name"
+      android:text="@string/last_nameTitle"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.172"
@@ -119,7 +119,7 @@
       app:layout_constraintVertical_bias="0.255" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName3"
+      android:id="@+id/firstNameEditText"
       android:layout_width="196dp"
       android:layout_height="35dp"
       android:textSize="14dp"
@@ -134,7 +134,7 @@
       app:layout_constraintVertical_bias="0.183" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName7"
+      android:id="@+id/countryEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
@@ -149,7 +149,7 @@
       app:layout_constraintVertical_bias="0.775" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName8"
+      android:id="@+id/provinceEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
@@ -164,7 +164,7 @@
       app:layout_constraintVertical_bias="0.686" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName6"
+      android:id="@+id/cityEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
@@ -179,7 +179,7 @@
       app:layout_constraintVertical_bias="0.596" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName5"
+      android:id="@+id/addressEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
@@ -193,7 +193,7 @@
       app:layout_constraintVertical_bias="0.512" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName4"
+      android:id="@+id/lastNameEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
@@ -208,7 +208,7 @@
       app:layout_constraintVertical_bias="0.261" />
 
   <EditText
-      android:id="@+id/editTextPhone"
+      android:id="@+id/phoneEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
@@ -222,7 +222,7 @@
       app:layout_constraintVertical_bias="0.34" />
 
   <EditText
-      android:id="@+id/editTextNumberSigned"
+      android:id="@+id/ageEditText"
       android:layout_width="203dp"
       android:layout_height="35dp"
       android:ems="10"
