@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -19,16 +21,19 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -41,12 +46,14 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseAuth fAuth;
 
+    SharedPreferences sharedPreferences;
+    public static final String SHARED_PREFS = "sharedPrefs";
     String userEmail,userPassword;
     Button login;
     Boolean remember = false;
     CheckBox rememberMe;
     EditText email,password;
-    TextView forgotPass;
+
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
@@ -55,38 +62,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+        LocalData local = new LocalData();
         database = FirebaseDatabase.getInstance();
         myRef= database.getReference("Safety/Speed");
         myRef.setValue("12Km/h");
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-        DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
-        Map<String,Object> userInfo = new HashMap<>();
-        userInfo.put("FirstName","Test");
-        userInfo.put("LastName","User");
-        userInfo.put("Phone", "94459945648");
-        userInfo.put("Age", "23");
-        userInfo.put("Address", "123 Jane St");
-        userInfo.put("City", "Toronto");
-        userInfo.put("Province", "Ontario");
-        userInfo.put("Country", "Canada");
 
-        userInfo.put("isUser","1");
-        df.set(userInfo);
-        toastPrint(df.get().toString());
-        Log.d("TAG",df.get().toString() );
-
+        fStore =FirebaseFirestore.getInstance();
         rememberMe = findViewById(R.id.RememberMeCheckBox);
-        remember = rememberMe.isChecked();
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
-        forgotPass = findViewById(R.id.Forgot_Password_Title);
 
-
-        forgotPass.setOnClickListener(v->toastPrint("Feature Coming soon"));
         login = findViewById(R.id.Login_btn);
         login.setOnClickListener(v-> callHome());
         ActionBar actionBar = getSupportActionBar();
@@ -97,11 +84,20 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        email.setText("");
+        password.setText("");
+    }
     public void callHome(){
        if(validateName()){
+
            fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                @Override
                public void onSuccess(AuthResult authResult) {
+                   savePreference();
                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                    startActivity(intent);
                }
@@ -116,6 +112,11 @@ public class LoginActivity extends AppCompatActivity {
        }
     }
 
+    public void savePreference(){
+        remember = rememberMe.isChecked();
+        LocalData data = new LocalData();
+        data.savePreferences(this,"remember",remember);
+    }
     public boolean validateName(){
         toastPrint("Validating");
         userEmail = email.getText().toString().trim();
@@ -143,10 +144,20 @@ public class LoginActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
     }
+
+    public boolean isRemember(){
+        Boolean rem;
+        LocalData data = new LocalData();
+        rem = data.getPreference(this,"remember");
+        Log.d("TAG", "isRemember: Rem"+ rem);
+        return rem;
+    }
     @Override
     protected void onStart(){
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+        remember = isRemember();
+        Log.d("TAG", "onStart: "+ remember);
+        if((FirebaseAuth.getInstance().getCurrentUser() != null) && (remember)){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
     }
