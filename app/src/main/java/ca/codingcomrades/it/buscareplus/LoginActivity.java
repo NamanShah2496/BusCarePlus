@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,14 +23,17 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 //import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -58,28 +62,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-
+        LocalData local = new LocalData();
         database = FirebaseDatabase.getInstance();
         myRef= database.getReference("Safety/Speed");
         myRef.setValue("12Km/h");
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-        DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
-        Map<String,Object> userInfo = new HashMap<>();
-        userInfo.put("FirstName","Test");
-        userInfo.put("LastName","User");
-        userInfo.put("Phone", "94459945648");
-        userInfo.put("Age", "23");
-        userInfo.put("Address", "123 Jane St");
-        userInfo.put("City", "Toronto");
-        userInfo.put("Province", "Ontario");
-        userInfo.put("Country", "Canada");
-        userInfo.put("isUser","1");
-        toastPrint(userInfo.get("Country").toString());
-        df.set(userInfo);
 
-
-        Log.d("TAG",df.get().toString() );
+        fStore =FirebaseFirestore.getInstance();
         rememberMe = findViewById(R.id.RememberMeCheckBox);
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
@@ -93,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     }
+
+
     @Override
     protected void onResume(){
         super.onResume();
