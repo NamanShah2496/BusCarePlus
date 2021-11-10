@@ -20,6 +20,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
@@ -31,7 +33,7 @@ EditText email,password;
 TextView forgotPass;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-
+    FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +47,9 @@ TextView forgotPass;
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
         forgotPass = findViewById(R.id.Forgot_Password_Title);
-        google =findViewById(R.id.GoogleSignBtn);
-        google.setOnClickListener(v-> signIn());
+        database = FirebaseDatabase.getInstance();
+        Log.d("TAG", "sendReview: Working" );
+
 
         forgotPass.setOnClickListener(v->toastPrint("Feature Coming soon"));
         login = findViewById(R.id.Login_btn);
@@ -58,10 +61,7 @@ TextView forgotPass;
 
         }
     }
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+
     public void callHome(){
        if(validateName()){
         Intent intent = new Intent(this, MainActivity.class);

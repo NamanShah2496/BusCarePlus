@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -31,12 +32,20 @@ EditText fullName,phone,email,comment;
     }
     public void sendReview(){
         if(validate()) {
-           database = FirebaseDatabase.getInstance();
-            Log.d("TAG", "sendReview: Working" );
-//            DatabaseReference myRef = database.getReference("FeedBack/Speed");
-//            myRef.setValue("12Km/h");
-//        fStore = FirebaseFirestore.getInstance();
-//        fAuth = FirebaseAuth.getInstance();
+            database = FirebaseDatabase.getInstance();
+            String test = "ffwrgrgheqliglietg12";
+            DatabaseReference myRef = database.getReference("Feed1"+"/"+test);
+            DatabaseReference fullNameChild = myRef.child("Name");
+            fullNameChild.setValue(name);
+            DatabaseReference emailChild = myRef.child("Email");
+            emailChild.setValue(emailAddress);
+            DatabaseReference phoneChild = myRef.child("Phone");
+            phoneChild.setValue(num);
+            DatabaseReference commentChild = myRef.child("Comment");
+            commentChild.setValue(Comment);
+            DatabaseReference ratingChild = myRef.child("Rating");
+            ratingChild.setValue(rating);
+
         }
     }
     public void bindFields(){
