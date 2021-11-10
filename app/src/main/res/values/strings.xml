@@ -64,7 +64,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="feedback">Review</string>
     <string name="username">Full Name</string>
     <string name="Rating">Rating</string>
-    <string name="pno">Phone Number</string>
+    <string name="pno">Phone No.</string>
     <string name="Comments">Comments</string>
     <string name="model">Device Model</string>
     <string name="submit">submit</string>
