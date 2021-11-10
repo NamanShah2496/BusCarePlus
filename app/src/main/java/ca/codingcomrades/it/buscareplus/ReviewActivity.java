@@ -45,7 +45,7 @@ EditText fullName,phone,email,comment;
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
-
+            finish();
         }
     }
     public void bindFields(){
