@@ -69,6 +69,16 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="model">Device Model</string>
     <string name="submit">submit</string>
 
+    <string name="firstnameTitle">FirstName</string>
+    <string name="cityTitle">City</string>
+    <string name="provinceTitle">Province</string>
+    <string name="countryTitle">Country</string>
+    <string name="addressTitle">Address</string>
+    <string name="personal_infoTitle">Personal Info</string>
+    <string name="ageTitle">Age</string>
+    <string name="last_nameTitle">LastName</string>
+    <string name="check">Province</string>
+    <string name="phoneTitle">Phone</string>
 
 
 </resources>
