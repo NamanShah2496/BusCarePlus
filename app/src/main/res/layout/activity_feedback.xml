@@ -8,23 +8,10 @@
 
 
     <EditText
-        android:id="@+id/pno_input3"
-        android:layout_width="235dp"
-        android:layout_height="42dp"
-        android:inputType="phone"
-        android:maxLength="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
-
-    <EditText
         android:id="@+id/fullNameInput"
         android:layout_width="235dp"
         android:layout_height="42dp"
-        android:inputType="phone"
+        android:inputType="text"
         android:maxLength="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +24,7 @@
         android:id="@+id/emailInput"
         android:layout_width="235dp"
         android:layout_height="42dp"
-        android:inputType="phone"
+        android:inputType="text"
         android:maxLength="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,13 +40,13 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="372dp"
         android:numStars="5"
-        android:progressTint="#FFC107"
+        android:progressTint="@color/blue"
         android:rating="3.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/pno"
+        android:id="@+id/pnoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pno"
@@ -72,7 +59,7 @@
         app:layout_constraintVertical_bias="0.319" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/nameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
@@ -85,7 +72,7 @@
         app:layout_constraintVertical_bias="0.218" />
 
     <TextView
-        android:id="@+id/rating"
+        android:id="@+id/ratingTitle"
         android:layout_width="83dp"
         android:layout_height="32dp"
         android:layout_marginTop="372dp"
@@ -97,7 +84,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/email2"
+        android:id="@+id/emailTitle"
         android:layout_width="113dp"
         android:layout_height="29dp"
         android:text="@string/prompt_email"
@@ -136,7 +123,7 @@
 
 
     <TextView
-        android:id="@+id/comment"
+        android:id="@+id/commentTitle"
         android:layout_width="113dp"
         android:layout_height="29dp"
         android:text="@string/Comments"
@@ -158,13 +145,13 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitBtn"
         android:layout_width="95dp"
         android:layout_height="41dp"
         android:text="@string/submit"
