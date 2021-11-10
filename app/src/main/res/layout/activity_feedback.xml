@@ -7,17 +7,174 @@
     tools:context=".ReviewActivity">
 
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="369dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="248dp"
-        android:text="@string/feedback"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="240dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="148dp"
+        android:numStars="5"
+        android:progressTint="#FFC107"
+        android:rating="3.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pno"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.389" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="83dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="164dp"
+        android:text="@string/Rating"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="113dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="336dp"
+        android:text="@string/prompt_email"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/model"
+        android:layout_width="113dp"
+        android:layout_height="29dp"
+        android:text="@string/model"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.817" />
+
+    <TextView
+        android:id="@+id/model_print"
+        android:layout_width="189dp"
+        android:layout_height="33dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.816" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="113dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="404dp"
+        android:text="@string/Comments"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="171dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="216dp"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/pno_input"
+        android:layout_width="198dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="272dp"
+        android:inputType="phone"
+        android:maxLength="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="336dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/comment_input"
+        android:layout_width="361dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="444dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textCapSentences|textMultiLine"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="95dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="56dp"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="104dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/feedback" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

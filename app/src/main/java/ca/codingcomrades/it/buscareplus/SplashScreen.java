@@ -32,7 +32,6 @@ public class SplashScreen extends AppCompatActivity {
             if (!isFinishing()) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                //  startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish(); //so that splash screen doesnt open on resuming
             }
         }
