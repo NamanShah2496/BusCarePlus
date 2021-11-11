@@ -11,5 +11,6 @@
         <item name="text_color">#ffff</item>
         <item name="button_color">#ffff</item>
         <item name="android:textColor">#ffff</item>
+        <item name="textAppearanceButton">@color/colorAccent</item>
     </style>
 </resources>

@@ -85,9 +85,8 @@ String cityName,uid;
 
     }
 
-        }
 
-    }
+
 
     @Override
     public void onResume() {
@@ -95,20 +94,21 @@ String cityName,uid;
         super.onResume();
 
         SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+        String port = prefs.getString("port", "false");
+        String ds = prefs.getString("ds", "false");
+        if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if(ds.equalsIgnoreCase("true")){
+        if (ds.equalsIgnoreCase("true")) {
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
     public void setFields(){
         firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
         lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
