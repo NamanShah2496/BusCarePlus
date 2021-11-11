@@ -37,14 +37,14 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="logout">Log Out</string>
     <string name="maintenance">Maintenance</string>
     <string name="safety">Safety</string>
-    <string name="settings">Paramètres</string>
+    <string name="help">Help</string>
+      <string name="settings">Paramètres</string>
     <string name="select_language">Choisir la langue:</string>
     <string name="english_language">Anglais</string>
     <string name="french_language">Français</string>
     <string name="portrait_lock">Verrouillage portrait:</string>
     <string name="dark_theme">Verrouillage portrait:</string>
     <string name="its">For I.T. Support, Please contact us by clicking the below button</string>
-    <string name="help">Help</string>
     <string name="qbc">Q. What is BusCare+ ?</string>
     <string name="abc">A. BusCare+ is an application that provides Maintenance and Safety of Bus and Passengers.</string>
     <string name="qms">Q. What does the maintenance service includes in BusCare+ ?</string>
@@ -58,15 +58,29 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="msg1">Welcome to BusCare+</string>
     <string name="msg2">Name of User</string>
     <string name="msg3">Hope you have a wonderful day!!</string>
+    <string name="feedback">Feedback</string>
+    <string name="firstnameTitle">FirstName</string>
+    <string name="cityTitle">City</string>
+    <string name="provinceTitle">Province</string>
+    <string name="countryTitle">Country</string>
+    <string name="addressTitle">Address</string>
+    <string name="personal_infoTitle">Personal Info</string>
+    <string name="ageTitle">Age</string>
+    <string name="last_nameTitle">LastName</string>
+    <string name="check">Province</string>
+    <string name="phoneTitle">Phone</string>
     <string name="Or_text">OR</string>
     <string name="menu_maintenance">Maintenance</string>
-    <string name="feedback">Review</string>
+    <string name="number">+1234567890</string>
+    <string name="tel">tel</string>
+    <string name="pg">Permission Granted</string>
+    <string name="pd">Permission Denied</string>
     <string name="username">Full Name</string>
-    <string name="Rating">Rating</string>
     <string name="pno">Phone Number</string>
+    <string name="Rating">Rating</string>
     <string name="Comments">Comments</string>
-    <string name="model">Device Model</string>
-    <string name="submit">submit</string>
+    <string name="submit">Submit</string>
+    <string name="model">Device</string>
 
 
 </resources>
