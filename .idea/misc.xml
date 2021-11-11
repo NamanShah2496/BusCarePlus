@@ -49,9 +49,9 @@
         <entry key="app/src/main/res/drawable/splashscreen_background.xml" value="0.11944444444444445" />
         <entry key="app/src/main/res/layout-land/nav_header_main.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/activirt_feedback.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_help.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.10960144927536232" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18004997915077978" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12907608695652173" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.10960144927536232" />
         <entry key="app/src/main/res/layout/feedback_xml.xml" value="0.11458333333333333" />
