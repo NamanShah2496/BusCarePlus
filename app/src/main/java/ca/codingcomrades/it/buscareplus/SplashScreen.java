@@ -27,27 +27,27 @@ public class SplashScreen extends AppCompatActivity {
         handler.postDelayed(runnable,3000);
     }
 
-    @Override
-    public void onResume() {
-
-        super.onResume();
-
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
-
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
-        if(ds.equalsIgnoreCase("true")){
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
+//    @Override
+//    public void onResume() {
+//
+//        super.onResume();
+//
+//        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+//        String port = prefs.getString("port","false");
+//        String ds = prefs.getString("ds","false");
+//        if(port.equalsIgnoreCase("true")){
+//
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        }else {
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+//        }
+//        if(ds.equalsIgnoreCase("true")){
+//
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        }else {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        }
+//    }
 
 
     public Runnable runnable =new Runnable() {

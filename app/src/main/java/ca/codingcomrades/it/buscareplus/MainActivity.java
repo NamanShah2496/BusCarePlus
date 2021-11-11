@@ -31,6 +31,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -51,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_settings, R.id.nav_maintenance, R.id.nav_safety)
-                .setDrawerLayout(drawer)
+                R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
+                .setOpenableLayout(drawer)
+//                .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
 
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
@@ -118,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-        @Override
-        public void onBackPressed(){
-            onBack();
-        }
+    @Override
+    public void onBackPressed(){
+        onBack();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.help:
-                Onclick2();
+                Onclick();
                 return true;
             case R.id.myaccountImage:
                 Intent intent = new Intent(this, MyAccount.class);
@@ -143,10 +145,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyAccount.class);
         startActivity(intent);
     }
-    public void Onclick2(){
+    public void Onclick(){
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
-
     }
     public void Onclick1(){
         Intent intent = new Intent(this, ReviewActivity.class);
@@ -154,3 +155,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
