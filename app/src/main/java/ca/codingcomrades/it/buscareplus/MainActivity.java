@@ -6,11 +6,11 @@
 
 package ca.codingcomrades.it.buscareplus;
 
-import static com.google.firebase.auth.FirebaseAuth.*;
-
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,16 +19,18 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String model = Build.MODEL;
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -57,7 +59,34 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
     }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
+        if(port.equalsIgnoreCase("true")){
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if(ds.equalsIgnoreCase("true")){
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+
+
     public void onBack() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit!!");
@@ -91,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-        @Override
-        public void onBackPressed(){
-            onBack();
-        }
+    @Override
+    public void onBackPressed(){
+        onBack();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -107,9 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             case R.id.feedback:
                 Onclick1();
-                return true;
-            case R.id.logout:
-                userLogout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -127,9 +153,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
-    public void userLogout(){
-        FirebaseAuth.getInstance().signOut();
-        finish();
-    }
 
 }
+

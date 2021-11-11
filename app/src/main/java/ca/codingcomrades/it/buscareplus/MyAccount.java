@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -62,7 +67,7 @@ String cityName,uid;
         country = findViewById(R.id.countryEditText);
 
     }
-    public void retriveUserData(){
+    public void retriveUserData() {
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
@@ -72,7 +77,7 @@ String cityName,uid;
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 arr = value.getData();
-                Log.d("TAG", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
+                Log.d("TAG", "onEvent: " + arr.get("LastName") + arr.values().toString() + "reg" + arr.values());
                 setFields();
 
             }
@@ -80,6 +85,28 @@ String cityName,uid;
 
     }
 
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port", "false");
+        String ds = prefs.getString("ds", "false");
+        if (port.equalsIgnoreCase("true")) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if (ds.equalsIgnoreCase("true")) {
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
     public void setFields(){
         firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
         lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
