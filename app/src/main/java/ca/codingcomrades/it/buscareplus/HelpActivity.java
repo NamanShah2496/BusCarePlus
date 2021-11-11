@@ -56,7 +56,7 @@ public class HelpActivity extends AppCompatActivity {
         super.onResume();
 
         SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-       String port = prefs.getString("port","false");
+        String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
 
