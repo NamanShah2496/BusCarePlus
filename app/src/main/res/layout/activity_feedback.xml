@@ -40,7 +40,7 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="372dp"
         android:numStars="5"
-        android:progressTint="@color/blue"
+        android:progressTint="@color/yellow"
         android:rating="3.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -155,6 +155,7 @@
         android:layout_width="95dp"
         android:layout_height="41dp"
         android:text="@string/submit"
+        android:backgroundTint="@color/naroon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"

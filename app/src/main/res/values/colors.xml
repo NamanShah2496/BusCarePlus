@@ -8,7 +8,6 @@
     <color name="jass">#C4C4C4</color>
     <color name="back">#F5F5F5</color>
     <color name="blue">#20A5F5</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="home_back">#4E5DE1</color>
 
 
@@ -18,5 +17,6 @@
     <color name="colorPrimaryDarkNight">#000</color>
     <color name="colorTextNight">#dcdcdc</color>
     <color name="naroon">#800000</color>
+    <color name="yellow">#FFEB3B</color>
 
 </resources>

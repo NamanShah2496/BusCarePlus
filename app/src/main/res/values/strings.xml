@@ -50,12 +50,12 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="answer_1">A. BusCare+ is an application that is designed to provide safety to the passengers and provide upto date info about the maintenance of the bus.</string>
     <string name="question_2">Q. What does the maintenance service includes in BusCare+ ?</string>
     <string name="answer_2">A. The maintenance service contains 2 features:</string>
-    <string name="answer_2_a">- The temperature inside bus is convenient for human body</string>
-    <string name="answer_2_b">- The CO2 emission inside bus is suitable for human body</string>
+    <string name="answer_2_a">- The temperature inside bus is convenient for the passengers</string>
+    <string name="answer_2_b">- The CO2 emission inside bus is under the prescribed limits</string>
     <string name="question_3">Q. What does the safety service includes in BusCare+ ?</string>
     <string name="answer_3">A. The safety service contains 2 features:</string>
-    <string name="answer_3_a">- To keep count of passengers inside bus especially during COVID situation where physical distance is a must</string>
-    <string name="answer_3_b">- To maintain speed of bus under safety speed</string>
+    <string name="answer_3_a">- Passenger count, to keep the number of passengers in the bus under the predetermined limits</string>
+    <string name="answer_3_b">- Speed of the bus, to make sure the bus isn\'t overspeeding </string>
     <string name="msg1">Welcome to BusCare+</string>
     <string name="msg2">Name of User</string>
     <string name="msg3">Hope you have a wonderful day!!</string>
@@ -67,7 +67,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="pno">Phone No.</string>
     <string name="Comments">Comments</string>
     <string name="model">Device Model</string>
-    <string name="submit">submit</string>
+    <string name="submit">Submit</string>
     <string name="firstnameTitle">FirstName</string>
     <string name="cityTitle">City</string>
     <string name="provinceTitle">Province</string>
@@ -79,7 +79,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="check">Province</string>
     <string name="phoneTitle">Phone</string>
     <string name="number">+1234567890</string>
-    <string name="tel">tel</string>
+    <string name="tel">Tel</string>
     <string name="pg">Permission Granted</string>
     <string name="pd">Permission Denied</string>
 

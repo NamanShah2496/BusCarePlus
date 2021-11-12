@@ -15,4 +15,6 @@
     <style name="Theme.Buscareplus.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.Buscareplus.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <color name="maroon">#800000</color>
 </resources>
