@@ -28,6 +28,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
+                R.id.nav_home, R.id.nav_settings, R.id.nav_safety, R.id.nav_maintenance)
                 .setOpenableLayout(drawer)
 //                .setDrawerLayout(drawer)
                 .build();
@@ -69,22 +70,21 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+        String port = prefs.getString("port", "false");
+        String ds = prefs.getString("ds", "false");
+        if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        }else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if(ds.equalsIgnoreCase("true")){
+        if (ds.equalsIgnoreCase("true")) {
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
-
 
 
     public void onBack() {
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         onBack();
     }
 
@@ -137,22 +137,31 @@ public class MainActivity extends AppCompatActivity {
             case R.id.feedback:
                 Onclick1();
                 return true;
+            case R.id.logout:
+                userLogout();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void Onclick(View v){
+
+    public void Onclick(View v) {
         Intent intent = new Intent(this, MyAccount.class);
         startActivity(intent);
     }
-    public void Onclick(){
+
+    public void Onclick() {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
-    public void Onclick1(){
+
+    public void Onclick1() {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
 
+    public void userLogout() {
+        FirebaseAuth.getInstance().signOut();
+        finish();
+    }
 }
-
