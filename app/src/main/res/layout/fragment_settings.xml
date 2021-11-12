@@ -96,6 +96,7 @@
             android:layout_marginLeft="50dp"
             android:text="Metric(Km/hrs)"
             android:textSize="18dp"
+            android:textColor="@color/home_back"
 
             android:textStyle="bold" />
 
@@ -104,6 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
+            android:textColor="@color/home_back"
             android:text="Imperial(miles/hrs)"
             android:textSize="18dp"
 
@@ -185,9 +187,8 @@
         android:id="@+id/SettingsSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/settings_background"
         android:text="Save"
-
+        android:backgroundTint="@color/naroon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

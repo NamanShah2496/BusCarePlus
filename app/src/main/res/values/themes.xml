@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Buscareplus" parent="Theme.MaterialComponents.Light">
-        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimary">@color/menu_blue</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/green</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/menu_blue</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -15,4 +15,6 @@
     <style name="Theme.Buscareplus.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.Buscareplus.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <color name="maroon">#800000</color>
 </resources>

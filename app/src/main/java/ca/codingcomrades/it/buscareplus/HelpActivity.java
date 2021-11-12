@@ -36,7 +36,7 @@ public class HelpActivity extends AppCompatActivity {
 
         }
 
-        button = findViewById(R.id.button2);
+        button = findViewById(R.id.help_button);
         button.setOnClickListener(view -> insertDummyContactWrapper());
 
 
@@ -67,7 +67,7 @@ public class HelpActivity extends AppCompatActivity {
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
 
-            String phone = getString(R.string.number);
+            String phone ="3917463746"; //getString(R.string.number);
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts(getString(R.string.tel), phone, null));
             startActivity(intent);
         } else {
