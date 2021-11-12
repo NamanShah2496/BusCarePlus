@@ -80,6 +80,7 @@
 
 
     <RadioGroup
+        android:id="@+id/UnitsRG"
         android:layout_width="286dp"
         android:layout_height="74dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,17 +91,17 @@
         app:layout_constraintVertical_bias="0.426">
 
         <RadioButton
-            android:id="@+id/Unit_Metric_Radio_Btn"
+            android:id="@+id/MetricRB"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:layout_marginLeft="50dp"
             android:text="Metric(Km/hrs)"
             android:textSize="18dp"
-
+            android:checked="true"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/Unit_Imperial_Radio_Btn"
+            android:id="@+id/ImperialRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -194,6 +195,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
+
+    <TextView
+        android:id="@+id/SpeedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.678" />
+
+    <TextView
+        android:id="@+id/MaxPeopleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
