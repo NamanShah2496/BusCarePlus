@@ -15,9 +15,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -38,14 +36,8 @@ public class HelpActivity extends AppCompatActivity {
 
         }
 
-        button = findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                insertDummyContactWrapper();
-            }
-        });
+        button = findViewById(R.id.help_button);
+        button.setOnClickListener(view -> insertDummyContactWrapper());
 
 
     }
@@ -67,6 +59,7 @@ public class HelpActivity extends AppCompatActivity {
         if(ds.equalsIgnoreCase("true")){
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
@@ -75,8 +68,8 @@ public class HelpActivity extends AppCompatActivity {
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
 
-            String phone = "+1234567890";
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", phone, null));
+            String phone ="3917463746"; //getString(R.string.number);
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts(getString(R.string.tel), phone, null));
             startActivity(intent);
         } else {
             ActivityCompat.requestPermissions(this,
@@ -88,11 +81,14 @@ public class HelpActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_PHONE_CALL && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            ConstraintLayout text = findViewById(R.id.constraintLayout);
+            Snackbar snackbar = Snackbar
+                    .make(text, R.string.pg, Snackbar.LENGTH_LONG);
+            snackbar.show();
         } else if (requestCode != REQUEST_PHONE_CALL && grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             ConstraintLayout text = findViewById(R.id.constraintLayout);
             Snackbar snackbar = Snackbar
-                    .make(text, "Permission Denied", Snackbar.LENGTH_LONG);
+                    .make(text, R.string.pd, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

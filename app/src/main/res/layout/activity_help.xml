@@ -8,11 +8,11 @@
     tools:context=".HelpActivity">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/it_support"
         android:layout_width="387dp"
         android:layout_height="86dp"
-        android:text="@string/its"
-        android:textColor="@color/black"
+        android:text="@string/it_support"
+        android:textColor="@color/naroon"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +22,11 @@
         app:layout_constraintVertical_bias="0.953" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/help_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help"
+        android:backgroundTint="@color/naroon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.848"
@@ -34,11 +35,11 @@
         app:layout_constraintVertical_bias="0.956" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/question_1"
         android:layout_width="380dp"
         android:layout_height="59dp"
-        android:text="@string/qbc"
-        android:textColor="@color/black"
+        android:text="@string/question_1"
+        android:textColor="@color/naroon"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,10 +50,10 @@
         app:layout_constraintVertical_bias="0.172" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/answer_1"
         android:layout_width="381dp"
         android:layout_height="81dp"
-        android:text="@string/abc"
+        android:text="@string/answer_1"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,11 +63,11 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/question_2"
         android:layout_width="379dp"
         android:layout_height="90dp"
-        android:text="@string/qms"
-        android:textColor="@color/black"
+        android:text="@string/question_2"
+        android:textColor="@color/naroon"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,10 +78,10 @@
         app:layout_constraintVertical_bias="0.346" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/answer_2"
         android:layout_width="382dp"
         android:layout_height="78dp"
-        android:text="@string/ams"
+        android:text="@string/answer_2"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,10 +91,10 @@
         app:layout_constraintVertical_bias="0.415" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/answer_2_a"
         android:layout_width="367dp"
         android:layout_height="50dp"
-        android:text="@string/sams"
+        android:text="@string/answer_2_a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -102,10 +103,10 @@
         app:layout_constraintVertical_bias="0.543" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/answer_2_b"
         android:layout_width="359dp"
         android:layout_height="50dp"
-        android:text="@string/sams1"
+        android:text="@string/answer_2_b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.442"
@@ -114,11 +115,11 @@
         app:layout_constraintVertical_bias="0.469" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/question_3"
         android:layout_width="369dp"
         android:layout_height="68dp"
-        android:text="@string/qss"
-        android:textColor="@color/black"
+        android:text="@string/question_3"
+        android:textColor="@color/naroon"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -129,10 +130,10 @@
         app:layout_constraintVertical_bias="0.633" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/answer_3"
         android:layout_width="377dp"
         android:layout_height="68dp"
-        android:text="@string/ass"
+        android:text="@string/answer_3"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,10 +143,10 @@
         app:layout_constraintVertical_bias="0.705" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/answer_3_a"
         android:layout_width="364dp"
         android:layout_height="54dp"
-        android:text="@string/sass"
+        android:text="@string/answer_3_a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -154,10 +155,10 @@
         app:layout_constraintVertical_bias="0.759" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/answer_3_b"
         android:layout_width="369dp"
         android:layout_height="51dp"
-        android:text="@string/sass1"
+        android:text="@string/answer_3_b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.547"
@@ -166,7 +167,7 @@
         app:layout_constraintVertical_bias="0.841" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/help_image"
         android:layout_width="115dp"
         android:layout_height="101dp"
         app:layout_constraintBottom_toBottomOf="parent"

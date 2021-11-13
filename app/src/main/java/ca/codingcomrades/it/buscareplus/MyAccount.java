@@ -55,6 +55,29 @@ String cityName,uid;
 
     }
 
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port", "false");
+        String ds = prefs.getString("ds", "false");
+        if (port.equalsIgnoreCase("true")) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if (ds.equalsIgnoreCase("true")) {
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
     public void bindFields(){
         save = findViewById(R.id.saveInfoBtn);
         firstName = findViewById(R.id.firstNameEditText);
@@ -85,30 +108,6 @@ String cityName,uid;
 
     }
 
-
-
-
-    @Override
-    public void onResume() {
-
-        super.onResume();
-
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port", "false");
-        String ds = prefs.getString("ds", "false");
-        if (port.equalsIgnoreCase("true")) {
-
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
-        if (ds.equalsIgnoreCase("true")) {
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
     public void setFields(){
         firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
         lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
@@ -143,5 +142,6 @@ String cityName,uid;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
+
     }
 }
