@@ -55,6 +55,7 @@ String cityName,uid;
 
     }
 
+
     public void bindFields(){
         save = findViewById(R.id.saveInfoBtn);
         firstName = findViewById(R.id.firstNameEditText);
@@ -67,7 +68,7 @@ String cityName,uid;
         country = findViewById(R.id.countryEditText);
 
     }
-    public void retriveUserData() {
+    public void retriveUserData(){
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
@@ -77,13 +78,15 @@ String cityName,uid;
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 arr = value.getData();
-                Log.d("TAG", "onEvent: " + arr.get("LastName") + arr.values().toString() + "reg" + arr.values());
+                Log.d("TAG", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
                 setFields();
 
             }
         });
 
     }
+
+
 
 
     @Override

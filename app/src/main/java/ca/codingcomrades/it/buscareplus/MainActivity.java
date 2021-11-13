@@ -7,6 +7,9 @@
 package ca.codingcomrades.it.buscareplus;
 
 import android.content.Context;
+import static com.google.firebase.auth.FirebaseAuth.*;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +31,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
 
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
@@ -120,10 +124,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    @Override
-    public void onBackPressed(){
-        onBack();
-    }
+        @Override
+        public void onBackPressed(){
+            onBack();
+        }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -136,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             case R.id.feedback:
                 Onclick1();
+                return true;
+            case R.id.logout:
+                userLogout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -153,6 +160,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
+    public void userLogout(){
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 
 }
-
