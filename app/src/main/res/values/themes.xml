@@ -1,12 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Buscareplus" parent="Theme.MaterialComponents.Light">
+<!--    <style name="Theme.Buscareplus" parent="Theme.MaterialComponents.Light">-->
+<!--    </style>-->
+    <style name="Theme.Buscareplus" parent="Theme.MaterialComponents.DayNight">
+
         <item name="colorPrimary">@color/menu_blue</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/menu_blue</item>
         <!-- Customize your theme here. -->
     </style>
-
     <style name="Theme.Buscareplus.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

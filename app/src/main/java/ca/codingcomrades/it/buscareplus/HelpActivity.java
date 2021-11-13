@@ -59,6 +59,7 @@ public class HelpActivity extends AppCompatActivity {
         if(ds.equalsIgnoreCase("true")){
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
