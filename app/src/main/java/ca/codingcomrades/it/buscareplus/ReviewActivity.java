@@ -1,3 +1,9 @@
+// Naman Shah , n01392496 , Section RNA
+// Aryan Sood , n01393003, Section RNA
+// Vishesh Bansal, n01395119, Section RNA
+// Jaskirat Singh , N01403975 , Section RNB
+
+
 package ca.codingcomrades.it.buscareplus;
 
 import static android.os.Build.VERSION.SDK_INT;
@@ -27,8 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class ReviewActivity  extends AppCompatActivity {
-    private static final String CHANNEL_ID = "tst";
-    FirebaseDatabase database;
+FirebaseDatabase database;
 Button submit;
 RatingBar ratingBar;
 TextView model;
