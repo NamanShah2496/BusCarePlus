@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="	#008000"
+
     tools:context=".ui.home.HomeFragment">
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="128dp"
         android:layout_height="126dp"
-        android:background="@color/white"
+        android:background="@color/green"
         android:src="@drawable/ic_launcher_thermo_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/imageButton3"
         android:layout_width="128dp"
         android:layout_height="126dp"
-        android:background="@color/white"
+        android:background="@color/red"
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:src="@drawable/ic_launcher_speed_foreground"
-        android:background="@color/white"
+        android:background="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.78"
@@ -48,16 +48,14 @@
 
     <Spinner
         android:id="@+id/busoption"
-        android:layout_width="364dp"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_width="125dp"
+        android:layout_height="36dp"
         android:entries="@array/bus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <TextView
         android:id="@+id/busno"
@@ -65,7 +63,7 @@
         android:layout_height="80dp"
         android:text="927"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/yellow"
         android:textSize="38sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +77,7 @@
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:src="@drawable/ic_launcher_people_foreground"
-        android:background="@color/white"
+        android:background="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.233"
@@ -92,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Data"
+        android:backgroundTint="@color/menu_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

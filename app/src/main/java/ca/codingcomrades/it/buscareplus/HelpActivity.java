@@ -1,3 +1,9 @@
+// Naman Shah , n01392496 , Section RNA
+// Aryan Sood , n01393003, Section RNA
+// Vishesh Bansal, n01395119, Section RNA
+// Jaskirat Singh , N01403975 , Section RNB
+
+
 package ca.codingcomrades.it.buscareplus;
 
 import androidx.appcompat.app.ActionBar;
@@ -36,7 +42,7 @@ public class HelpActivity extends AppCompatActivity {
 
         }
 
-        button = findViewById(R.id.button2);
+        button = findViewById(R.id.help_button);
         button.setOnClickListener(view -> insertDummyContactWrapper());
 
 
@@ -59,6 +65,7 @@ public class HelpActivity extends AppCompatActivity {
         if(ds.equalsIgnoreCase("true")){
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
@@ -67,7 +74,7 @@ public class HelpActivity extends AppCompatActivity {
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
 
-            String phone = getString(R.string.number);
+            String phone ="3917463746"; //getString(R.string.number);
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts(getString(R.string.tel), phone, null));
             startActivity(intent);
         } else {

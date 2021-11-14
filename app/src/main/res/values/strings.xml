@@ -44,24 +44,30 @@ Jaskirat Singh , N01403975 , Section RNB
 <!--    <string name="Pass_Guidelines_text"> <b> Atleast 5 characters \n Mixture of UpperCase and LowerCase \n Should contain special character</b></string>-->
     <string name="forgot_password_text"><b><u>Forgot Password?</u></b></string>
     <string name="register_text"><b><u>Register Now</u></b></string>
-    <string name="its">For I.T. Support, Please contact us by clicking the below button</string>
+    <string name="it_support">For I.T. Support, Please contact us by clicking the below button</string>
     <string name="help">Help</string>
-    <string name="qbc">Q. What is BusCare+ ?</string>
-    <string name="abc">A. BusCare+ is an application that provides Maintenance and Safety of Bus and Passengers.</string>
-    <string name="qms">Q. What does the maintenance service includes in BusCare+ ?</string>
-    <string name="ams">A. The maintenance service includes features such as:</string>
-    <string name="sams">The temperature inside bus is convenient for human body</string>
-    <string name="sams1">The CO2 emission inside bus is suitable for human body</string>
-    <string name="qss">Q. What does the safety service includes in BusCare+ ?</string>
-    <string name="ass">A. The safety service includes features such as:</string>
-    <string name="sass">To keep count of passengers inside bus especially during COVID situation where physical distance is a must</string>
-    <string name="sass1">To maintain speed of bus under safety speed</string>
+    <string name="question_1">Q. What is BusCare+ ?</string>
+    <string name="answer_1">A. BusCare+ is an application that is designed to provide safety to the passengers and provide upto date info about the maintenance of the bus.</string>
+    <string name="question_2">Q. What does the maintenance service includes in BusCare+ ?</string>
+    <string name="answer_2">A. The maintenance service contains 2 features:</string>
+    <string name="answer_2_a">- The temperature inside bus is convenient for the passengers</string>
+    <string name="answer_2_b">- The CO2 emission inside bus is under the prescribed limits</string>
+    <string name="question_3">Q. What does the safety service includes in BusCare+ ?</string>
+    <string name="answer_3">A. The safety service contains 2 features:</string>
+    <string name="answer_3_a">- Passenger count, to keep the number of passengers in the bus under the predetermined limits</string>
+    <string name="answer_3_b">- Speed of the bus, to make sure the bus isn\'t overspeeding </string>
     <string name="msg1">Welcome to BusCare+</string>
     <string name="msg2">Name of User</string>
     <string name="msg3">Hope you have a wonderful day!!</string>
     <string name="Or_text">OR</string>
     <string name="menu_maintenance">Maintenance</string>
-    <string name="feedback">Review</string>
+    <string name="review">Review</string>
+    <string name="username">Full Name</string>
+    <string name="Rating">Rating</string>
+    <string name="pno">Phone No.</string>
+    <string name="Comments">Comments</string>
+    <string name="model">Device Model</string>
+    <string name="submit">Submit</string>
     <string name="firstnameTitle">FirstName</string>
     <string name="cityTitle">City</string>
     <string name="provinceTitle">Province</string>
@@ -72,17 +78,12 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="last_nameTitle">LastName</string>
     <string name="check">Province</string>
     <string name="phoneTitle">Phone</string>
-    <!-- TODO: Remove or change this placeholder text -->
-   <string name="number">+1234567890</string>
-    <string name="tel">tel</string>
+    <string name="number">+1234567890</string>
+    <string name="tel">Tel</string>
     <string name="pg">Permission Granted</string>
     <string name="pd">Permission Denied</string>
-    <string name="username">Full Name</string>
-    <string name="pno">Phone Number</string>
-    <string name="Rating">Rating</string>
-    <string name="Comments">Comments</string>
-    <string name="submit">Submit</string>
-    <string name="model">Device</string>
-
+    <string name="my_account">My Account</string>
+    <string name="notification_main">Thank you for providing your feedback!</string>
+    <string name="notification_heading">Review Sent</string>
 
 </resources>

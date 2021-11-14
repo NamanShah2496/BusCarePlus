@@ -1,3 +1,9 @@
+// Naman Shah , n01392496 , Section RNA
+// Aryan Sood , n01393003, Section RNA
+// Vishesh Bansal, n01395119, Section RNA
+// Jaskirat Singh , N01403975 , Section RNB
+
+
 package ca.codingcomrades.it.buscareplus;
 
 import androidx.annotation.NonNull;
@@ -16,17 +22,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -36,8 +35,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -65,7 +63,8 @@ public class LoginActivity extends AppCompatActivity {
         LocalData local = new LocalData();
         database = FirebaseDatabase.getInstance();
         myRef= database.getReference("Safety/Speed");
-        myRef.setValue("12Km/h");
+
+        toastPrint(myRef.getDatabase().toString());
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 

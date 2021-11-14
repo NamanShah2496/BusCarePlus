@@ -1,3 +1,10 @@
+// Naman Shah , n01392496 , Section RNA
+// Aryan Sood , n01393003, Section RNA
+// Vishesh Bansal, n01395119, Section RNA
+// Jaskirat Singh , N01403975 , Section RNB
+
+
+
 package ca.codingcomrades.it.buscareplus;
 
 import androidx.annotation.NonNull;
@@ -111,14 +118,20 @@ String cityName,uid;
         }
     }
     public void setFields(){
-        firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
-        lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
-        phone.setText(arr.get(getString(R.string.phoneTitle)).toString());
-        age.setText(arr.get(getString(R.string.ageTitle)).toString());
-        address.setText(arr.get(getString(R.string.addressTitle)).toString());
-        city.setText(arr.get(getString(R.string.cityTitle)).toString());
-        province.setText(arr.get(getString(R.string.provinceTitle)).toString());
-        country.setText(arr.get(getString(R.string.countryTitle)).toString());
+        try {
+            firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
+            lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
+            phone.setText(arr.get(getString(R.string.phoneTitle)).toString());
+            age.setText(arr.get(getString(R.string.ageTitle)).toString());
+            address.setText(arr.get(getString(R.string.addressTitle)).toString());
+            city.setText(arr.get(getString(R.string.cityTitle)).toString());
+            province.setText(arr.get(getString(R.string.provinceTitle)).toString());
+            country.setText(arr.get(getString(R.string.countryTitle)).toString());
+        }
+        catch (NullPointerException e){
+            Log.d("TAG", "setFields: Caught" +e);
+
+        }
     }
     public void saveUserData(){
         DocumentReference df = fStore.collection("Users").document(uid);

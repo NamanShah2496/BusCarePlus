@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -42,14 +43,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         homeViewModel.getText();
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home,container,false);
+      // view.setBackgroundColor(0xFF20FFFF);
         bus = (Spinner)view.findViewById(R.id.busoption);
         busbutton = view.findViewById(R.id.busbutton);
         textView = view.findViewById(R.id.busno);
@@ -64,8 +69,9 @@ public class HomeFragment extends Fragment {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
         if(ds.equalsIgnoreCase("true")){
-
+           // view.setBackgroundColor(Color.BLACK);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
