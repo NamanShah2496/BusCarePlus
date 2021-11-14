@@ -96,7 +96,7 @@
             android:layout_marginLeft="50dp"
             android:text="Metric(Km/hrs)"
             android:textSize="18dp"
-
+            android:checked="true"
             android:textStyle="bold" />
 
         <RadioButton

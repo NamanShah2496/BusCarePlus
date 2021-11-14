@@ -82,6 +82,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="tel">Tel</string>
     <string name="pg">Permission Granted</string>
     <string name="pd">Permission Denied</string>
+    <string name="actualGreen">0xFF3BDF35</string>
 
 
 </resources>

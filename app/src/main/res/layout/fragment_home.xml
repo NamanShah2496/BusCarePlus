@@ -8,7 +8,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/temperatureBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/green"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.735" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/carbonBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/red"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.735" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/speedBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:src="@drawable/ic_launcher_speed_foreground"
@@ -73,7 +73,7 @@
         app:layout_constraintVertical_bias="0.29" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/passengersBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:src="@drawable/ic_launcher_people_foreground"
@@ -84,17 +84,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.457" />
-
-    <Button
-        android:id="@+id/busbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Data"
-        android:backgroundTint="@color/menu_blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

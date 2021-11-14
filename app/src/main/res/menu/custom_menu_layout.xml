@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingLeft="0dp"
+        android:textColor="@color/white"
         android:text="My Account"
         android:textSize="14dp" />
 </LinearLayout>
