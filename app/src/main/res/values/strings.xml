@@ -85,5 +85,10 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="my_account">My Account</string>
     <string name="notification_main">Thank you for providing your feedback!</string>
     <string name="notification_heading">Review Sent</string>
+    <string name="ques_1">Q- Who are we?</string>
+    <string name="heading_aboutus">Coding Comrades</string>
+    <string name="ans_1">A -We are a group of students studying Computer Engineering Technology in Humber College situated in Toronto, Canada. </string>
+    <string name="ques_2">Q- How did we decide this idea?</string>
+    <string name="ans_2">We decided this app because we wanted to create an app that simplifies the task for bus operators to maintain the nusses and track any malfunctions that may be induced due to equipment failure</string>
 
 </resources>

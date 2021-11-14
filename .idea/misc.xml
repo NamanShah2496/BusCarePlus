@@ -47,12 +47,17 @@
         <entry key="app/src/main/res/drawable/bus_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_acc_foreground.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/drawable/splashscreen_background.xml" value="0.11944444444444445" />
+        <entry key="app/src/main/res/layout-land/aboutus_activity.xml" value="0.25" />
         <entry key="app/src/main/res/layout-land/activity_feedback.xml" value="0.33" />
         <entry key="app/src/main/res/layout-land/activity_my_account.xml" value="0.33" />
         <entry key="app/src/main/res/layout-land/app_bar_main.xml" value="0.18915343915343916" />
+        <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.3315696649029982" />
         <entry key="app/src/main/res/layout-land/fragment_settings.xml" value="0.19576719576719576" />
         <entry key="app/src/main/res/layout-land/nav_header_main.xml" value="0.12604166666666666" />
+        <entry key="app/src/main/res/layout-land/splashscreen_background.xml" value="0.34322916666666664" />
+        <entry key="app/src/main/res/layout/aboutus_activity.xml" value="0.2898550724637681" />
         <entry key="app/src/main/res/layout/activirt_feedback.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_aboutus.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_help.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.18004997915077978" />
