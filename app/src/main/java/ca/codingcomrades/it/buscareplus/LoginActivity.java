@@ -59,9 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         myRef= database.getReference("Safety/Speed");
 
         toastPrint(myRef.getDatabase().toString());
-      // Log.d("TAG", "onCreate: "+myRef.get());
-
-        myRef.setValue("22Km/h");
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
