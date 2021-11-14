@@ -83,7 +83,13 @@
       android:layout_width="116dp"
       android:layout_height="38dp"
       android:textStyle="bold"
-      android:textColor="@color/common_google_signin_btn_text_dark_focused"
+
+
+
+
+
+
+
       android:fontFamily="sans-serif-condensed"
       android:text="@string/personal_infoTitle"
       android:textSize="19dp"
@@ -240,6 +246,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Save"
+      android:backgroundTint="@color/naroon"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.541"

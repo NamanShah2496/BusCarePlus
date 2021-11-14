@@ -80,7 +80,6 @@
 
 
     <RadioGroup
-        android:id="@+id/UnitsRG"
         android:layout_width="286dp"
         android:layout_height="74dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +90,7 @@
         app:layout_constraintVertical_bias="0.426">
 
         <RadioButton
-            android:id="@+id/MetricRB"
+            android:id="@+id/Unit_Metric_Radio_Btn"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:layout_marginLeft="50dp"
@@ -101,7 +100,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/ImperialRB"
+            android:id="@+id/Unit_Imperial_Radio_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -186,9 +185,10 @@
         android:id="@+id/SettingsSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/settings_background"
+
         android:text="Save"
-        android:forceDarkAllowed="true"
+        android:backgroundTint="@color/maroon"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

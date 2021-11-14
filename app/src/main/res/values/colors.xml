@@ -2,17 +2,24 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#7CFC00</color>
-    <color name="grey">#F7F7F7</color>
+    <color name="menu_blue">#1B2AAD</color>
+    <color name="grey">#9E8F8F</color>
+    <color name="green">#FF3BDF35</color>
+    <color name="red">#ED2020</color>
     <color name="darkgrey">#CCCCCC</color>
     <color name="jass">#C4C4C4</color>
-    <color name="back">#F5F5F5</color>
-    <color name="blue">#20A5F5</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="back">#171212</color>
+    <color name="blue">#96D8FF</color>
+    <color name="home_back">#4E5DE1</color>
+
+
 
     //night mode
     <color name="colorPrimaryNight">#000</color>
     <color name="colorPrimaryDarkNight">#000</color>
     <color name="colorTextNight">#dcdcdc</color>
+    <color name="naroon">#800000</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="lightBlue">#FF20FFFF</color>
 
 </resources>

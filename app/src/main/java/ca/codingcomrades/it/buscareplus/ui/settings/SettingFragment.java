@@ -83,8 +83,8 @@ public class SettingFragment extends Fragment {
         maxPeoplebar = view.findViewById(R.id.CapacitySeekbar);
         speedValue = view.findViewById(R.id.SpeedTV);
         maxPeopleValue = view.findViewById(R.id.MaxPeopleTV);
-        metricButton = view.findViewById(R.id.MetricRB);
-        imperialButton = view.findViewById(R.id.ImperialRB);
+        metricButton = view.findViewById(R.id.Unit_Metric_Radio_Btn);
+        imperialButton = view.findViewById(R.id.Unit_Imperial_Radio_Btn);
 
         metricButton.setOnClickListener(new View.OnClickListener() {
             @Override

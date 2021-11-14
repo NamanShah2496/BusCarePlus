@@ -7,56 +7,110 @@
 package ca.codingcomrades.it.buscareplus.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.util.Date;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import ca.codingcomrades.it.buscareplus.HelpActivity;
+//import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.R;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    Handler handler = new Handler();
+    DatabaseReference database;
     private HomeViewModel homeViewModel;
     private View view;
+    ImageButton speedBtn,passengersBtn;
+    double speed;
+    int passengers;
+    Spinner busSpinner;
+    Button busbutton;
+    TextView textView;
+    int busNum=927;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database =FirebaseDatabase.getInstance().getReference();
+
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         homeViewModel.getText();
+
+
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        String msg1 = getString(R.string.msg1);
-        String msg2 = getString(R.string.msg2);
-        String msg3 = getString(R.string.msg3);
-        view = inflater.inflate(R.layout.fragment_home,container,false);
-        String currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
-        final TextView time = view.findViewById(R.id.textView3);
-        final TextView welcome = view.findViewById(R.id.textView2);
-        final TextView name = view.findViewById(R.id.textView4);
-        final TextView greeting = view.findViewById(R.id.textView5);
-        time.setText(currentDateTimeString);
-        welcome.setText(msg1);
-        name.setText(msg2);
-        greeting.setText(msg3);
+public void updateUI(){
+    handler.postDelayed(() -> database.child("Data/"+busNum+"/Safety").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<DataSnapshot> task) {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            }
+            else {
+                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Passengers").getValue()));
+                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Speed").getValue()));
+                changeColor(speed,passengers);
+                 }
+         updateUI();
+        }
+    }), 1000);
+}
+public void changeColor(double speed,int passengers){
+    if(speed>50){
+        speedBtn.setBackgroundColor(Color.RED);
+    }else{
+        String actualGreen = getString(R.string.actualGreen);
+        speedBtn.setBackgroundColor(0xFF3BDF35);
+    }
+    if(passengers>30)
+        passengersBtn.setBackgroundColor(Color.RED);
+    else
+        passengersBtn.setBackgroundColor(0xFF3BDF35);
 
+}
+ public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_home,container,false);
+
+        busSpinner = (Spinner)view.findViewById(R.id.busoption);
+        busSpinner.setOnItemSelectedListener(this);
+
+
+        textView = view.findViewById(R.id.busno);
+        speedBtn = view.findViewById(R.id.speedBtn);
+        passengersBtn = view.findViewById(R.id.passengersBtn);
+
+        applySettings();
+
+     updateUI();
+return view;
+    }
+
+    public void applySettings(){
         SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
@@ -69,11 +123,39 @@ public class HomeFragment extends Fragment {
         if(ds.equalsIgnoreCase("true")){
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
-return view;
     }
+    public void busSelected(){
+      busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
+
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        applySettings();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        busSelected();
+        updateText();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Log.d("TAG", "onNothingSelected: ");
+    }
+    public void updateText() {
+        textView.setText(String.valueOf(busNum));
+    }
+
+
+
 
 }
