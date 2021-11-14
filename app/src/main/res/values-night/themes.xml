@@ -11,7 +11,7 @@
         <item name="text_color">#ffff</item>
         <item name="button_color">#ffff</item>
         <item name="android:textColor">#ffff</item>
-        <item name="textAppearanceButton">@color/colorAccent</item>
+<!--        <item name="textAppearanceButton">@color/colorAccent</item>-->
     </style>
 
     <style name="Theme.Buscareplus.NoActionBar">
@@ -19,7 +19,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Buscareplus.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+<!--    <style name="Theme.Buscareplus.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight" />-->
 
-    <style name="Theme.Buscareplus.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+<!--    <style name="Theme.Buscareplus.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />-->
 </resources>
