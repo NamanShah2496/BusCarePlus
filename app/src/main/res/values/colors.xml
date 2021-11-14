@@ -11,7 +11,8 @@
     <color name="back">#171212</color>
     <color name="blue">#96D8FF</color>
     <color name="home_back">#4E5DE1</color>
-
+    <color name="colorAccent">#f06292</color>
+    <color name="lightRed">#ff063b</color>
 
 
     //night mode

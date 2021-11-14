@@ -24,44 +24,31 @@ import android.widget.TextView;
 import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.databinding.FragmentMaintenanceBinding;
 import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
+import ca.codingcomrades.it.buscareplus.ui.settings.SettingViewModel;
 
 public class MaintenanceFragment extends Fragment {
 
     private MaintenanceViewModel maintenanceViewModel;
-    private FragmentMaintenanceBinding binding;
+    private View view;
 
-    public static MaintenanceFragment newInstance() {
-        return new MaintenanceFragment();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        maintenanceViewModel = new ViewModelProvider(this).get(MaintenanceViewModel.class);
+        maintenanceViewModel.getText();
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-       maintenanceViewModel = new ViewModelProvider(this).get(MaintenanceViewModel.class);
-        binding = FragmentMaintenanceBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        view = inflater.inflate(R.layout.fragment_maintenance,container,false);
+        return view;
 
-        final TextView textView = binding.textMaintenance;
-        maintenanceViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-//        return inflater.inflate(R.layout.fragment_maintenance, container, false);
     }
 
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        maintenanceViewModel = new ViewModelProvider(this).get(MaintenanceViewModel.class);
-//        // TODO: Use the ViewModel
-//    }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+
 
 }
