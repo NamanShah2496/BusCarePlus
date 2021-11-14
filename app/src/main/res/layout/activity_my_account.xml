@@ -83,7 +83,13 @@
       android:layout_width="116dp"
       android:layout_height="38dp"
       android:textStyle="bold"
-      android:textColor="@color/common_google_signin_btn_text_dark_focused"
+
+
+
+
+
+
+
       android:fontFamily="sans-serif-condensed"
       android:text="@string/personal_infoTitle"
       android:textSize="19dp"

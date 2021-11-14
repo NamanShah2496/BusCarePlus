@@ -10,18 +10,17 @@
     <ImageView
         android:id="@+id/myaccountImage"
         android:onClick="Onclick"
-        android:layout_width="45dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
         android:clickable="true"
         android:src="@drawable/ic_launcher_acc_foreground" />
     <TextView
         android:layout_width="80dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:gravity="center"
-        android:paddingLeft="0dp"
+        android:text="@string/my_account"
         android:textColor="@color/white"
-        android:text="My Account"
         android:textSize="14dp" />
 </LinearLayout>

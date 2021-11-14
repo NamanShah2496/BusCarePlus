@@ -1,4 +1,3 @@
-// Section RNA
 // Naman Shah , n01392496 , Section RNA
 // Aryan Sood , n01393003, Section RNA
 // Vishesh Bansal, n01395119, Section RNA
