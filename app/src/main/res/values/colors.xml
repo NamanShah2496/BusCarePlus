@@ -19,6 +19,7 @@
     <color name="colorPrimaryDarkNight">#000</color>
     <color name="colorTextNight">#dcdcdc</color>
     <color name="naroon">#800000</color>
-    <color name="yellow">#FF20FFFF</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="lightBlue">#FF20FFFF</color>
 
 </resources>

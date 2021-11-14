@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+      setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
                 .setOpenableLayout(drawer)
-//                .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);

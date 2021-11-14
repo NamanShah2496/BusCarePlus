@@ -185,9 +185,10 @@
         android:id="@+id/SettingsSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/settings_background"
+
         android:text="Save"
-        android:backgroundTint="@color/menu_blue"
+        android:backgroundTint="@color/maroon"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

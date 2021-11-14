@@ -100,10 +100,17 @@ public void changeColor(double speed,int passengers){
         busSpinner.setOnItemSelectedListener(this);
 
 
-        busbutton = view.findViewById(R.id.busbutton);
         textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
+
+        applySettings();
+
+     updateUI();
+return view;
+    }
+
+    public void applySettings(){
         SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
@@ -120,16 +127,18 @@ public void changeColor(double speed,int passengers){
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        Log.d("firebase", "onCreateView: "+speed);
-
-
-     updateUI();
-return view;
     }
     public void busSelected(){
       busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
 
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        applySettings();
     }
 
     @Override
