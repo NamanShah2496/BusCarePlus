@@ -78,6 +78,7 @@ public void updateUI(){
         }
     }), 1000);
 }
+
 public void changeColor(double speed,int passengers){
     if(speed>50){
         speedBtn.setBackgroundColor(Color.RED);

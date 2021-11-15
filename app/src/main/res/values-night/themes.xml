@@ -13,4 +13,12 @@
         <item name="android:textColor">#ffff</item>
     </style>
 
+    <style name="Theme.Buscareplus.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Buscareplus.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+
+    <style name="Theme.Buscareplus.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
 </resources>
