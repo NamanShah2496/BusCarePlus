@@ -13,7 +13,6 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="userPass_5_error">Password must be more than 5 characters long</string>
     <string name="empty_email_error">Value can\'t be empty</string>
@@ -81,6 +80,16 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="Comments">Comments</string>
     <string name="submit">Submit</string>
     <string name="model">Device</string>
-
+    <string name="my_account">My Account</string>
+    <string name="notification_main">Thank you for providing your feedback!</string>
+    <string name="notification_heading">Review Sent</string>
+    <string name="ques_1">Q- Who are we?</string>
+    <string name="heading_aboutus">Coding Comrades</string>
+    <string name="ans_1">A -We are a group of students studying Computer Engineering Technology in Humber College situated in Toronto, Canada. </string>
+    <string name="ques_2">Q- How did we decide this idea?</string>
+    <string name="ans_2">We decided this app because we wanted to create an app that simplifies the task for bus operators to maintain the nusses and track any malfunctions that may be induced due to equipment failure</string>
+    <string name="our_college">Our College:</string>
+    <string name="humber_college">Humber college</string>
+    <string name="actualGreen">0xFF3BDF35</string>
 
 </resources>

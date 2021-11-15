@@ -85,8 +85,7 @@ public void changeColor(double speed,int passengers){
     if(speed>50){
         speedBtn.setBackgroundColor(Color.RED);
     }else{
-        String actualGreen = getString(R.string.actualGreen);
-        speedBtn.setBackgroundColor(0xFF3BDF35);
+       speedBtn.setBackgroundColor(0xFF3BDF35);
     }
     if(passengers>30)
         passengersBtn.setBackgroundColor(Color.RED);

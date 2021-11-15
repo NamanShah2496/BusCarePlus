@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HelpActivity extends AppCompatActivity {
     Button button;
+//Don't Repeat yourself Principle
     public static final int REQUEST_PHONE_CALL = 1;
 
     @Override
@@ -73,9 +74,8 @@ public class HelpActivity extends AppCompatActivity {
 
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-
-            String phone ="3917463746"; //getString(R.string.number);
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts(getString(R.string.tel), phone, null));
+            String phone = "+1234567890";
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", phone, null));
             startActivity(intent);
         } else {
             ActivityCompat.requestPermissions(this,
@@ -91,7 +91,7 @@ public class HelpActivity extends AppCompatActivity {
             Snackbar snackbar = Snackbar
                     .make(text, R.string.pg, Snackbar.LENGTH_LONG);
             snackbar.show();
-        } else if (requestCode != REQUEST_PHONE_CALL && grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        } else  {
             ConstraintLayout text = findViewById(R.id.constraintLayout);
             Snackbar snackbar = Snackbar
                     .make(text, R.string.pd, Snackbar.LENGTH_LONG);

@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //Behavioral Patterns
+//Command Design Pattern
     @Override
     public void onResume() {
 
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onBack() {
+        //Creational Pattern
+        //Builder Pattern
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit!!");
         builder.setMessage("Are you to exit?")
