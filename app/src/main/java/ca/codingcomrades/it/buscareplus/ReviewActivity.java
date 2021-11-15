@@ -49,7 +49,6 @@ EditText fullName,phone,email,comment;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
         bindFields();
-        //submit.setOnClickListener(v -> sendReview());
         String str = android.os.Build.MODEL;
         model.setText(str);
         addnotification=(Button)findViewById(R.id.submitBtn);
@@ -103,6 +102,7 @@ EditText fullName,phone,email,comment;
             finish();
         }
     }
+
     public void bindFields(){
         fullName = findViewById(R.id.fullNameInput);
         phone = findViewById(R.id.phoneNumInput);
@@ -111,7 +111,6 @@ EditText fullName,phone,email,comment;
         comment = findViewById(R.id.commentInput);
         model = findViewById(R.id.model_print);
         submit = findViewById(R.id.submitBtn);
-
     }
     public boolean validate(){
         getValues();
