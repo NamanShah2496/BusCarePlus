@@ -24,7 +24,7 @@
         android:id="@+id/carbonBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
-        android:background="@color/red"
+        android:background="@color/green"
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
