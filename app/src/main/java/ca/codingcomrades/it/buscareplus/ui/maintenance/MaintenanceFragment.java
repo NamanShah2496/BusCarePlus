@@ -92,6 +92,4 @@ public class MaintenanceFragment extends Fragment {
             carbonTextView.setBackgroundColor(Color.GREEN);
     }
 
-
-
 }
