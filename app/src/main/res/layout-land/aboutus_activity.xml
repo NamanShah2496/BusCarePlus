@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".AboutusActivity">
 
+
+    <Button
+        android:id="@+id/college_link"
+        android:layout_width="130dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="536dp"
+        android:layout_marginTop="232dp"
+        android:backgroundTint="@color/menu_blue"
+        android:text="@string/humber_college"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/heading"
         android:layout_width="146dp"
@@ -25,6 +37,7 @@
         android:layout_height="23dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="108dp"
+        android:textStyle="bold"
         android:text="@string/ques_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,6 +58,7 @@
         android:layout_height="23dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="280dp"
+        android:textStyle="bold"
         android:text="@string/ques_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,6 +70,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="316dp"
         android:text="@string/ans_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="104dp"
+        android:text="@string/our_college"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
