@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,6 +38,7 @@ FirebaseDatabase database;
 Button submit;
 RatingBar ratingBar;
 TextView model;
+FirebaseAuth fAuth;
 EditText fullName,phone,email,comment;
     Float rating;
     String name,num,emailAddress,Comment;
@@ -85,8 +87,9 @@ EditText fullName,phone,email,comment;
     public void sendReview(){
         if(validate()) {
             database = FirebaseDatabase.getInstance();
-            String test = "ffwrgrgheqliglietg12";
-            DatabaseReference myRef = database.getReference("Feed1"+"/"+test);
+            fAuth = FirebaseAuth.getInstance();
+            String uid = fAuth.getUid();
+            DatabaseReference myRef = database.getReference("FeedBack"+"/"+uid);
             DatabaseReference fullNameChild = myRef.child("Name");
             fullNameChild.setValue(name);
             DatabaseReference emailChild = myRef.child("Email");
