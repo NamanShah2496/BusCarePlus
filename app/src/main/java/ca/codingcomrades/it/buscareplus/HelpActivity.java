@@ -65,7 +65,6 @@ public class HelpActivity extends AppCompatActivity {
         if(ds.equalsIgnoreCase("true")){
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
@@ -74,7 +73,7 @@ public class HelpActivity extends AppCompatActivity {
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
 
-            String phone ="3917463746"; //getString(R.string.number);
+            String phone = getString(R.string.number);
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts(getString(R.string.tel), phone, null));
             startActivity(intent);
         } else {
