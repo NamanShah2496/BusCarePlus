@@ -18,34 +18,30 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
+import ca.codingcomrades.it.buscareplus.ui.maintenance.MaintenanceViewModel;
 
 public class SafetyFragment extends Fragment {
 
     private SafetyViewModel safetyViewModel;
-    private FragmentSafetyBinding binding;
+    private View view;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        safetyViewModel = new ViewModelProvider(this).get(SafetyViewModel.class);
+        safetyViewModel.getText();
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        safetyViewModel =
-                new ViewModelProvider(this).get(SafetyViewModel.class);
-
-        binding = FragmentSafetyBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textSafety;
-        safetyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        view = inflater.inflate(R.layout.fragment_safety,container,false);
+        return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+
 }

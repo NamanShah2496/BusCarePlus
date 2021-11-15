@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.893" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/MaintainanceThermoValueTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/green"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.364" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/MaintainanceCarbonValueTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/naroon"

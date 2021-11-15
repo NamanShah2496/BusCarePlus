@@ -36,8 +36,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="221dp"
-        android:layout_height="184dp"
+        android:layout_width="207dp"
+        android:layout_height="179dp"
         android:background="@color/white"
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.838" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/MaintainanceThermoValueTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="65°F"
@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.391" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/MaintainanceCarbonValueTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="800 ppm"
