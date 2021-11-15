@@ -10,6 +10,7 @@ package ca.codingcomrades.it.buscareplus.ui.maintenance;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -81,6 +82,14 @@ public class MaintenanceFragment extends Fragment {
     public void changeView(int temp,int carbon){
         temperatureTextView.setText(String.valueOf(temp));
         carbonTextView.setText(String.valueOf(carbon));
+        if(temp>25)
+            temperatureTextView.setBackgroundColor(Color.RED);
+        else
+            temperatureTextView.setBackgroundColor(Color.GREEN);
+        if (carbon>1000)
+            carbonTextView.setBackgroundColor(Color.RED);
+        else
+            carbonTextView.setBackgroundColor(Color.GREEN);
     }
 
 
