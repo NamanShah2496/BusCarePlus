@@ -1,3 +1,10 @@
+// Naman Shah , n01392496 , Section RNA
+// Aryan Sood , n01393003, Section RNA
+// Vishesh Bansal, n01395119, Section RNA
+// Jaskirat Singh , N01403975 , Section RNB
+
+
+
 package ca.codingcomrades.it.buscareplus;
 
 import androidx.annotation.NonNull;
@@ -7,6 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -48,6 +60,29 @@ String cityName,uid;
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+    }
+
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port", "false");
+        String ds = prefs.getString("ds", "false");
+        if (port.equalsIgnoreCase("true")) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if (ds.equalsIgnoreCase("true")) {
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     public void bindFields(){
@@ -114,5 +149,6 @@ String cityName,uid;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
+
     }
 }

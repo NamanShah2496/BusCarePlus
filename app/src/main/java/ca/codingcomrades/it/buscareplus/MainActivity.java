@@ -1,4 +1,3 @@
-// Section RNA
 // Naman Shah , n01392496 , Section RNA
 // Aryan Sood , n01393003, Section RNA
 // Vishesh Bansal, n01395119, Section RNA
@@ -6,10 +5,14 @@
 
 package ca.codingcomrades.it.buscareplus;
 
+import android.content.Context;
 import static com.google.firebase.auth.FirebaseAuth.*;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +21,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,6 +33,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+      setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -51,12 +57,38 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
                 .setOpenableLayout(drawer)
-//                .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
     }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
+        if(port.equalsIgnoreCase("true")){
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if(ds.equalsIgnoreCase("true")){
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+
+
     public void onBack() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit!!");
@@ -126,9 +158,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
-    public void userLogout(){
+
+    public void userLogout() {
         FirebaseAuth.getInstance().signOut();
-        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
 }

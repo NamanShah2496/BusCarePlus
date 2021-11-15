@@ -1,9 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Buscareplus" parent="Theme.MaterialComponents.Light">
-        <item name="colorPrimary">@color/green</item>
+    <style name="Theme.Buscareplus" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/green</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimaryDarkNight</item>
         <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">@color/maroon</item>
+        <item name="background_color">#131313</item>
+        <item name="text_color">#ffff</item>
+        <item name="button_color">#ffff</item>
+        <item name="android:textColor">#ffff</item>
     </style>
+
 </resources>
