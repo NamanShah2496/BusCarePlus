@@ -42,9 +42,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     DatabaseReference database;
     private HomeViewModel homeViewModel;
     private View view;
-    ImageButton speedBtn,passengersBtn;
-    double speed;
-    int passengers;
+    ImageButton speedBtn,passengersBtn,carbonBtn,temperatureBtn;
+    double speed,temperatureReading;
+    int passengers,carbonReading;
     Spinner busSpinner;
     Button busbutton;
     TextView textView;
@@ -63,15 +63,17 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
 
 public void updateUI(){
-    handler.postDelayed(() -> database.child("Data/"+busNum+"/Safety").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
             }
             else {
-                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Passengers").getValue()));
-                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Speed").getValue()));
+                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
+                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
+                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
+                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
                 changeColor(speed,passengers);
                  }
          updateUI();
@@ -90,7 +92,14 @@ public void changeColor(double speed,int passengers){
         passengersBtn.setBackgroundColor(Color.RED);
     else
         passengersBtn.setBackgroundColor(0xFF3BDF35);
-
+    if(temperatureReading>24)
+        temperatureBtn.setBackgroundColor(Color.RED);
+    else
+        temperatureBtn.setBackgroundColor(0xFF3BDF35);
+    if(carbonReading>1000)
+        carbonBtn.setBackgroundColor(Color.RED);
+    else
+        carbonBtn.setBackgroundColor(0xFF3BDF35);
 }
  public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -104,7 +113,8 @@ public void changeColor(double speed,int passengers){
         textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
-
+        temperatureBtn =view.findViewById(R.id.temperatureBtn);
+        carbonBtn = view.findViewById(R.id.carbonBtn);
         applySettings();
 
      updateUI();
