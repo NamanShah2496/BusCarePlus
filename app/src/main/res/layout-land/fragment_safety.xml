@@ -6,17 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".ui.safety.SafetyFragment">
 
-    <TextView
-        android:id="@+id/text_slideshow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/SafetySpeedIV"
+        android:layout_width="207dp"
+        android:layout_height="179dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_launcher_speed_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <TextView
+        android:id="@+id/SafetySpeedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed of Bus(in Km/h)"
+        android:textColor="@color/home_back"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.696" />
+
+    <TextView
+        android:id="@+id/safetySpeedReadings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/lightRed"
+        android:textSize="22dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
+
+    <ImageView
+        android:id="@+id/SafetyNumberofPeopleIV"
+        android:layout_width="207dp"
+        android:layout_height="179dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_launcher_people_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <TextView
+        android:id="@+id/SafetyNumberofPeopleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of People:"
+        android:textColor="@color/home_back"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.696" />
+
+    <TextView
+        android:id="@+id/safetyPassengersReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:textSize="22dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.827"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.824" />
 </androidx.constraintlayout.widget.ConstraintLayout>

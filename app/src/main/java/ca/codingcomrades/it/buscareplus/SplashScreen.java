@@ -26,7 +26,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         applySettings();
         handler.postDelayed(runnable,3000);
-
     }
 
     public void applySettings(){

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
     ImageView img;
 
     @Override
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-      setSupportActionBar(binding.appBarMain.toolbar);
+        setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;

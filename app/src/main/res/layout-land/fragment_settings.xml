@@ -96,6 +96,7 @@
             android:layout_marginLeft="50dp"
             android:checked="true"
             android:text="Metric(Km/hrs)"
+            android:textColor="@color/home_back"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -105,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:text="Imperial(miles/hrs)"
+            android:textColor="@color/home_back"
             android:textSize="18dp"
 
             android:textStyle="bold" />
