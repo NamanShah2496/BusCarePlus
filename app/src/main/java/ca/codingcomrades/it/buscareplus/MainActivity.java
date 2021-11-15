@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                        finishAffinity();
+                        System.exit(0);
                     }
                 })
                 .setIcon(R.drawable.alert)

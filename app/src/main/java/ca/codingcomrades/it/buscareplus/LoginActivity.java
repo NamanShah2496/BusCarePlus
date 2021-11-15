@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef= database.getReference("Safety/Speed");
 
-        toastPrint(myRef.getDatabase().toString());
+        //toastPrint(myRef.getDatabase().toString());
 
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
