@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/busc"
+        android:icon="@drawable/buscare"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/busc_round"
+        android:roundIcon="@drawable/buscare"
         android:supportsRtl="true"
         android:theme="@style/Theme.Buscareplus" >
         <activity
