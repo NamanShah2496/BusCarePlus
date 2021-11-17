@@ -93,6 +93,10 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="our_college">Our College:</string>
     <string name="humber_college">Humber college</string>
     <string name="actualGreen">0xFF3BDF35</string>
+    <string name="toast_login_fail">Failure, try again</string>
+    <string name="firebase_login_fail">Uh oh Something went wrong!!, Try Again</string>
+    <string name="validating_msg">Validating</string>
+    <string name="remember">remember</string>
 
 
 </resources>

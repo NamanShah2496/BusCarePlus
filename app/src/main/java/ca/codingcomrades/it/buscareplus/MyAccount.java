@@ -175,7 +175,7 @@ String cityName,uid;
         protected String doInBackground(Integer... params) {
             for (; count <= params[0]; count++) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(1);
                     publishProgress(count);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -196,7 +196,6 @@ String cityName,uid;
         }
         @Override
         protected void onProgressUpdate(Integer... values) {
-
             progressBar.setProgress(values[0]);
         }
     }

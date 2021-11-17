@@ -62,10 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         LocalData local = new LocalData();
         database = FirebaseDatabase.getInstance();
-        myRef= database.getReference("Safety/Speed");
-
-        //toastPrint(myRef.getDatabase().toString());
-
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
@@ -104,21 +100,21 @@ public class LoginActivity extends AppCompatActivity {
            }).addOnFailureListener(new OnFailureListener() {
                @Override
                public void onFailure(@NonNull Exception e) {
-                   toastPrint("Failure, try again");
+                   toastPrint(getString(R.string.toast_login_fail));
                }
            });
        }else{
-           toastPrint("Uh oh Something went wrong!!, Try Again");
+           toastPrint(getString(R.string.firebase_login_fail));
        }
     }
 
     public void savePreference(){
         remember = rememberMe.isChecked();
         LocalData data = new LocalData();
-        data.savePreferences(this,"remember",remember);
+        data.savePreferences(this,getString(R.string.remember),remember);
     }
     public boolean validateName(){
-        toastPrint("Validating");
+        toastPrint(getString(R.string.validating_msg));
         userEmail = email.getText().toString().trim();
         userPassword = password.getText().toString();
         boolean validate = true;
@@ -138,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         return validate;
     }
     public void toastPrint(String msg) {
-        Log.d("TAG", "toastPrint: ");
+
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
@@ -149,14 +145,14 @@ public class LoginActivity extends AppCompatActivity {
         Boolean rem;
         LocalData data = new LocalData();
         rem = data.getPreference(this,"remember");
-        Log.d("TAG", "isRemember: Rem"+ rem);
+
         return rem;
     }
     @Override
     protected void onStart(){
         super.onStart();
         remember = isRemember();
-        Log.d("TAG", "onStart: "+ remember);
+
         if((FirebaseAuth.getInstance().getCurrentUser() != null) && (remember)){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
