@@ -19,10 +19,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +46,8 @@ EditText firstName,lastName,phone,age,address,city,province,country;
 Button save;
 FirebaseAuth fAuth;
 String cityName,uid;
+    Integer count;
+    ProgressBar progressBar;
     Map<String, Object> arr;
     FirebaseFirestore fStore;
     @Override
@@ -59,6 +64,20 @@ String cityName,uid;
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        View.OnClickListener listener = new View.OnClickListener() {
+            public void onClick(View view) {
+                // save.setOnClickListener(v -> saveUserData());
+                count =1;
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(0);
+                switch (view.getId()) {
+                    case R.id.saveInfoBtn:
+                        new MyTask().execute(100);
+                        break;
+                }
+            }
+        };
+        save.setOnClickListener(listener);
 
     }
 
@@ -95,7 +114,7 @@ String cityName,uid;
         city = findViewById(R.id.cityEditText);
         province = findViewById(R.id.provinceEditText);
         country = findViewById(R.id.countryEditText);
-
+        progressBar = findViewById(R.id.progressBar);
     }
     public void retriveUserData(){
         fStore = FirebaseFirestore.getInstance();
@@ -150,5 +169,35 @@ String cityName,uid;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
 
+    }
+    class MyTask extends AsyncTask<Integer, Integer, String> {
+        @Override
+        protected String doInBackground(Integer... params) {
+            for (; count <= params[0]; count++) {
+                try {
+                    Thread.sleep(100);
+                    publishProgress(count);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return "Task Completed.";
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.GONE);
+            saveUserData();
+            finish();
+
+        }
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+            progressBar.setProgress(values[0]);
+        }
     }
 }
