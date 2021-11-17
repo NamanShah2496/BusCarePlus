@@ -51,12 +51,11 @@ EditText fullName,phone,email,comment;
         bindFields();
         String str = android.os.Build.MODEL;
         model.setText(str);
-        addnotification=(Button)findViewById(R.id.submitBtn);
+        addnotification = (Button) findViewById(R.id.submitBtn);
         //If the SDK VERSION is newer than Oreo
-        if(SDK_INT >= Build.VERSION_CODES.O)
-        {
-            NotificationChannel channel =new NotificationChannel("Review","Notificattion",NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager= getSystemService(NotificationManager.class);
+        if (SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("Review", "Notificattion", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
 
         }
@@ -66,10 +65,12 @@ EditText fullName,phone,email,comment;
             public void onClick(View view) {
 
                 sendReview();
-                addNotification();
-            }
 
-            private void addNotification() {
+            }
+        });}
+
+
+            public void addNotification() {
                 String id="id";
                 NotificationCompat.Builder review  = new NotificationCompat.Builder(ReviewActivity.this,"Review")
                         .setSmallIcon(R.drawable.star_review)
@@ -81,8 +82,8 @@ EditText fullName,phone,email,comment;
                 NotificationManagerCompat managerCompat= NotificationManagerCompat.from(ReviewActivity.this);
               managerCompat.notify(1,review.build());
             }
-        });
-        }
+
+
     public void sendReview(){
         if(validate()) {
             database = FirebaseDatabase.getInstance();
@@ -99,6 +100,7 @@ EditText fullName,phone,email,comment;
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
+            addNotification();
             finish();
         }
     }
