@@ -6,6 +6,8 @@
 
 package ca.codingcomrades.it.buscareplus.ui.safety;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,6 +35,7 @@ import org.w3c.dom.Text;
 import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
 import ca.codingcomrades.it.buscareplus.ui.maintenance.MaintenanceViewModel;
+import in.unicodelabs.kdgaugeview.KdGaugeView;
 
 public class SafetyFragment extends Fragment {
     Handler handler = new Handler();
@@ -39,8 +43,11 @@ public class SafetyFragment extends Fragment {
     private View view;
     double speed;
     int passengers;
-    TextView speedTextView,passengersTextView;
+
+    KdGaugeView speedoMeterView;
+    TextView speedTextView,passengersTextView,speedLabel;
     DatabaseReference database;
+    SharedPreferences prefs;
     int busNum =927;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,9 +59,12 @@ public class SafetyFragment extends Fragment {
 
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_safety,container,false);
+        prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        speedLabel = view.findViewById(R.id.speedometerLabel);
+        speedoMeterView =view.findViewById(R.id.speedMeter);
         speedTextView = view.findViewById(R.id.safetySpeedReadings);
         passengersTextView = view.findViewById(R.id.safetyPassengersReading);
         database = FirebaseDatabase.getInstance().getReference();
@@ -77,17 +87,27 @@ public class SafetyFragment extends Fragment {
         }),1000);
     }
     public void changeView(int passengers,double speed){
-
+        Log.d("speed", "changeView: "+ prefs.getString("metricB","false"));
+        if(prefs.getString("metricB", "false").equals("true")) {
+            Log.d("speed", "changeView: Its inside");
+            speedoMeterView.setSpeed((float) (speed/1.609));
+            speedTextView.setText(String.valueOf((float)speed/1.6));
+            speedLabel.setText("m.p.h");
+        }else {
+            speedoMeterView.setSpeed((float) speed);
+            speedLabel.setText("km/h");
+            speedTextView.setText(String.valueOf(speed));
+        }
         passengersTextView.setText(String.valueOf(passengers));
-        speedTextView.setText(String.valueOf(speed));
+
         if(passengers>30)
-            passengersTextView.setBackgroundColor(Color.RED);
+            passengersTextView.setTextColor(Color.RED);
         else
-            passengersTextView.setBackgroundColor(Color.GREEN);
+            passengersTextView.setTextColor(Color.GREEN);
         if (speed>50)
-            speedTextView.setBackgroundColor(Color.RED);
+            speedTextView.setTextColor(Color.RED);
         else
-            speedTextView.setBackgroundColor(Color.GREEN);
+            speedTextView.setTextColor(Color.GREEN);
     }
 
 }
