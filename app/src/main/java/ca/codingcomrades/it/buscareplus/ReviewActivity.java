@@ -28,15 +28,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
+//Single Responsibility Principal
 public class ReviewActivity  extends AppCompatActivity {
 FirebaseDatabase database;
 Button submit;
 RatingBar ratingBar;
 TextView model;
+FirebaseAuth fAuth;
 EditText fullName,phone,email,comment;
     Float rating;
     String name,num,emailAddress,Comment;
@@ -47,15 +49,13 @@ EditText fullName,phone,email,comment;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
         bindFields();
-        submit.setOnClickListener(v -> sendReview());
         String str = android.os.Build.MODEL;
         model.setText(str);
-        addnotification=(Button)findViewById(R.id.submitBtn);
+        addnotification = (Button) findViewById(R.id.submitBtn);
         //If the SDK VERSION is newer than Oreo
-        if(SDK_INT >= Build.VERSION_CODES.O)
-        {
-            NotificationChannel channel =new NotificationChannel("Review","Notificattion",NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager= getSystemService(NotificationManager.class);
+        if (SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("Review", "Notificattion", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
 
         }
@@ -63,10 +63,14 @@ EditText fullName,phone,email,comment;
 
             @Override
             public void onClick(View view) {
-                addNotification();
-            }
 
-            private void addNotification() {
+                sendReview();
+
+            }
+        });}
+
+
+            public void addNotification() {
                 String id="id";
                 NotificationCompat.Builder review  = new NotificationCompat.Builder(ReviewActivity.this,"Review")
                         .setSmallIcon(R.drawable.star_review)
@@ -78,13 +82,14 @@ EditText fullName,phone,email,comment;
                 NotificationManagerCompat managerCompat= NotificationManagerCompat.from(ReviewActivity.this);
               managerCompat.notify(1,review.build());
             }
-        });
-        }
+
+
     public void sendReview(){
         if(validate()) {
             database = FirebaseDatabase.getInstance();
-            String test = "ffwrgrgheqliglietg12";
-            DatabaseReference myRef = database.getReference("Feed1"+"/"+test);
+            fAuth = FirebaseAuth.getInstance();
+            String uid = fAuth.getUid();
+            DatabaseReference myRef = database.getReference("FeedBack"+"/"+uid);
             DatabaseReference fullNameChild = myRef.child("Name");
             fullNameChild.setValue(name);
             DatabaseReference emailChild = myRef.child("Email");
@@ -95,9 +100,11 @@ EditText fullName,phone,email,comment;
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
+            addNotification();
             finish();
         }
     }
+
     public void bindFields(){
         fullName = findViewById(R.id.fullNameInput);
         phone = findViewById(R.id.phoneNumInput);
@@ -106,7 +113,6 @@ EditText fullName,phone,email,comment;
         comment = findViewById(R.id.commentInput);
         model = findViewById(R.id.model_print);
         submit = findViewById(R.id.submitBtn);
-
     }
     public boolean validate(){
         getValues();

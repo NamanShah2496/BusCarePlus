@@ -81,8 +81,8 @@ public class SettingFragment extends Fragment {
         darkSwitch = view.findViewById(R.id.DarkThemeSwitch);
         speedbar = view.findViewById(R.id.SpeedSeekBar);
         maxPeoplebar = view.findViewById(R.id.CapacitySeekbar);
-        speedValue = view.findViewById(R.id.MaxSpeedTitle);
-        maxPeopleValue = view.findViewById(R.id.MaxPeopleTitle);
+        speedValue = view.findViewById(R.id.SpeedTV);
+        maxPeopleValue = view.findViewById(R.id.MaxPeopleTV);
         metricButton = view.findViewById(R.id.Unit_Metric_Radio_Btn);
         imperialButton = view.findViewById(R.id.Unit_Imperial_Radio_Btn);
 

@@ -14,7 +14,7 @@
         <activity
             android:name=".MyAccount"
             android:label="My Account"
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".LoginActivity"
@@ -35,6 +35,11 @@
             android:name=".ReviewActivity"
             android:exported="true"
             android:label="Review"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AboutusActivity"
+            android:exported="true"
+            android:label="About Us"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".HelpActivity"

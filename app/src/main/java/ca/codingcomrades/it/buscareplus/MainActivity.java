@@ -1,4 +1,3 @@
-// Section RNA
 // Naman Shah , n01392496 , Section RNA
 // Aryan Sood , n01393003, Section RNA
 // Vishesh Bansal, n01395119, Section RNA
@@ -7,6 +6,7 @@
 package ca.codingcomrades.it.buscareplus;
 
 import android.content.Context;
+import static com.google.firebase.auth.FirebaseAuth.*;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +26,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -45,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-        setSupportActionBar(binding.appBarMain.toolbar);
+      setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -55,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
                 .setOpenableLayout(drawer)
-//                .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -63,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //Behavioral Patterns
+//Command Design Pattern
     @Override
     public void onResume() {
 
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
 
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
@@ -89,13 +86,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onBack() {
+        //Creational Pattern
+        //Builder Pattern
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit!!");
         builder.setMessage("Are you to exit?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                        finishAffinity();
+                        System.exit(0);
                     }
                 })
                 .setIcon(R.drawable.alert)
@@ -121,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    @Override
-    public void onBackPressed(){
-        onBack();
-    }
+        @Override
+        public void onBackPressed(){
+            onBack();
+        }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -141,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.logout:
                 userLogout();
                 return true;
+            case R.id.aboutus:
+                Intent intent1 = new Intent(this, AboutusActivity.class);
+                startActivity(intent1);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        finish();
     }
+
 }

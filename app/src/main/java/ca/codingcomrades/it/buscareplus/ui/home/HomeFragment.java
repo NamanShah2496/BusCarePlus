@@ -7,65 +7,120 @@
 package ca.codingcomrades.it.buscareplus.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.R;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    Handler handler = new Handler();
+    DatabaseReference database;
     private HomeViewModel homeViewModel;
     private View view;
-    Spinner bus;
+    ImageButton speedBtn,passengersBtn,carbonBtn,temperatureBtn;
+    double speed,temperatureReading;
+    int passengers,carbonReading;
+    Spinner busSpinner;
     Button busbutton;
     TextView textView;
+    int busNum=927;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database =FirebaseDatabase.getInstance().getReference();
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         homeViewModel.getText();
 
+
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+public void updateUI(){
+    handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<DataSnapshot> task) {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            }
+            else {
+                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
+                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
+                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
+                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+                changeColor(speed,passengers);
+                 }
+         updateUI();
+        }
+    }), 1000);
+}
+
+public void changeColor(double speed,int passengers){
+    if(speed>50){
+        speedBtn.setBackgroundColor(Color.RED);
+    }else{
+       speedBtn.setBackgroundColor(0xFF3BDF35);
+    }
+    if(passengers>30)
+        passengersBtn.setBackgroundColor(Color.RED);
+    else
+        passengersBtn.setBackgroundColor(0xFF3BDF35);
+    if(temperatureReading>24)
+        temperatureBtn.setBackgroundColor(Color.RED);
+    else
+        temperatureBtn.setBackgroundColor(0xFF3BDF35);
+    if(carbonReading>1000)
+        carbonBtn.setBackgroundColor(Color.RED);
+    else
+        carbonBtn.setBackgroundColor(0xFF3BDF35);
+}
+ public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home,container,false);
-      // view.setBackgroundColor(0xFF20FFFF);
-        bus = (Spinner)view.findViewById(R.id.busoption);
-        busbutton = view.findViewById(R.id.busbutton);
-        textView = view.findViewById(R.id.busno);
 
+        busSpinner = (Spinner)view.findViewById(R.id.busoption);
+        busSpinner.setOnItemSelectedListener(this);
+
+
+        textView = view.findViewById(R.id.busno);
+        speedBtn = view.findViewById(R.id.speedBtn);
+        passengersBtn = view.findViewById(R.id.passengersBtn);
+        temperatureBtn =view.findViewById(R.id.temperatureBtn);
+        carbonBtn = view.findViewById(R.id.carbonBtn);
+        applySettings();
+
+     updateUI();
+return view;
+    }
+
+    public void applySettings(){
         SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
@@ -76,25 +131,41 @@ public class HomeFragment extends Fragment {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
         if(ds.equalsIgnoreCase("true")){
-           // view.setBackgroundColor(Color.BLACK);
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
+    public void busSelected(){
+      busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
 
-        busbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateText(v);
-            }
-        });
-return view;
     }
 
-    public void updateText(View v) {
-        String busnumber  =(String)((TextView)bus.getSelectedView()).getText();
-        textView.setText(busnumber);
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        applySettings();
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        busSelected();
+        updateText();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Log.d("TAG", "onNothingSelected: ");
+    }
+    public void updateText() {
+        textView.setText(String.valueOf(busNum));
+    }
+
+
+
 
 }

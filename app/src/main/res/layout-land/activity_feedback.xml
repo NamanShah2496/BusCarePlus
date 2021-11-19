@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ReviewActivity">
 
-
     <EditText
         android:id="@+id/fullNameInput"
         android:layout_width="235dp"
         android:layout_height="42dp"
         android:inputType="text"
-        android:maxLength="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
@@ -25,7 +23,6 @@
         android:layout_width="235dp"
         android:layout_height="42dp"
         android:inputType="text"
-        android:maxLength="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
@@ -40,7 +37,7 @@
         android:layout_marginStart="164dp"
         android:layout_marginTop="148dp"
         android:numStars="5"
-        android:progressTint="@color/yellow"
+        android:progressTint="@color/menu_blue"
         android:rating="3.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -118,7 +115,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.169" />
 
@@ -180,6 +176,7 @@
         android:layout_width="235dp"
         android:layout_height="42dp"
         android:ems="10"
+        android:maxLength="10"
         android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

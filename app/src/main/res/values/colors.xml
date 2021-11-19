@@ -4,21 +4,25 @@
     <color name="white">#FFFFFFFF</color>
     <color name="menu_blue">#1B2AAD</color>
     <color name="grey">#9E8F8F</color>
-    <color name="green">#3BDF35</color>
+    <color name="green">#FF3BDF35</color>
     <color name="red">#ED2020</color>
     <color name="darkgrey">#CCCCCC</color>
     <color name="jass">#C4C4C4</color>
     <color name="back">#171212</color>
     <color name="blue">#96D8FF</color>
     <color name="home_back">#4E5DE1</color>
+    <color name="colorAccent">#f06292</color>
+    <color name="lightRed">#ff063b</color>
 
-
+    <color name="maroon">#800000</color>
+    <color name ="actualGreen">#FF3BDF35</color>
 
     //night mode
     <color name="colorPrimaryNight">#000</color>
     <color name="colorPrimaryDarkNight">#000</color>
     <color name="colorTextNight">#dcdcdc</color>
     <color name="naroon">#800000</color>
-    <color name="yellow">#FF20FFFF</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="lightBlue">#FF20FFFF</color>
 
 </resources>

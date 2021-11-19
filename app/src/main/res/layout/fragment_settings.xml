@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".ui.settings.SettingFragment"
-    tools:ignore="ExtraText">
+    tools:context=".ui.settings.SettingFragment">
 
 
     <TextView
@@ -16,7 +15,6 @@
         android:text="@string/portrait_lock"
         android:textSize="22dp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.115"
@@ -96,9 +94,9 @@
             android:layout_height="37dp"
             android:layout_marginLeft="50dp"
             android:text="Metric(Km/hrs)"
-            android:textSize="18dp"
             android:textColor="@color/home_back"
-
+            android:textSize="18dp"
+            android:checked="true"
             android:textStyle="bold" />
 
         <RadioButton
@@ -106,8 +104,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:textColor="@color/home_back"
             android:text="Imperial(miles/hrs)"
+            android:textColor="@color/home_back"
             android:textSize="18dp"
 
             android:textStyle="bold" />
@@ -175,8 +173,8 @@
         android:id="@+id/CapacitySeekbar"
         android:layout_width="110dp"
         android:layout_height="37dp"
-        android:max="90"
-        android:min="40"
+        android:max="50"
+        android:min="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
@@ -188,14 +186,40 @@
         android:id="@+id/SettingsSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="Save"
-        android:backgroundTint="@color/menu_blue"
+        android:backgroundTint="@color/maroon"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
+
+    <TextView
+        android:id="@+id/SpeedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.678" />
+
+    <TextView
+        android:id="@+id/MaxPeopleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
