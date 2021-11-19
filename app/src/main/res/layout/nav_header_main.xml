@@ -18,7 +18,7 @@
         android:layout_height="113dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/buscare" />
+        app:srcCompat="@mipmap/bus_foreground" />
 
     <TextView
         android:layout_width="363dp"
