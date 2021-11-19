@@ -17,11 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,11 +27,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import ca.codingcomrades.it.buscareplus.R;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
-import ca.codingcomrades.it.buscareplus.ui.maintenance.MaintenanceViewModel;
+import ca.codingcomrades.it.buscareplus.SpeedGauge;
 import in.unicodelabs.kdgaugeview.KdGaugeView;
 
 public class SafetyFragment extends Fragment {
@@ -44,7 +38,7 @@ public class SafetyFragment extends Fragment {
     double speed;
     int passengers;
 
-    KdGaugeView speedoMeterView;
+    SpeedGauge speedoMeterView;
     TextView speedTextView,passengersTextView,speedLabel;
     DatabaseReference database;
     SharedPreferences prefs;
@@ -64,7 +58,7 @@ public class SafetyFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_safety,container,false);
         prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         speedLabel = view.findViewById(R.id.speedometerLabel);
-        speedoMeterView =view.findViewById(R.id.speedMeter);
+        speedoMeterView =view.findViewById(R.id.speedoMeter);
         speedTextView = view.findViewById(R.id.safetySpeedReadings);
         passengersTextView = view.findViewById(R.id.safetyPassengersReading);
         database = FirebaseDatabase.getInstance().getReference();
@@ -92,6 +86,7 @@ public class SafetyFragment extends Fragment {
             Log.d("speed", "changeView: Its inside");
             speedoMeterView.setSpeed((float) (speed/1.609));
             speedTextView.setText(String.valueOf((float)speed/1.6));
+            speedoMeterView.changeLimit();
             speedLabel.setText("m.p.h");
         }else {
             speedoMeterView.setSpeed((float) speed);
@@ -106,6 +101,7 @@ public class SafetyFragment extends Fragment {
             passengersTextView.setTextColor(Color.GREEN);
         if (speed>50)
             speedTextView.setTextColor(Color.RED);
+
         else
             speedTextView.setTextColor(Color.GREEN);
     }
