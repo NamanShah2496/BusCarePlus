@@ -147,8 +147,6 @@ String cityName,uid;
     public void saveUserData(){
         DocumentReference df = fStore.collection("Users").document(uid);
         Map<String,Object> userInfo = new HashMap<>();
-
-        Log.d("TAG", "saveUserData: " +firstName.getText().toString());
         userInfo.put((getString(R.string.firstnameTitle)),firstName.getText().toString());
         userInfo.put(getString(R.string.last_nameTitle),lastName.getText().toString());
         userInfo.put(getString(R.string.phoneTitle), phone.getText().toString());
@@ -168,7 +166,6 @@ String cityName,uid;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
-
     }
     class MyTask extends AsyncTask<Integer, Integer, String> {
         @Override
