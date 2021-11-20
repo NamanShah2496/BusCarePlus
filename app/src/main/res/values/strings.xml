@@ -15,6 +15,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+<!--    <string name="menu_gallery">Gallery</string>-->
     <string name="menu_safety">Safety</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
@@ -96,6 +97,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="firebase_login_fail">Uh oh Something went wrong!!, Try Again</string>
     <string name="validating_msg">Validating</string>
     <string name="remember">remember</string>
+    <string name="contact_number">+1234567890</string>
     <string name="radioMetricBtnText">Metric(mi/h)</string>
     <string name="radioImperialBtnText">Imperial(km/h)</string>
 

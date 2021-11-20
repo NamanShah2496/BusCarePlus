@@ -3,7 +3,6 @@
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
 
-
 package ca.codingcomrades.it.buscareplus;
 
 import androidx.appcompat.app.ActionBar;
@@ -40,13 +39,9 @@ public class HelpActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
-
         }
-
         button = findViewById(R.id.help_button);
         button.setOnClickListener(view -> insertDummyContactWrapper());
-
-
     }
 
     @Override
@@ -58,15 +53,12 @@ public class HelpActivity extends AppCompatActivity {
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
-
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
         if(ds.equalsIgnoreCase("true")){
-
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
@@ -74,7 +66,7 @@ public class HelpActivity extends AppCompatActivity {
 
     public void insertDummyContactWrapper() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            String phone = "+1234567890";
+            String phone = getString(R.string.contact_number);
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", phone, null));
             startActivity(intent);
         } else {
@@ -86,18 +78,15 @@ public class HelpActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        ConstraintLayout text = findViewById(R.id.constraintLayout);
+        Snackbar snackbar;
         if (requestCode == REQUEST_PHONE_CALL && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            ConstraintLayout text = findViewById(R.id.constraintLayout);
-            Snackbar snackbar = Snackbar
+            snackbar = Snackbar
                     .make(text, R.string.pg, Snackbar.LENGTH_LONG);
-            snackbar.show();
         } else  {
-            ConstraintLayout text = findViewById(R.id.constraintLayout);
-            Snackbar snackbar = Snackbar
+            snackbar = Snackbar
                     .make(text, R.string.pd, Snackbar.LENGTH_LONG);
-            snackbar.show();
         }
+        snackbar.show();
     }
-
-
 }

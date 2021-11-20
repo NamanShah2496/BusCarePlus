@@ -21,14 +21,14 @@ public class LocalData {
         editor.apply();
 
     }
-    public void savePreferences(Activity act,String context, String value){
+    public void savePreferences(Context act, String context, Boolean value){
         SharedPreferences sp =act.getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(context,value);
+        editor.putBoolean(context, value);
         editor.apply();
 
     }
-    public boolean getPreference(Activity act, String context){
+    public boolean getPreference(Context act, String context){
         SharedPreferences sp =act.getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         return sp.getBoolean(context,false);
 
