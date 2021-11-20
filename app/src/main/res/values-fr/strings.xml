@@ -91,5 +91,26 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="ans_2">Nous avons choisi cette application parce que nous voulions créer une application qui simplifie la tâche des opérateurs de bus pour entretenir les nœuds et suivre les dysfonctionnements pouvant être induits en raison d\'une défaillance de l\'équipement.</string>
     <string name="our_college">Notre Collège :</string>
     <string name="humber_college">Collège Humber</string>
+    <string name="actualGreen">0xFF3BDF35</string>
+    <string name="toast_login_fail">Failure, try again</string>
+    <string name="firebase_login_fail">Uh oh Something went wrong!!, Try Again</string>
+    <string name="validating_msg">Validating</string>
+    <string name="remember">remember</string>
+    <string name="contact_number">+1234567890</string>
+    <string name="radioMetricBtnText">Metric(mi/h)</string>
+    <string name="radioImperialBtnText">Imperial(km/h)</string>
+    <string name="login_label">Login</string>
+    <string name="emailAddressTitle">Email Address</string>
+    <string name="passwordTitle">Password</string>
+    <string name="rememberLabel">"Remember me "</string>
+    <string name="firebaseKeyFirstName">FirstName</string>
+    <string name="firebaseKeyLastName">LastName</string>
+    <string name="firebaseKeyPhone">Phone</string>
+    <string name="firebaseKeyAge">Age</string>
+    <string name="firebaseKeyAddress">Address</string>
+    <string name="firebaseKeyCity">City</string>
+    <string name="firebaseKeyProvince">Province</string>
+    <string name="firebaseKeyCountry">Country</string>
+
 
 </resources>

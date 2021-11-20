@@ -104,6 +104,14 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="emailAddressTitle">Email Address</string>
     <string name="passwordTitle">Password</string>
     <string name="rememberLabel">"Remember me "</string>
+    <string name="firebaseKeyFirstName">FirstName</string>
+    <string name="firebaseKeyLastName">LastName</string>
+    <string name="firebaseKeyPhone">Phone</string>
+    <string name="firebaseKeyAge">Age</string>
+    <string name="firebaseKeyAddress">Address</string>
+    <string name="firebaseKeyCity">City</string>
+    <string name="firebaseKeyProvince">Province</string>
+    <string name="firebaseKeyCountry">Country</string>
 
 
 </resources>
