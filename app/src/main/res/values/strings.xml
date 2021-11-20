@@ -100,6 +100,10 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="contact_number">+1234567890</string>
     <string name="radioMetricBtnText">Metric(mi/h)</string>
     <string name="radioImperialBtnText">Imperial(km/h)</string>
+    <string name="login_label">Login</string>
+    <string name="emailAddressTitle">Email Address</string>
+    <string name="passwordTitle">Password</string>
+    <string name="rememberLabel">"Remember me "</string>
 
 
 </resources>
