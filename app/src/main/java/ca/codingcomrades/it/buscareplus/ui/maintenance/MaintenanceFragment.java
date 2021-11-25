@@ -10,6 +10,7 @@ package ca.codingcomrades.it.buscareplus.ui.maintenance;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +43,7 @@ public class MaintenanceFragment extends Fragment {
     private View view;
     private TextView temperatureTextView,carbonTextView;
     int temp,carbon;
+    LottieAnimationView thermometer;
     DatabaseReference database;
     int busNum=927;
     @Override
@@ -53,10 +56,15 @@ public class MaintenanceFragment extends Fragment {
 
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_maintenance,container,false);
+        thermometer = view.findViewById(R.id.thermometer);
+
+      //  thermometer.setSpeed(1);
+       thermometer.setFrame(55);
         temperatureTextView = view.findViewById(R.id.MaintainanceThermoValueTV);
         carbonTextView = view.findViewById(R.id.MaintainanceCarbonValueTV);
         database = FirebaseDatabase.getInstance().getReference();
@@ -82,10 +90,16 @@ public class MaintenanceFragment extends Fragment {
     public void changeView(int temp,int carbon){
         temperatureTextView.setText(String.valueOf(temp));
         carbonTextView.setText(String.valueOf(carbon));
-        if(temp>25)
+
+        thermometer.setMinAndMaxFrame(temp*3,temp*3+20);
+        if(temp>25) {
             temperatureTextView.setBackgroundColor(Color.RED);
-        else
+          //  thermometer.setMinAndMaxFrame(58,58);
+        }
+        else {
             temperatureTextView.setBackgroundColor(Color.GREEN);
+
+        }
         if (carbon>1000)
             carbonTextView.setBackgroundColor(Color.RED);
         else
