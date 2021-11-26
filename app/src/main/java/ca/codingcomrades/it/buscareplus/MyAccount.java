@@ -111,7 +111,7 @@ String cityName,uid;
         phone = findViewById(R.id.phoneEditText);
         age = findViewById(R.id.ageEditText);
         address = findViewById(R.id.addressEditText);
-        city = findViewById(R.id.cityEditText);
+       city = findViewById(R.id.cityEditText);
         province = findViewById(R.id.provinceEditText);
         country = findViewById(R.id.countryEditText);
         progressBar = findViewById(R.id.progressBar);
@@ -140,7 +140,8 @@ String cityName,uid;
         phone.setText(arr.get(getString(R.string.phoneTitle)).toString());
         age.setText(arr.get(getString(R.string.ageTitle)).toString());
         address.setText(arr.get(getString(R.string.addressTitle)).toString());
-        city.setText(arr.get(getString(R.string.cityTitle)).toString());
+       // city.setText("Edmonton");
+       city.setText(arr.get(getString(R.string.cityTitle)).toString());
         province.setText(arr.get(getString(R.string.provinceTitle)).toString());
         country.setText(arr.get(getString(R.string.countryTitle)).toString());
     }
