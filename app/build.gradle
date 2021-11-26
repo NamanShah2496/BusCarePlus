@@ -56,4 +56,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'in.unicodelabs.sorbh:kdgaugeview:1.0.0'
 
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }
