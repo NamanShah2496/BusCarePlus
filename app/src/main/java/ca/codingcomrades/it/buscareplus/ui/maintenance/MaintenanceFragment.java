@@ -42,7 +42,7 @@ public class MaintenanceFragment extends Fragment {
     private MaintenanceViewModel maintenanceViewModel;
     private View view;
     private TextView temperatureTextView,carbonTextView;
-    int temp,carbon;
+    double temp,carbon;
     LottieAnimationView thermometer;
     DatabaseReference database;
     int busNum=927;
@@ -80,15 +80,15 @@ public class MaintenanceFragment extends Fragment {
                     Log.e("firebase", "Error getting data", task.getException());
                 } else {
 
-                    temp = Integer.parseInt(String.valueOf(task.getResult().child("Temperature").getValue()));
-                    carbon = Integer.parseInt(String.valueOf(task.getResult().child("Co2").getValue()));
+                    temp = Double.parseDouble(String.valueOf(task.getResult().child("Temperature").getValue()));
+                    carbon = Double.parseDouble(String.valueOf(task.getResult().child("Co2").getValue()));
                     changeView(temp, carbon);
                 }
                 getData();
             }
         }),1000);
     }
-    public void changeView(int temp,int carbon){
+    public void changeView(double temp,double carbon){
         temperatureTextView.setText(String.valueOf(temp));
         carbonTextView.setText(String.valueOf(carbon));
 

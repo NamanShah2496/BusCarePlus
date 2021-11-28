@@ -75,6 +75,7 @@ public void updateUI(){
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
                 changeColor(speed,passengers);
+                //TODO no need to pass para, remove and check in test branch
                  }
          updateUI();
         }
