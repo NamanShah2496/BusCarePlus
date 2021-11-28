@@ -23,21 +23,20 @@
         android:layout_width="241dp"
         android:layout_height="239dp"
         android:layout_gravity="center"
-        app:unitOfMeasurementTextSize="20dp"
-        app:speedTextColor="@color/yellow"
-        app:dialSpeedColor="@color/actualGreen"
-        app:unitOfMeasurement = " "
         app:animationTime="1500"
+        app:dialSpeedColor="@color/actualGreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071"
+        app:layout_constraintVertical_bias="0.142"
         app:maxSpeed="100"
         app:minSpeed="0"
         app:speed="100"
-        app:speed_limit="50" />
+        app:speedTextColor="@color/yellow"
+        app:speed_limit="50"
+        app:unitOfMeasurement=" "
+        app:unitOfMeasurementTextSize="20dp" />
 
     <TextView
         android:id="@+id/SafetySpeedTV"
@@ -49,9 +48,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <TextView
         android:id="@+id/safetySpeedReadings"
@@ -75,9 +75,10 @@
         android:src="@drawable/ic_launcher_people_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.809" />
 
     <TextView
         android:id="@+id/SafetyNumberofPeopleTV"
@@ -89,10 +90,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintVertical_bias="0.553" />
 
     <TextView
         android:id="@+id/safetyPassengersReading"
