@@ -98,6 +98,20 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="validating_msg">Validating</string>
     <string name="remember">remember</string>
     <string name="contact_number">+1234567890</string>
+    <string name="radioMetricBtnText">Metric(mi/h)</string>
+    <string name="radioImperialBtnText">Imperial(km/h)</string>
+    <string name="login_label">Login</string>
+    <string name="emailAddressTitle">Email Address</string>
+    <string name="passwordTitle">Password</string>
+    <string name="rememberLabel">"Remember me "</string>
+    <string name="firebaseKeyFirstName">FirstName</string>
+    <string name="firebaseKeyLastName">LastName</string>
+    <string name="firebaseKeyPhone">Phone</string>
+    <string name="firebaseKeyAge">Age</string>
+    <string name="firebaseKeyAddress">Address</string>
+    <string name="firebaseKeyCity">City</string>
+    <string name="firebaseKeyProvince">Province</string>
+    <string name="firebaseKeyCountry">Country</string>
 
 
 </resources>

@@ -10,6 +10,7 @@ package ca.codingcomrades.it.buscareplus.ui.maintenance;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +42,8 @@ public class MaintenanceFragment extends Fragment {
     private MaintenanceViewModel maintenanceViewModel;
     private View view;
     private TextView temperatureTextView,carbonTextView;
-    int temp,carbon;
+    double temp,carbon;
+    LottieAnimationView thermometer;
     DatabaseReference database;
     int busNum=927;
     @Override
@@ -53,10 +56,15 @@ public class MaintenanceFragment extends Fragment {
 
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_maintenance,container,false);
+        thermometer = view.findViewById(R.id.thermometer);
+
+      //  thermometer.setSpeed(1);
+       thermometer.setFrame(55);
         temperatureTextView = view.findViewById(R.id.MaintainanceThermoValueTV);
         carbonTextView = view.findViewById(R.id.MaintainanceCarbonValueTV);
         database = FirebaseDatabase.getInstance().getReference();
@@ -71,25 +79,32 @@ public class MaintenanceFragment extends Fragment {
                 if (!task.isSuccessful()) {
                     Log.e("firebase", "Error getting data", task.getException());
                 } else {
-                    temp = Integer.parseInt(String.valueOf(task.getResult().child("Temperature").getValue()));
-                    carbon = Integer.parseInt(String.valueOf(task.getResult().child("Co2").getValue()));
+
+                    temp = Double.parseDouble(String.valueOf(task.getResult().child("Temperature").getValue()));
+                    carbon = Double.parseDouble(String.valueOf(task.getResult().child("Co2").getValue()));
                     changeView(temp, carbon);
                 }
                 getData();
             }
         }),1000);
     }
-    public void changeView(int temp,int carbon){
+    public void changeView(double temp,double carbon){
         temperatureTextView.setText(String.valueOf(temp));
         carbonTextView.setText(String.valueOf(carbon));
-        if(temp>25)
-            temperatureTextView.setBackgroundColor(Color.RED);
-        else
-            temperatureTextView.setBackgroundColor(Color.GREEN);
+
+        thermometer.setMinAndMaxFrame(60,60);
+        if(temp>25) {
+            temperatureTextView.setTextColor(Color.RED);
+            thermometer.setMinAndMaxFrame(158,158);
+        }
+        else {
+            temperatureTextView.setTextColor(Color.GREEN);
+
+        }
         if (carbon>1000)
-            carbonTextView.setBackgroundColor(Color.RED);
+            carbonTextView.setTextColor(Color.RED);
         else
-            carbonTextView.setBackgroundColor(Color.GREEN);
+            carbonTextView.setTextColor(Color.GREEN);
     }
 
 }

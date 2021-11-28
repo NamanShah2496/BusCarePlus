@@ -126,8 +126,9 @@ String cityName,uid;
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 arr = value.getData();
-                Log.d("TAG", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
-                setFields();
+                Log.d("firebase", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
+                    Log.d("firebase", "onEvent: "+firstName.getText().toString());
+               setFields();
 
             }
         });
@@ -135,28 +136,26 @@ String cityName,uid;
     }
 
     public void setFields(){
-        firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
-        lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
-        phone.setText(arr.get(getString(R.string.phoneTitle)).toString());
-        age.setText(arr.get(getString(R.string.ageTitle)).toString());
-        address.setText(arr.get(getString(R.string.addressTitle)).toString());
-        city.setText(arr.get(getString(R.string.cityTitle)).toString());
-        province.setText(arr.get(getString(R.string.provinceTitle)).toString());
-        country.setText(arr.get(getString(R.string.countryTitle)).toString());
+        firstName.setText(arr.get(getString(R.string.firebaseKeyFirstName)).toString());
+        lastName.setText(arr.get(getString(R.string.firebaseKeyLastName)).toString());
+        phone.setText(arr.get(getString(R.string.firebaseKeyPhone)).toString());
+        age.setText(arr.get(getString(R.string.firebaseKeyAge)).toString());
+        address.setText(arr.get(getString(R.string.firebaseKeyAddress)).toString());
+        city.setText(arr.get(getString(R.string.firebaseKeyCity)).toString());
+        province.setText(arr.get(getString(R.string.firebaseKeyProvince)).toString());
+        country.setText(arr.get(getString(R.string.firebaseKeyCountry)).toString());
     }
     public void saveUserData(){
         DocumentReference df = fStore.collection("Users").document(uid);
         Map<String,Object> userInfo = new HashMap<>();
-
-        Log.d("TAG", "saveUserData: " +firstName.getText().toString());
-        userInfo.put((getString(R.string.firstnameTitle)),firstName.getText().toString());
-        userInfo.put(getString(R.string.last_nameTitle),lastName.getText().toString());
-        userInfo.put(getString(R.string.phoneTitle), phone.getText().toString());
-        userInfo.put(getString(R.string.ageTitle), age.getText().toString());
-        userInfo.put(getString(R.string.addressTitle), address.getText().toString());
-        userInfo.put(getString(R.string.cityTitle), city.getText().toString());
-        userInfo.put(getString(R.string.provinceTitle), province.getText().toString());
-        userInfo.put(getString(R.string.countryTitle), country.getText().toString());
+        userInfo.put((getString(R.string.firebaseKeyFirstName)),firstName.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyLastName),lastName.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyPhone), phone.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyAge), age.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyAddress), address.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyCity), city.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyProvince), province.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyCountry), country.getText().toString());
         userInfo.put("isUser","1");
         df.set(userInfo);
         toastPrint("Information Saved!!");
@@ -168,7 +167,6 @@ String cityName,uid;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
-
     }
     class MyTask extends AsyncTask<Integer, Integer, String> {
         @Override
