@@ -50,6 +50,7 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.Buscareplus.NoActionBar"
             android:configChanges="uiMode" />
+        <service android:name=".Notification"/>
     </application>
 
 </manifest>

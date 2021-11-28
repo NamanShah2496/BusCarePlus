@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        startService(new Intent(getBaseContext(),Notification.class));
+
 
     }
     //Behavioral Patterns

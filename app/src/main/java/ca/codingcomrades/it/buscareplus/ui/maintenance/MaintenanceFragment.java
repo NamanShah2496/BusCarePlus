@@ -79,6 +79,7 @@ public class MaintenanceFragment extends Fragment {
                 if (!task.isSuccessful()) {
                     Log.e("firebase", "Error getting data", task.getException());
                 } else {
+
                     temp = Integer.parseInt(String.valueOf(task.getResult().child("Temperature").getValue()));
                     carbon = Integer.parseInt(String.valueOf(task.getResult().child("Co2").getValue()));
                     changeView(temp, carbon);
@@ -91,19 +92,19 @@ public class MaintenanceFragment extends Fragment {
         temperatureTextView.setText(String.valueOf(temp));
         carbonTextView.setText(String.valueOf(carbon));
 
-        thermometer.setMinAndMaxFrame(temp*3,temp*3+20);
+        thermometer.setMinAndMaxFrame(60,60);
         if(temp>25) {
-            temperatureTextView.setBackgroundColor(Color.RED);
-          //  thermometer.setMinAndMaxFrame(58,58);
+            temperatureTextView.setTextColor(Color.RED);
+            thermometer.setMinAndMaxFrame(158,158);
         }
         else {
-            temperatureTextView.setBackgroundColor(Color.GREEN);
+            temperatureTextView.setTextColor(Color.GREEN);
 
         }
         if (carbon>1000)
-            carbonTextView.setBackgroundColor(Color.RED);
+            carbonTextView.setTextColor(Color.RED);
         else
-            carbonTextView.setBackgroundColor(Color.GREEN);
+            carbonTextView.setTextColor(Color.GREEN);
     }
 
 }
