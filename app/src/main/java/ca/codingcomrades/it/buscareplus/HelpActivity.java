@@ -22,12 +22,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
 public class HelpActivity extends AppCompatActivity {
-    Button button;
+
 //Don't Repeat yourself Principle
     public static final int REQUEST_PHONE_CALL = 1;
 
@@ -40,8 +41,10 @@ public class HelpActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        button = findViewById(R.id.help_button);
-        button.setOnClickListener(view -> insertDummyContactWrapper());
+
+        FloatingActionButton fab = findViewById(R.id.call_fab);
+        fab.setOnClickListener(view -> insertDummyContactWrapper());
+
     }
 
     @Override
