@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +38,7 @@ public class SafetyFragment extends Fragment {
     private View view;
     double speed;
     int passengers;
+    LottieAnimationView people;
 
     SpeedGauge speedoMeterView;
     TextView speedTextView,passengersTextView,speedLabel;
@@ -56,6 +58,8 @@ public class SafetyFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_safety,container,false);
+        people = view.findViewById(R.id.people);
+        people.setFrame(7);
         prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         speedLabel = view.findViewById(R.id.speedometerLabel);
         speedoMeterView =view.findViewById(R.id.speedoMeter);
@@ -93,10 +97,13 @@ public class SafetyFragment extends Fragment {
             speedLabel.setText("km/h");
             speedTextView.setText(String.valueOf(speed));
         }
+        people.setMinAndMaxFrame(7,7);
         passengersTextView.setText(String.valueOf(passengers));
 
-        if(passengers>30)
+        if(passengers>30) {
             passengersTextView.setTextColor(Color.RED);
+            people.setMinAndMaxFrame(50, 50);
+        }
         else
             passengersTextView.setTextColor(Color.GREEN);
         if (speed>50)
