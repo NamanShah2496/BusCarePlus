@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
@@ -27,18 +28,36 @@ public class AboutusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.aboutus_activity);
-        Button button = (Button) findViewById(R.id.college_link);
+        Button button1 = (Button) findViewById(R.id.naman_link);
+        Button button2 = (Button) findViewById(R.id.vishesh_link);
+        Button button3 = (Button) findViewById(R.id.aryan_link);
+        Button button4 = (Button) findViewById(R.id.jaskirat_link);
 
-        button.setOnClickListener(arg0 -> {
-            Intent viewIntent =
-                    new Intent("android.intent.action.VIEW",
-                            Uri.parse("https://humber.ca/"));
+        // Technical debt
+        button1.setOnClickListener(arg0 -> {
+            Intent viewIntent = new Intent("android.intent.action.VIEW",
+                    Uri.parse("https://www.linkedin.com/in/namanshahdeveloper/"));
             startActivity(viewIntent);
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setHomeButtonEnabled(true);
-                actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+            button2.setOnClickListener(arg1 -> {
+                Intent Intent = new Intent("android.intent.action.VIEW",
+                        Uri.parse("https://www.linkedin.com/in/visheshbansal369/"));
+                startActivity(Intent);
+                button3.setOnClickListener(arg2 -> {
+                    Intent Intent1 = new Intent("android.intent.action.VIEW",
+                            Uri.parse("https://www.linkedin.com/in/aryan-sood-4800351a1/"));
+                    startActivity(Intent1);
+                    button4.setOnClickListener(arg3 -> {
+                        Intent Intent2 = new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://www.linkedin.com/in/jaskirat-singh-855902219/"));
+                        startActivity(Intent2);
+                        ActionBar actionBar = getSupportActionBar();
+                        if (actionBar != null) {
+                            actionBar.setHomeButtonEnabled(true);
+                            actionBar.setDisplayHomeAsUpEnabled(true);
+                        }
+                    });
+                });
+            });
         });
     }
     public void onResume() {

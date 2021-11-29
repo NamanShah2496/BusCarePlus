@@ -89,7 +89,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="ans_1">A -Nous sommes un groupe d\'étudiants qui étudient la technologie du génie informatique au Humber College situé à Toronto, au Canada.</string>
     <string name="ques_2">Q- Comment avons-nous décidé de cette idée ?</string>
     <string name="ans_2">Nous avons choisi cette application parce que nous voulions créer une application qui simplifie la tâche des opérateurs de bus pour entretenir les nœuds et suivre les dysfonctionnements pouvant être induits en raison d\'une défaillance de l\'équipement.</string>
-    <string name="our_college">Notre Collège :</string>
+    <string name="team">Équipe </string>
     <string name="humber_college">Collège Humber</string>
     <string name="actualGreen">0xFF3BDF35</string>
     <string name="toast_login_fail">Failure, try again</string>
