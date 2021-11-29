@@ -7,10 +7,24 @@
     tools:context=".ui.safety.SafetyFragment">
 
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/people"
+        android:layout_width="229dp"
+        android:layout_height="217dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_url="https://assets4.lottiefiles.com/private_files/lf30_iMTtq1.json" />
+
     <ca.codingcomrades.it.buscareplus.SpeedGauge
         android:id="@+id/speedoMeter"
-        android:layout_width="241dp"
-        android:layout_height="239dp"
+        android:layout_width="217dp"
+        android:layout_height="214dp"
         android:layout_gravity="center"
         app:animationTime="1500"
         app:dialSpeedColor="@color/actualGreen"
@@ -56,18 +70,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
 
-    <ImageView
-        android:id="@+id/SafetyNumberofPeopleIV"
-        android:layout_width="207dp"
-        android:layout_height="179dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_launcher_people_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/SafetyNumberofPeopleTV"
         android:layout_width="wrap_content"
@@ -85,17 +87,17 @@
 
     <TextView
         android:id="@+id/safetyPassengersReading"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
+        android:layout_width="94dp"
+        android:layout_height="44dp"
 
         android:textSize="22dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintHorizontal_bias="0.836"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.956" />
 
     <TextView
         android:id="@+id/speedometerLabel"

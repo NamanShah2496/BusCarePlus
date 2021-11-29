@@ -82,13 +82,15 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/people"
-        android:layout_width="366dp"
-        android:layout_height="359dp"
+        android:layout_width="284dp"
+        android:layout_height="253dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904"
+        app:layout_constraintVertical_bias="0.91"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
         app:lottie_url="https://assets4.lottiefiles.com/private_files/lf30_iMTtq1.json" />
@@ -120,7 +122,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="0.992" />
 
     <TextView
         android:id="@+id/speedometerLabel"

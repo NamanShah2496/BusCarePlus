@@ -59,7 +59,7 @@ public class SafetyFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_safety,container,false);
         people = view.findViewById(R.id.people);
-        people.setFrame(7);
+        people.setFrame(10);
         prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         speedLabel = view.findViewById(R.id.speedometerLabel);
         speedoMeterView =view.findViewById(R.id.speedoMeter);
@@ -97,7 +97,7 @@ public class SafetyFragment extends Fragment {
             speedLabel.setText("km/h");
             speedTextView.setText(String.valueOf(speed));
         }
-        people.setMinAndMaxFrame(7,7);
+        people.setMinAndMaxFrame(10,10);
         passengersTextView.setText(String.valueOf(passengers));
 
         if(passengers>30) {
