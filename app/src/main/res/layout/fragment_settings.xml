@@ -161,7 +161,7 @@
         android:layout_width="110dp"
         android:layout_height="37dp"
         android:max="90"
-        android:min="20"
+        android:min="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
