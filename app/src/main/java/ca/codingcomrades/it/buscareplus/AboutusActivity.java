@@ -37,28 +37,28 @@ public class AboutusActivity extends AppCompatActivity {
         button1.setOnClickListener(arg0 -> {
             Intent viewIntent = new Intent("android.intent.action.VIEW",
                     Uri.parse("https://www.linkedin.com/in/namanshahdeveloper/"));
-            startActivity(viewIntent);
+
+            startActivity(viewIntent);});
             button2.setOnClickListener(arg1 -> {
-                Intent Intent = new Intent("android.intent.action.VIEW",
-                        Uri.parse("https://www.linkedin.com/in/visheshbansal369/"));
-                startActivity(Intent);
+                        Intent Intent = new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://www.linkedin.com/in/visheshbansal369/"));
+                        startActivity(Intent);
+                    });
                 button3.setOnClickListener(arg2 -> {
-                    Intent Intent1 = new Intent("android.intent.action.VIEW",
-                            Uri.parse("https://www.linkedin.com/in/aryan-sood-4800351a1/"));
-                    startActivity(Intent1);
+                            Intent Intent1 = new Intent("android.intent.action.VIEW",
+                                    Uri.parse("https://www.linkedin.com/in/aryan-sood-4800351a1/"));
+                            startActivity(Intent1);
+                        });
                     button4.setOnClickListener(arg3 -> {
-                        Intent Intent2 = new Intent("android.intent.action.VIEW",
-                                Uri.parse("https://www.linkedin.com/in/jaskirat-singh-855902219/"));
-                        startActivity(Intent2);
+                                Intent Intent2 = new Intent("android.intent.action.VIEW",
+                                        Uri.parse("https://www.linkedin.com/in/jaskirat-singh-855902219/"));
+                                startActivity(Intent2);
+                            });
                         ActionBar actionBar = getSupportActionBar();
                         if (actionBar != null) {
                             actionBar.setHomeButtonEnabled(true);
                             actionBar.setDisplayHomeAsUpEnabled(true);
                         }
-                    });
-                });
-            });
-        });
     }
     public void onResume() {
 

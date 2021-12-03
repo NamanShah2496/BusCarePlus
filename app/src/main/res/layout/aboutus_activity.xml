@@ -172,10 +172,10 @@
         android:layout_height="117dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/namanimage"
-        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintHorizontal_bias="0.278"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.043"
         app:srcCompat="@drawable/vish" />
 
     <ImageView
