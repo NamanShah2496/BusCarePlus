@@ -2,56 +2,34 @@
 // Aryan Sood , n01393003, Section RNA
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
-
+//more better way in youtube watch later
 
 package ca.codingcomrades.it.buscareplus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
 
 public class LoginActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     FirebaseFirestore fStore;
-    DatabaseReference myRef;
     FirebaseAuth fAuth;
 
-    SharedPreferences sharedPreferences;
-    public static final String SHARED_PREFS = "sharedPrefs";
     String userEmail,userPassword;
     Button login;
     Boolean remember = false;
     CheckBox rememberMe;
     EditText email,password;
-
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
@@ -60,16 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        LocalData local = new LocalData();
         database = FirebaseDatabase.getInstance();
-        myRef= database.getReference("Safety/Speed");
-
-        //toastPrint(myRef.getDatabase().toString());
-
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-
-        fStore =FirebaseFirestore.getInstance();
         rememberMe = findViewById(R.id.RememberMeCheckBox);
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
@@ -80,10 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
-
         }
     }
-
 
     @Override
     protected void onResume(){
@@ -94,31 +63,23 @@ public class LoginActivity extends AppCompatActivity {
     public void callHome(){
        if(validateName()){
 
-           fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-               @Override
-               public void onSuccess(AuthResult authResult) {
-                   savePreference();
-                   Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                   startActivity(intent);
-               }
-           }).addOnFailureListener(new OnFailureListener() {
-               @Override
-               public void onFailure(@NonNull Exception e) {
-                   toastPrint("Failure, try again");
-               }
-           });
+           fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(authResult -> { // Firebase authentication
+               savePreference();
+               Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+               startActivity(intent);
+           }).addOnFailureListener(e -> toastPrint(getString(R.string.toast_login_fail)));
        }else{
-           toastPrint("Uh oh Something went wrong!!, Try Again");
+           toastPrint(getString(R.string.firebase_login_fail));
        }
     }
 
     public void savePreference(){
         remember = rememberMe.isChecked();
         LocalData data = new LocalData();
-        data.savePreferences(this,"remember",remember);
+        data.savePreferences(this,getString(R.string.remember),remember);
     }
     public boolean validateName(){
-        toastPrint("Validating");
+        toastPrint(getString(R.string.validating_msg));
         userEmail = email.getText().toString().trim();
         userPassword = password.getText().toString();
         boolean validate = true;
@@ -138,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         return validate;
     }
     public void toastPrint(String msg) {
-        Log.d("TAG", "toastPrint: ");
+
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
@@ -149,18 +110,16 @@ public class LoginActivity extends AppCompatActivity {
         Boolean rem;
         LocalData data = new LocalData();
         rem = data.getPreference(this,"remember");
-        Log.d("TAG", "isRemember: Rem"+ rem);
+
         return rem;
     }
     @Override
     protected void onStart(){
         super.onStart();
         remember = isRemember();
-        Log.d("TAG", "onStart: "+ remember);
+
         if((FirebaseAuth.getInstance().getCurrentUser() != null) && (remember)){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
     }
-
-
 }

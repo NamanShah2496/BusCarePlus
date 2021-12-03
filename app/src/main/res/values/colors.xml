@@ -13,9 +13,10 @@
     <color name="home_back">#4E5DE1</color>
     <color name="colorAccent">#f06292</color>
     <color name="lightRed">#ff063b</color>
+    <color name="lightgrey">#F7F7F7</color>
 
     <color name="maroon">#800000</color>
-
+    <color name ="actualGreen">#078003</color>
 
     //night mode
     <color name="colorPrimaryNight">#000</color>

@@ -26,7 +26,6 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="myaccount">My Account</string>
     <string name="aboutus">About us</string>
     <string name="logout">Log Out</string>
     <string name="maintenance">Maintenance</string>
@@ -89,10 +88,29 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="heading_aboutus">Coding Comrades</string>
     <string name="ans_1">A -We are a group of students studying Computer Engineering Technology in Humber College situated in Toronto, Canada. </string>
     <string name="ques_2">Q- How did we decide this idea?</string>
-    <string name="ans_2">We decided this app because we wanted to create an app that simplifies the task for bus operators to maintain the nusses and track any malfunctions that may be induced due to equipment failure</string>
-    <string name="our_college">Our College:</string>
+    <string name="ans_2">A -We decided this app because we wanted to create an app that simplifies the task for bus operators to maintain the busses and track any malfunctions that may be induced due to equipment failure</string>
+    <string name="team">Team </string>
     <string name="humber_college">Humber college</string>
     <string name="actualGreen">0xFF3BDF35</string>
+    <string name="toast_login_fail">Failure, try again</string>
+    <string name="firebase_login_fail">Uh oh Something went wrong!!, Try Again</string>
+    <string name="validating_msg">Validating</string>
+    <string name="remember">remember</string>
+    <string name="contact_number">+1234567890</string>
+    <string name="radioMetricBtnText">Metric(mi/h)</string>
+    <string name="radioImperialBtnText">Imperial(km/h)</string>
+    <string name="login_label">Login</string>
+    <string name="emailAddressTitle">Email Address</string>
+    <string name="passwordTitle">Password</string>
+    <string name="rememberLabel">"Remember me "</string>
+    <string name="firebaseKeyFirstName">FirstName</string>
+    <string name="firebaseKeyLastName">LastName</string>
+    <string name="firebaseKeyPhone">Phone</string>
+    <string name="firebaseKeyAge">Age</string>
+    <string name="firebaseKeyAddress">Address</string>
+    <string name="firebaseKeyCity">City</string>
+    <string name="firebaseKeyProvince">Province</string>
+    <string name="firebaseKeyCountry">Country</string>
 
 
 </resources>

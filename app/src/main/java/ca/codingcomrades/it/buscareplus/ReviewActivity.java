@@ -14,6 +14,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -32,7 +35,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
+//Single Responsibility Principal
 public class ReviewActivity  extends AppCompatActivity {
 FirebaseDatabase database;
 Button submit;
@@ -49,15 +52,13 @@ EditText fullName,phone,email,comment;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
         bindFields();
-        //submit.setOnClickListener(v -> sendReview());
         String str = android.os.Build.MODEL;
         model.setText(str);
-        addnotification=(Button)findViewById(R.id.submitBtn);
+        addnotification = (Button) findViewById(R.id.submitBtn);
         //If the SDK VERSION is newer than Oreo
-        if(SDK_INT >= Build.VERSION_CODES.O)
-        {
-            NotificationChannel channel =new NotificationChannel("Review","Notificattion",NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager= getSystemService(NotificationManager.class);
+        if (SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("Review", "Notificattion", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
 
         }
@@ -67,10 +68,30 @@ EditText fullName,phone,email,comment;
             public void onClick(View view) {
 
                 sendReview();
-                addNotification();
-            }
 
-            private void addNotification() {
+            }
+        });}
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
+        if(port.equalsIgnoreCase("true")){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if(ds.equalsIgnoreCase("true")){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+            public void addNotification() {
                 String id="id";
                 NotificationCompat.Builder review  = new NotificationCompat.Builder(ReviewActivity.this,"Review")
                         .setSmallIcon(R.drawable.star_review)
@@ -82,8 +103,8 @@ EditText fullName,phone,email,comment;
                 NotificationManagerCompat managerCompat= NotificationManagerCompat.from(ReviewActivity.this);
               managerCompat.notify(1,review.build());
             }
-        });
-        }
+
+
     public void sendReview(){
         if(validate()) {
             database = FirebaseDatabase.getInstance();
@@ -100,9 +121,11 @@ EditText fullName,phone,email,comment;
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
+            addNotification();
             finish();
         }
     }
+
     public void bindFields(){
         fullName = findViewById(R.id.fullNameInput);
         phone = findViewById(R.id.phoneNumInput);
@@ -111,7 +134,6 @@ EditText fullName,phone,email,comment;
         comment = findViewById(R.id.commentInput);
         model = findViewById(R.id.model_print);
         submit = findViewById(R.id.submitBtn);
-
     }
     public boolean validate(){
         getValues();

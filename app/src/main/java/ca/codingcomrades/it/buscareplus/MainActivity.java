@@ -6,9 +6,6 @@
 package ca.codingcomrades.it.buscareplus;
 
 import android.content.Context;
-import static com.google.firebase.auth.FirebaseAuth.*;
-
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,15 +20,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 
@@ -39,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-
     ImageView img;
 
     @Override
@@ -48,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-        setSupportActionBar(binding.appBarMain.toolbar);
+      setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -63,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
     }
-
+    //Behavioral Patterns
+//Command Design Pattern
     @Override
     public void onResume() {
 
@@ -91,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onBack() {
+        //Creational Pattern
+        //Builder Pattern
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit!!");
         builder.setMessage("Are you to exit?")
@@ -166,8 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        finish();
     }
 
 }

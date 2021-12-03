@@ -6,7 +6,7 @@
     <item
         android:id="@+id/myaccount"
         android:orderInCategory="100"
-        android:title="@string/myaccount"
+        android:title="@string/my_account"
         app:showAsAction="always"
         app:actionLayout = "@menu/custom_menu_layout"
         android:icon="@drawable/ic_baseline_account_circle_24"/>

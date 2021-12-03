@@ -2,15 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Background Color -->
     <item
-        android:drawable="@color/white"/>
-
-    <!-- Logo -->
+        android:drawable="@color/lightgrey"/>
     <item>
         <bitmap
             android:id="@+id/splash"
             android:gravity="center"
             android:adjustViewBounds="true"
-            android:src="@drawable/splash_logo"/>
+            android:src="@drawable/logo"/>
     </item>
 
 </layer-list>

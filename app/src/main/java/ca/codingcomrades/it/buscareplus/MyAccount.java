@@ -19,10 +19,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +46,8 @@ EditText firstName,lastName,phone,age,address,city,province,country;
 Button save;
 FirebaseAuth fAuth;
 String cityName,uid;
+    Integer count;
+    ProgressBar progressBar;
     Map<String, Object> arr;
     FirebaseFirestore fStore;
     @Override
@@ -59,6 +64,20 @@ String cityName,uid;
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        View.OnClickListener listener = new View.OnClickListener() {
+            public void onClick(View view) {
+                // save.setOnClickListener(v -> saveUserData());
+                count =1;
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(0);
+                switch (view.getId()) {
+                    case R.id.saveInfoBtn:
+                        new MyTask().execute(100);
+                        break;
+                }
+            }
+        };
+        save.setOnClickListener(listener);
 
     }
 
@@ -95,7 +114,7 @@ String cityName,uid;
         city = findViewById(R.id.cityEditText);
         province = findViewById(R.id.provinceEditText);
         country = findViewById(R.id.countryEditText);
-
+        progressBar = findViewById(R.id.progressBar);
     }
     public void retriveUserData(){
         fStore = FirebaseFirestore.getInstance();
@@ -107,8 +126,9 @@ String cityName,uid;
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 arr = value.getData();
-                Log.d("TAG", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
-                setFields();
+                Log.d("firebase", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
+                    Log.d("firebase", "onEvent: "+firstName.getText().toString());
+               setFields();
 
             }
         });
@@ -116,28 +136,26 @@ String cityName,uid;
     }
 
     public void setFields(){
-        firstName.setText(arr.get(getString(R.string.firstnameTitle)).toString());
-        lastName.setText(arr.get(getString(R.string.last_nameTitle)).toString());
-        phone.setText(arr.get(getString(R.string.phoneTitle)).toString());
-        age.setText(arr.get(getString(R.string.ageTitle)).toString());
-        address.setText(arr.get(getString(R.string.addressTitle)).toString());
-        city.setText(arr.get(getString(R.string.cityTitle)).toString());
-        province.setText(arr.get(getString(R.string.provinceTitle)).toString());
-        country.setText(arr.get(getString(R.string.countryTitle)).toString());
+        firstName.setText(arr.get(getString(R.string.firebaseKeyFirstName)).toString());
+        lastName.setText(arr.get(getString(R.string.firebaseKeyLastName)).toString());
+        phone.setText(arr.get(getString(R.string.firebaseKeyPhone)).toString());
+        age.setText(arr.get(getString(R.string.firebaseKeyAge)).toString());
+        address.setText(arr.get(getString(R.string.firebaseKeyAddress)).toString());
+        city.setText(arr.get(getString(R.string.firebaseKeyCity)).toString());
+        province.setText(arr.get(getString(R.string.firebaseKeyProvince)).toString());
+        country.setText(arr.get(getString(R.string.firebaseKeyCountry)).toString());
     }
     public void saveUserData(){
         DocumentReference df = fStore.collection("Users").document(uid);
         Map<String,Object> userInfo = new HashMap<>();
-
-        Log.d("TAG", "saveUserData: " +firstName.getText().toString());
-        userInfo.put((getString(R.string.firstnameTitle)),firstName.getText().toString());
-        userInfo.put(getString(R.string.last_nameTitle),lastName.getText().toString());
-        userInfo.put(getString(R.string.phoneTitle), phone.getText().toString());
-        userInfo.put(getString(R.string.ageTitle), age.getText().toString());
-        userInfo.put(getString(R.string.addressTitle), address.getText().toString());
-        userInfo.put(getString(R.string.cityTitle), city.getText().toString());
-        userInfo.put(getString(R.string.provinceTitle), province.getText().toString());
-        userInfo.put(getString(R.string.countryTitle), country.getText().toString());
+        userInfo.put((getString(R.string.firebaseKeyFirstName)),firstName.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyLastName),lastName.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyPhone), phone.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyAge), age.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyAddress), address.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyCity), city.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyProvince), province.getText().toString());
+        userInfo.put(getString(R.string.firebaseKeyCountry), country.getText().toString());
         userInfo.put("isUser","1");
         df.set(userInfo);
         toastPrint("Information Saved!!");
@@ -149,6 +167,34 @@ String cityName,uid;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
+    }
+    class MyTask extends AsyncTask<Integer, Integer, String> {
+        @Override
+        protected String doInBackground(Integer... params) {
+            for (; count <= params[0]; count++) {
+                try {
+                    Thread.sleep(1);
+                    publishProgress(count);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return "Task Completed.";
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.GONE);
+            saveUserData();
+            finish();
 
+        }
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            progressBar.setProgress(values[0]);
+        }
     }
 }
