@@ -90,8 +90,11 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int val=speedbar.getProgress();
-                int res = (int) (val*0.621371);
-                speedbar.setProgress(res);
+//                int res = (int) (val*0.621371);
+                  double res = val*0.621371;
+                  Double data = new Double(res);
+                  int fres =  data.intValue();
+                speedbar.setProgress(fres);
                 speedValue.setText(Integer.toString(speedbar.getProgress()) + " Km/hrs");
             }
         });
@@ -100,8 +103,11 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int val=speedbar.getProgress();
-                int res = (int) (val/1.609344);
-                speedbar.setProgress(res);
+//                int res = (int) (val/1.609344);
+                double res = val/1.609344;
+                Double data = new Double(res);
+                int fres =  data.intValue();
+                speedbar.setProgress(fres);
                 speedValue.setText(Integer.toString(speedbar.getProgress()) + " miles/hrs");
             }
         });
