@@ -89,6 +89,9 @@ public class SettingFragment extends Fragment {
         metricButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int val=speedbar.getProgress();
+                int res = (int) (val*0.621371);
+                speedbar.setProgress(res);
                 speedValue.setText(Integer.toString(speedbar.getProgress()) + " Km/hrs");
             }
         });
@@ -96,6 +99,9 @@ public class SettingFragment extends Fragment {
         imperialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int val=speedbar.getProgress();
+                int res = (int) (val/1.609344);
+                speedbar.setProgress(res);
                 speedValue.setText(Integer.toString(speedbar.getProgress()) + " miles/hrs");
             }
         });
