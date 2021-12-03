@@ -90,12 +90,11 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int val=speedbar.getProgress();
-//                int res = (int) (val*0.621371);
-                  double res = val*0.621371;
-                  Double data = new Double(res);
-                  int fres =  data.intValue();
-                speedbar.setProgress(fres);
-                speedValue.setText(Integer.toString(speedbar.getProgress()) + " Km/hrs");
+                int res = (int)(val*1.609344);
+//                speedbar.setProgress((int)(val*1.609344));
+//                speedValue.setText(Integer.toString((int)(val*1.609344)) + " Km/hrs");
+                speedbar.setProgress(res);
+                speedValue.setText(Integer.toString(res) + " Km/hrs");
             }
         });
 
@@ -103,12 +102,11 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int val=speedbar.getProgress();
-//                int res = (int) (val/1.609344);
-                double res = val/1.609344;
-                Double data = new Double(res);
-                int fres =  data.intValue();
-                speedbar.setProgress(fres);
-                speedValue.setText(Integer.toString(speedbar.getProgress()) + " miles/hrs");
+                int res = (int)(val*0.621371);
+//                speedbar.setProgress((int)(val*0.621371));
+//                speedValue.setText(Integer.toString((int)(val*0.621371)) + " miles/hrs");
+                speedbar.setProgress(res);
+                speedValue.setText(Integer.toString(res) + " miles/hrs");
             }
         });
         speedbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
