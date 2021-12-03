@@ -14,6 +14,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -68,7 +71,25 @@ EditText fullName,phone,email,comment;
 
             }
         });}
+    @Override
+    public void onResume() {
 
+        super.onResume();
+
+        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
+        if(port.equalsIgnoreCase("true")){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if(ds.equalsIgnoreCase("true")){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
 
             public void addNotification() {
                 String id="id";

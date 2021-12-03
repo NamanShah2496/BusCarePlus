@@ -1,4 +1,3 @@
-
 // Naman Shah , n01392496, Section RNA
 // Aryan Sood , n01393003 ,Section RNA
 // Vishesh Bansal, n01395119, Section RNA
@@ -17,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +25,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,10 +39,13 @@ import ca.codingcomrades.it.buscareplus.R;
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     Handler handler = new Handler();
     DatabaseReference database;
+    private HomeViewModel homeViewModel;
+    private View view;
     ImageButton speedBtn,passengersBtn,carbonBtn,temperatureBtn;
     double speed,temperatureReading;
     int passengers,carbonReading;
     Spinner busSpinner;
+    Button busbutton;
     TextView textView;
     int busNum=927;
 
@@ -46,23 +53,31 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database =FirebaseDatabase.getInstance().getReference();
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         homeViewModel.getText();
+
+
     }
 
     public void updateUI(){
-        handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Log.e("firebase", "Error getting data", task.getException());
+        handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
+                    carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
+                    passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
+                    speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+                    changeColor(speed,passengers);
+                    //TODO no need to pass para, remove and check in test branch
+                }
+                updateUI();
             }
-            else {
-                temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
-                carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
-                passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
-                speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
-                changeColor(speed,passengers);
-            }
-         updateUI();
         }), 1000);
     }
 
@@ -87,47 +102,53 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view;
+
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
-        busSpinner = view.findViewById(R.id.busoption);
+        busSpinner = (Spinner)view.findViewById(R.id.busoption);
         busSpinner.setOnItemSelectedListener(this);
+
+
         textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-        applySettings();
+        //   applySettings();
 
-     updateUI();
-    return view;
+        updateUI();
+        return view;
     }
 
     public void applySettings(){
         SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
-
         if(port.equalsIgnoreCase("true")){
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }else {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
         if(ds.equalsIgnoreCase("true")){
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
     public void busSelected(){
-      busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
-      Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
+        busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
+
     }
 
     @Override
     public void onResume() {
+
         super.onResume();
-        applySettings();
+        // applySettings();
     }
 
     @Override
@@ -143,4 +164,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     public void updateText() {
         textView.setText(String.valueOf(busNum));
     }
+
+
+
+
 }

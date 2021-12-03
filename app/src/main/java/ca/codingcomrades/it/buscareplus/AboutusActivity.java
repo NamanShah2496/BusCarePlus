@@ -37,7 +37,6 @@ public class AboutusActivity extends AppCompatActivity {
         button1.setOnClickListener(arg0 -> {
             Intent viewIntent = new Intent("android.intent.action.VIEW",
                     Uri.parse("https://www.linkedin.com/in/namanshahdeveloper/"));
-
             startActivity(viewIntent);});
             button2.setOnClickListener(arg1 -> {
                         Intent Intent = new Intent("android.intent.action.VIEW",
