@@ -86,7 +86,7 @@ public class SafetyFragment extends Fragment {
     }
     public void changeView(int passengers,double speed){
         Log.d("speed", "changeView: "+ prefs.getString("metricB","false"));
-        if(prefs.getString("metricB", "false").equals("true")) {
+        if(prefs.getString("metricB", "false").equals("false")) {
             Log.d("speed", "changeView: Its inside");
             speedoMeterView.setSpeed((float) (speed/1.609));
             speedTextView.setText(String.valueOf((float)speed/1.6));
