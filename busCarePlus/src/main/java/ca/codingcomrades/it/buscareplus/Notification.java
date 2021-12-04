@@ -44,7 +44,6 @@ public class Notification extends Service {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //int doom = onStartCommand(intent,flags,startId);
         return START_STICKY;
     }
     @Override

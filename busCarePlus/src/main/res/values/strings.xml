@@ -111,6 +111,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="firebaseKeyCity">City</string>
     <string name="firebaseKeyProvince">Province</string>
     <string name="firebaseKeyCountry">Country</string>
+    <string name="toast_login_success">Successfully Logged In !</string>
 
 
 </resources>
