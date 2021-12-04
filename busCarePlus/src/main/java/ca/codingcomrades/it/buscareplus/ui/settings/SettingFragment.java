@@ -89,14 +89,24 @@ public class SettingFragment extends Fragment {
         metricButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                speedValue.setText(Integer.toString(speedbar.getProgress()) + " Km/hrs");
+                int val=speedbar.getProgress();
+                int res = (int)(val*1.609344);
+//                speedbar.setProgress((int)(val*1.609344));
+//                speedValue.setText(Integer.toString((int)(val*1.609344)) + " Km/hrs");
+                speedbar.setProgress(res);
+                speedValue.setText(Integer.toString(res) + " Km/hrs");
             }
         });
 
         imperialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                speedValue.setText(Integer.toString(speedbar.getProgress()) + " miles/hrs");
+                int val=speedbar.getProgress();
+                int res = (int)(val*0.621371);
+//                speedbar.setProgress((int)(val*0.621371));
+//                speedValue.setText(Integer.toString((int)(val*0.621371)) + " miles/hrs");
+                speedbar.setProgress(res);
+                speedValue.setText(Integer.toString(res) + " miles/hrs");
             }
         });
         speedbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

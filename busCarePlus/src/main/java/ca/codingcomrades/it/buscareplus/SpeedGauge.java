@@ -5,6 +5,7 @@ import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -72,8 +73,8 @@ public class SpeedGauge extends View {
         super(context, attrs);
         init(context, attrs);
     }
-    public void changeLimit(){
-        this.mSafeSpeedLimit = 30;
+    public void changeLimit(int limit){
+        this.mSafeSpeedLimit = limit;
     }
     public SpeedGauge(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
