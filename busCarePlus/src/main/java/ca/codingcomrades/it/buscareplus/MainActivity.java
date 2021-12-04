@@ -6,6 +6,7 @@
 package ca.codingcomrades.it.buscareplus;
 
 import android.content.Context;
+import static com.google.firebase.auth.FirebaseAuth.*;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        startService(new Intent(getBaseContext(),Notification.class));
     }
     //Behavioral Patterns
 //Command Design Pattern

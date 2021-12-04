@@ -30,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.SpeedGauge;
-import in.unicodelabs.kdgaugeview.KdGaugeView;
 
 public class SafetyFragment extends Fragment {
     Handler handler = new Handler();

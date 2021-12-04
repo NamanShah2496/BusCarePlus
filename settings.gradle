@@ -1,2 +1,2 @@
 rootProject.name = "buscareplus"
-include ':app'
+include ':busCarePlus'

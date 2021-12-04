@@ -44,6 +44,7 @@ public class Notification extends Service {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //int doom = onStartCommand(intent,flags,startId);
         return START_STICKY;
     }
     @Override
@@ -57,6 +58,7 @@ public class Notification extends Service {
 
         Handler handler = new Handler();
         DatabaseReference database =FirebaseDatabase.getInstance().getReference();
+        boolean flag=false;
         int busNum=927;
         double speed,temperatureReading;
         int passengers,carbonReading;
@@ -71,6 +73,14 @@ public class Notification extends Service {
             return null;
         }
         public void updateUI() {
+            if(flag){
+                try {
+                    Thread.sleep(5000);
+                    flag =false;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             handler.postDelayed(() -> database.child("Data/" + busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -89,6 +99,7 @@ public class Notification extends Service {
             }), 1000);
         }
         public void isDanger(){
+
             Boolean danger = false;
             String msg = " ";
             if(speed>50){
@@ -134,6 +145,7 @@ public class Notification extends Service {
 
             NotificationManagerCompat managerCompat= NotificationManagerCompat.from(Notification.this);
             managerCompat.notify(1,warningNotification.build());
+            flag=true;
         }
     }
 

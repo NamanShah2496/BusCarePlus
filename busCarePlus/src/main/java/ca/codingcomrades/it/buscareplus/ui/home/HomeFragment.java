@@ -1,3 +1,4 @@
+
 // Naman Shah , n01392496, Section RNA
 // Aryan Sood , n01393003 ,Section RNA
 // Vishesh Bansal, n01395119, Section RNA
@@ -61,46 +62,46 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     }
 
-    public void updateUI(){
-        handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
-                    carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
-                    passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
-                    speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
-                    changeColor(speed,passengers);
-                    //TODO no need to pass para, remove and check in test branch
-                }
-                updateUI();
+public void updateUI(){
+    handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<DataSnapshot> task) {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
             }
-        }), 1000);
-    }
-
-    public void changeColor(double speed,int passengers){
-        if(speed>50){
-            speedBtn.setBackgroundColor(Color.RED);
-        }else{
-            speedBtn.setBackgroundColor(0xFF3BDF35);
+            else {
+                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
+                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
+                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
+                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+                changeColor(speed,passengers);
+                //TODO no need to pass para, remove and check in test branch
+                 }
+         updateUI();
         }
-        if(passengers>30)
-            passengersBtn.setBackgroundColor(Color.RED);
-        else
-            passengersBtn.setBackgroundColor(0xFF3BDF35);
-        if(temperatureReading>24)
-            temperatureBtn.setBackgroundColor(Color.RED);
-        else
-            temperatureBtn.setBackgroundColor(0xFF3BDF35);
-        if(carbonReading>1000)
-            carbonBtn.setBackgroundColor(Color.RED);
-        else
-            carbonBtn.setBackgroundColor(0xFF3BDF35);
+    }), 1000);
+}
+
+public void changeColor(double speed,int passengers){
+    if(speed>50){
+        speedBtn.setBackgroundColor(Color.RED);
+    }else{
+       speedBtn.setBackgroundColor(0xFF3BDF35);
     }
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    if(passengers>30)
+        passengersBtn.setBackgroundColor(Color.RED);
+    else
+        passengersBtn.setBackgroundColor(0xFF3BDF35);
+    if(temperatureReading>24)
+        temperatureBtn.setBackgroundColor(Color.RED);
+    else
+        temperatureBtn.setBackgroundColor(0xFF3BDF35);
+    if(carbonReading>1000)
+        carbonBtn.setBackgroundColor(Color.RED);
+    else
+        carbonBtn.setBackgroundColor(0xFF3BDF35);
+}
+ public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home,container,false);
@@ -114,10 +115,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-        //   applySettings();
+     //   applySettings();
 
-        updateUI();
-        return view;
+     updateUI();
+return view;
     }
 
     public void applySettings(){
@@ -139,7 +140,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         }
     }
     public void busSelected(){
-        busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+      busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
 
     }
@@ -148,7 +149,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     public void onResume() {
 
         super.onResume();
-        // applySettings();
+       // applySettings();
     }
 
     @Override
