@@ -32,6 +32,7 @@ import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.SpeedGauge;
 
 public class SafetyFragment extends Fragment {
+
     Handler handler = new Handler();
     private SafetyViewModel safetyViewModel;
     private View view;
@@ -60,6 +61,7 @@ public class SafetyFragment extends Fragment {
         people = view.findViewById(R.id.people);
         people.setFrame(10);
         prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        busNum = prefs.getInt("busNo",36);
         speedLabel = view.findViewById(R.id.speedometerLabel);
         speedoMeterView =view.findViewById(R.id.speedoMeter);
         speedTextView = view.findViewById(R.id.safetySpeedReadings);

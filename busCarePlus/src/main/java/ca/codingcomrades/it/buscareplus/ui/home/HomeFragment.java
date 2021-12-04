@@ -7,6 +7,7 @@
 package ca.codingcomrades.it.buscareplus.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,10 +36,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
+import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
     Handler handler = new Handler();
     DatabaseReference database;
     private HomeViewModel homeViewModel;
@@ -46,6 +50,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed,temperatureReading;
     int passengers,carbonReading;
     Spinner busSpinner;
+    Switch notification;
     Button busbutton;
     TextView textView;
     int busNum=927;
@@ -115,35 +120,20 @@ public void changeColor(double speed,int passengers){
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-     //   applySettings();
+        notification = view.findViewById(R.id.notification_switch);
 
-     updateUI();
+         updateUI();
 return view;
     }
 
-    public void applySettings(){
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
-
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
-        if(ds.equalsIgnoreCase("true")){
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
     public void busSelected(){
-      busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("pref",Context.MODE_PRIVATE).edit();
+        busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        editor.putInt("busNo",busNum);
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
 
     }
+
 
     @Override
     public void onResume() {

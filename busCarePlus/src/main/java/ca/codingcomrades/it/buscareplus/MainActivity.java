@@ -11,7 +11,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +29,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.net.InetAddress;
+
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 
@@ -34,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    public boolean isConnected = true;
+    UserData usr = new UserData();
     ImageView img;
 
     @Override
@@ -54,7 +63,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        startService(new Intent(getBaseContext(),Notification.class));
+//
+        Runnable sendnotification = new sendNotification();
+        Thread t1 = new Thread(sendnotification);
+        t1.start();
+        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
+        Log.d("MainAct", "onCreate: "+ isConnected);
+//        startService(new Intent(getBaseContext(),Notification.class));
     }
     //Behavioral Patterns
 //Command Design Pattern
@@ -62,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-
+        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
         SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
@@ -79,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
-
-
 
     public void onBack() {
         //Creational Pattern
@@ -162,5 +175,15 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         finish();
     }
+
+    public class sendNotification implements Runnable{
+
+        @Override
+        public void run() {
+           // startService(new Intent(getBaseContext(),Notification.class));
+
+        }
+    }
+
 
 }
