@@ -52,54 +52,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-                @Override
-                public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-
-                }
-
-                @Override
-                public void onActivityStarted(@NonNull Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityResumed(@NonNull Activity activity) {
-                    if(isBackground){
-                        isBackground=false;
-    //                    stopService((new Intent(getBaseContext(), Notification.class)));
-//                        getBaseContext().stopService(myIntent);
-                        
-                        Log.d("vishesh2", "onTrimMemory:  stop");
-                    }
-                }
-
-                @Override
-                public void onActivityPaused(@NonNull Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityStopped(@NonNull Activity activity) {
-
-                }
-
-                @Override
-                public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
-
-                }
-
-                @Override
-                public void onActivityDestroyed(@NonNull Activity activity) {
-
-                }
-            });
-        }
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-      setSupportActionBar(binding.appBarMain.toolbar);
+        setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
