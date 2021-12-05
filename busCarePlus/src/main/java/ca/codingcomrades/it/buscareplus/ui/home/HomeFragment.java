@@ -51,16 +51,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private View view;
     ImageButton speedBtn,passengersBtn,carbonBtn,temperatureBtn;
     double speed,temperatureReading;
-    double speedLimit;
-    int passengerLimit;
     double speed_mph;
-    boolean isMetric = true;
     int passengers,carbonReading;
     Spinner busSpinner;
     Switch notification;
     Button busbutton;
     TextView textView;
     int busNum=927;
+    String isMetric,speedLimit,passengerLimit;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,8 +94,8 @@ public void updateUI(){
 }
 
 public void changeColor(double speed,int passengers){
-        if(isMetric){
-            if(speed>speedLimit){
+        if(isMetric.equalsIgnoreCase("true")){
+            if(speed>Double.parseDouble(speedLimit)){
                 speedBtn.setBackgroundColor(Color.RED);
             }else{
                 speedBtn.setBackgroundColor(0xFF3BDF35);
@@ -105,14 +103,15 @@ public void changeColor(double speed,int passengers){
         }
         else{
             speed_mph = speed*0.621371;
-            if(speed_mph>speedLimit){
+            if(speed_mph>Double.parseDouble(speedLimit)){
                 speedBtn.setBackgroundColor(Color.RED);
             }else{
                 speedBtn.setBackgroundColor(0xFF3BDF35);
             }
         }
 
-    if(passengers>passengerLimit)
+    if(passengers>Integer.parseInt(passengerLimit)
+    )
         passengersBtn.setBackgroundColor(Color.RED);
     else
         passengersBtn.setBackgroundColor(0xFF3BDF35);
@@ -162,13 +161,13 @@ return view;
 
     public void fetchLocalData(){
 
-        passengerLimit = Integer.parseInt(prefs.getString("capacityval","5"));
-        speedLimit = Integer.parseInt(prefs.getString("speedval","15"));
-        isMetric = Boolean.getBoolean(prefs.getString("metricB","false"));
+        passengerLimit = prefs.getString("capacityval","0");
+        speedLimit = prefs.getString("speedval","0");
+        isMetric = prefs.getString("metricB","false");
 
-//        passengerLimit = Integer.parseInt(localData.getPreference(getActivity(),"capacityval",1));
-//        speedLimit = Integer.parseInt(localData.getPreference(getActivity(),"speedval",1));
-//        isMetric = localData.getPreference(getActivity(),"metricB");
+//        passengerLimit = Integer.parseInt(prefs.getString("capacityval","5"));
+//        speedLimit = Integer.parseInt(prefs.getString("speedval","15"));
+//        isMetric = Boolean.getBoolean(prefs.getString("metricB","false"));
     }
 
     @Override

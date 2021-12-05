@@ -32,6 +32,7 @@ public class Notification extends Service {
     Intent intent1;
     PendingIntent pendingIntent;
     SharedPreferences prefs;
+    double speed_mph;
 
     @Nullable
     @Override
@@ -102,6 +103,24 @@ public class Notification extends Service {
             prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
             String speedVal = prefs.getString("speedval","0");
             String capacityVal = prefs.getString("capacityval","0");
+            String metricB = prefs.getString("metricB","false");
+            if (metricB.equalsIgnoreCase("true")){
+                if(speed>Integer.parseInt(speedVal)) {
+                    msg = "Bus is Overspeeding";
+                    addNotification(msg);
+                    danger = true;
+                }
+
+            }else{
+                speed_mph = speed*0.621371;
+                if(speed_mph>Integer.parseInt(speedVal)) {
+                    msg = "Bus is Overspeeding";
+                    addNotification(msg);
+                    danger = true;
+                }
+            }
+
+
             if(speed>Integer.parseInt(speedVal)){
                 msg="Bus is Overspeeding";
                 addNotification(msg);

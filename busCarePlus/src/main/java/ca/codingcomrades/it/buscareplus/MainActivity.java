@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
                     if(isBackground){
                         isBackground=false;
     //                    stopService((new Intent(getBaseContext(), Notification.class)));
-                        stopService(myIntent);
+//                        getBaseContext().stopService(myIntent);
+                        
                         Log.d("vishesh2", "onTrimMemory:  stop");
                     }
                 }
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-//
+
         Runnable sendnotification = new sendNotification();
         Thread t1 = new Thread(sendnotification);
         t1.start();
