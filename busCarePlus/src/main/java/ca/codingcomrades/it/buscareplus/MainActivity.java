@@ -28,6 +28,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.net.NoRouteToHostException;
+
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean isConnected = true;
     UserData usr = new UserData();
     ImageView img;
+    public boolean isBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,20 @@ public class MainActivity extends AppCompatActivity {
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
+
+    @Override
+    public void onTrimMemory(int level){
+        super.onTrimMemory(level);
+        if(level == TRIM_MEMORY_UI_HIDDEN){
+            isBackground = true;
+            startService(new Intent(getBaseContext(),Notification.class));
+            Log.d("vishesh", "onTrimMemory: start");
+        }else{
+            stopService((new Intent(MainActivity.this, Notification.class)));
+            Log.d("vishesh2", "onTrimMemory:  stop");
+        }
+
     }
 
     public void onBack() {
@@ -167,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
+        stopService((new Intent(MainActivity.this, Notification.class)));
         finish();
     }
 
