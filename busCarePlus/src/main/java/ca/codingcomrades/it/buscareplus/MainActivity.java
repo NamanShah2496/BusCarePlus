@@ -6,13 +6,10 @@
 package ca.codingcomrades.it.buscareplus;
 
 import android.content.Context;
-import static com.google.firebase.auth.FirebaseAuth.*;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,10 +26,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.net.InetAddress;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
@@ -167,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void Onclick1(){
-        Intent intent = new Intent(this, ReviewActivity.class);
+        Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }
 
