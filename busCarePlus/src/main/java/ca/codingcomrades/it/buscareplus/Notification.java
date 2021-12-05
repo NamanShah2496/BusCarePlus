@@ -1,15 +1,22 @@
 package ca.codingcomrades.it.buscareplus;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,19 +29,23 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class Notification extends Service {
     Intent intent1;
     PendingIntent pendingIntent;
+    SharedPreferences prefs;
+    double speed_mph;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+    @SuppressLint("UnspecifiedImmutableFlag")
     @Override
     public int onStartCommand(Intent intent,int flags, int startId){
 
-        Intent intent1 = new Intent(this, MainActivity.class);
+//        Intent intent1 = new Intent(this, MainActivity.class);
+        intent1 = new Intent(this, MainActivity.class);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         pendingIntent  = PendingIntent.getActivity(getApplicationContext(), 0, intent1, 0);
 
@@ -44,7 +55,6 @@ public class Notification extends Service {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //int doom = onStartCommand(intent,flags,startId);
         return START_STICKY;
     }
     @Override
@@ -58,7 +68,6 @@ public class Notification extends Service {
 
         Handler handler = new Handler();
         DatabaseReference database =FirebaseDatabase.getInstance().getReference();
-        boolean flag=false;
         int busNum=927;
         double speed,temperatureReading;
         int passengers,carbonReading;
@@ -69,18 +78,10 @@ public class Notification extends Service {
 
 
 
-          updateUI();
+            updateUI();
             return null;
         }
         public void updateUI() {
-            if(flag){
-                try {
-                    Thread.sleep(5000);
-                    flag =false;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
             handler.postDelayed(() -> database.child("Data/" + busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -96,22 +97,42 @@ public class Notification extends Service {
                     }
                     updateUI();
                 }
-            }), 1000);
+            }), 5000);
         }
         public void isDanger(){
-
             Boolean danger = false;
             String msg = " ";
-            if(speed>50){
+            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            String speedVal = prefs.getString("speedval","0");
+            String capacityVal = prefs.getString("capacityval","0");
+            String metricB = prefs.getString("metricB","false");
+            if (metricB.equalsIgnoreCase("true")){
+                if(speed>Integer.parseInt(speedVal)) {
+                    msg = "Bus is Overspeeding";
+                    addNotification(msg);
+                    danger = true;
+                }
+
+            }else{
+                speed_mph = speed*0.621371;
+                if(speed_mph>Integer.parseInt(speedVal)) {
+                    msg = "Bus is Overspeeding";
+                    addNotification(msg);
+                    danger = true;
+                }
+            }
+
+
+            if(speed>Integer.parseInt(speedVal)){
                 msg="Bus is Overspeeding";
                 addNotification(msg);
                 danger = true;
-            }if(passengers>30) {
+            }if(passengers>Integer.parseInt(capacityVal)) {
                 danger = true;
                 msg = "Bus is Overcrowded, passenger count: " + passengers;
                 addNotification(msg);
             }
-             if(temperatureReading>24) {
+            if(temperatureReading>24) {
                 danger = true;
                 msg = "Bus is Overheated, temp:" + temperatureReading + " Celsius";
                 addNotification(msg);
@@ -125,6 +146,9 @@ public class Notification extends Service {
                 addNotification(msg);
             }
         }
+
+
+
         public void addNotification(String msg) {
             NotificationChannel channel = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -145,8 +169,11 @@ public class Notification extends Service {
 
             NotificationManagerCompat managerCompat= NotificationManagerCompat.from(Notification.this);
             managerCompat.notify(1,warningNotification.build());
-            flag=true;
         }
+    }
+
+    public boolean stopService(Intent name) {
+        return super.stopService(name);
     }
 
 }

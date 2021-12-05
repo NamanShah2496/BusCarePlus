@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                savePreference();
                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                startActivity(intent);
-           }).addOnFailureListener(e -> toastPrint(getString(R.string.toast_login_fail)));
+           }).addOnFailureListener(e -> toastPrint(getString(R.string.toast_login_fail))).addOnSuccessListener(e -> toastPrint(getString(R.string.toast_login_success)));
        }else{
            toastPrint(getString(R.string.firebase_login_fail));
        }

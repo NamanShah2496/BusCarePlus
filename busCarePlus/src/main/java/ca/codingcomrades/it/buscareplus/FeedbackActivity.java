@@ -8,20 +8,19 @@ package ca.codingcomrades.it.buscareplus;
 
 import static android.os.Build.VERSION.SDK_INT;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -35,8 +34,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Map;
+
 //Single Responsibility Principal
-public class ReviewActivity  extends AppCompatActivity {
+public class FeedbackActivity extends AppCompatActivity {
     FirebaseDatabase database;
     Button submit;
     RatingBar ratingBar;
@@ -46,6 +47,9 @@ public class ReviewActivity  extends AppCompatActivity {
     Float rating;
     String name,num,emailAddress,Comment;
     Button addnotification;
+    Integer count;
+    ProgressBar progressBar;
+    Map<String, Object> arr;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class ReviewActivity  extends AppCompatActivity {
         String str = android.os.Build.MODEL;
         model.setText(str);
         addnotification = (Button) findViewById(R.id.submitBtn);
+        progressBar = findViewById(R.id.progressBar);
         //If the SDK VERSION is newer than Oreo
         if (SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("Review", "Notificattion", NotificationManager.IMPORTANCE_DEFAULT);
@@ -67,7 +72,12 @@ public class ReviewActivity  extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendReview();
+                count =1;
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(0);
+
+                new MyTask().execute(100);
+
 
             }
         });}
@@ -93,14 +103,14 @@ public class ReviewActivity  extends AppCompatActivity {
 
     public void addNotification() {
         String id="id";
-        NotificationCompat.Builder review  = new NotificationCompat.Builder(ReviewActivity.this,"Review")
+        NotificationCompat.Builder review  = new NotificationCompat.Builder(FeedbackActivity.this,"Review")
                 .setSmallIcon(R.drawable.star_review)
                 .setContentTitle(getString(R.string.notification_heading))
                 .setContentText(getString(R.string.notification_main))
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        NotificationManagerCompat managerCompat= NotificationManagerCompat.from(ReviewActivity.this);
+        NotificationManagerCompat managerCompat= NotificationManagerCompat.from(FeedbackActivity.this);
         managerCompat.notify(1,review.build());
     }
 
@@ -150,6 +160,35 @@ public class ReviewActivity  extends AppCompatActivity {
         rating = ratingBar.getRating();
         Log.d("TAG", "getValues: " +rating);
 
+    }
+    class MyTask extends AsyncTask<Integer, Integer, String> {
+        @Override
+        protected String doInBackground(Integer... params) {
+            for (; count <= params[0]; count++) {
+                try {
+                    Thread.sleep(1);
+                    publishProgress(count);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return "Task Completed.";
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.GONE);
+            sendReview();
+            finish();
+
+        }
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            progressBar.setProgress(values[0]);
+        }
     }
     }
 

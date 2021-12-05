@@ -7,6 +7,7 @@
 package ca.codingcomrades.it.buscareplus.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,21 +36,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
+import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    SharedPreferences.Editor editor;
+    SharedPreferences prefs;
     Handler handler = new Handler();
     DatabaseReference database;
+    LocalData localData;
     private HomeViewModel homeViewModel;
     private View view;
     ImageButton speedBtn,passengersBtn,carbonBtn,temperatureBtn;
     double speed,temperatureReading;
+    double speed_mph;
     int passengers,carbonReading;
     Spinner busSpinner;
+    Switch notification;
     Button busbutton;
     TextView textView;
     int busNum=927;
+    String isMetric,speedLimit,passengerLimit;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +68,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         homeViewModel.getText();
+        localData = new LocalData();
 
 
     }
@@ -83,12 +94,24 @@ public void updateUI(){
 }
 
 public void changeColor(double speed,int passengers){
-    if(speed>50){
-        speedBtn.setBackgroundColor(Color.RED);
-    }else{
-       speedBtn.setBackgroundColor(0xFF3BDF35);
-    }
-    if(passengers>30)
+        if(isMetric.equalsIgnoreCase("true")){
+            if(speed>Double.parseDouble(speedLimit)){
+                speedBtn.setBackgroundColor(Color.RED);
+            }else{
+                speedBtn.setBackgroundColor(0xFF3BDF35);
+            }
+        }
+        else{
+            speed_mph = speed*0.621371;
+            if(speed_mph>Double.parseDouble(speedLimit)){
+                speedBtn.setBackgroundColor(Color.RED);
+            }else{
+                speedBtn.setBackgroundColor(0xFF3BDF35);
+            }
+        }
+
+    if(passengers>Integer.parseInt(passengerLimit)
+    )
         passengersBtn.setBackgroundColor(Color.RED);
     else
         passengersBtn.setBackgroundColor(0xFF3BDF35);
@@ -107,42 +130,44 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        busSpinner.setOnItemSelectedListener(this);
-
-
-        textView = view.findViewById(R.id.busno);
+        prefs = getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
+        editor = prefs.edit();
+     textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-     //   applySettings();
+        notification = view.findViewById(R.id.notification_switch);
+     fetchLocalData();
+     if(prefs.getInt("busNo",927) == 927)
+         busSpinner.setSelection(0);
+     else if(prefs.getInt("busNo",927) == 36)
+         busSpinner.setSelection(1);
+    else
+        busSpinner.setSelection(2);
+     busSpinner.setOnItemSelectedListener(this);
 
      updateUI();
 return view;
     }
 
-    public void applySettings(){
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
-
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
-        if(ds.equalsIgnoreCase("true")){
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
     public void busSelected(){
-      busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+        editor.putInt("busNo",busNum);
+        editor.apply();
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
+        Log.d("Shared", "busSelected: "+ prefs.getInt("busNo",45));
+    }
 
+    public void fetchLocalData(){
+
+        passengerLimit = prefs.getString("capacityval","0");
+        speedLimit = prefs.getString("speedval","0");
+        isMetric = prefs.getString("metricB","false");
+
+//        passengerLimit = Integer.parseInt(prefs.getString("capacityval","5"));
+//        speedLimit = Integer.parseInt(prefs.getString("speedval","15"));
+//        isMetric = Boolean.getBoolean(prefs.getString("metricB","false"));
     }
 
     @Override

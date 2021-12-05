@@ -3,6 +3,8 @@
     package="ca.codingcomrades.it.buscareplus" >
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -31,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ReviewActivity"
+            android:name=".FeedbackActivity"
             android:exported="true"
             android:label="@string/review"
             android:parentActivityName=".MainActivity" />
