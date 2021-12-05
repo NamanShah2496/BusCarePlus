@@ -37,12 +37,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 //Single Responsibility Principal
 public class ReviewActivity  extends AppCompatActivity {
-FirebaseDatabase database;
-Button submit;
-RatingBar ratingBar;
-TextView model;
-FirebaseAuth fAuth;
-EditText fullName,phone,email,comment;
+    FirebaseDatabase database;
+    Button submit;
+    RatingBar ratingBar;
+    TextView model;
+    FirebaseAuth fAuth;
+    EditText fullName,phone,email,comment;
     Float rating;
     String name,num,emailAddress,Comment;
     Button addnotification;
@@ -91,18 +91,18 @@ EditText fullName,phone,email,comment;
         }
     }
 
-            public void addNotification() {
-                String id="id";
-                NotificationCompat.Builder review  = new NotificationCompat.Builder(ReviewActivity.this,"Review")
-                        .setSmallIcon(R.drawable.star_review)
-                        .setContentTitle(getString(R.string.notification_heading))
-                        .setContentText(getString(R.string.notification_main))
-                       .setAutoCancel(true)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH);
+    public void addNotification() {
+        String id="id";
+        NotificationCompat.Builder review  = new NotificationCompat.Builder(ReviewActivity.this,"Review")
+                .setSmallIcon(R.drawable.star_review)
+                .setContentTitle(getString(R.string.notification_heading))
+                .setContentText(getString(R.string.notification_main))
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-                NotificationManagerCompat managerCompat= NotificationManagerCompat.from(ReviewActivity.this);
-              managerCompat.notify(1,review.build());
-            }
+        NotificationManagerCompat managerCompat= NotificationManagerCompat.from(ReviewActivity.this);
+        managerCompat.notify(1,review.build());
+    }
 
 
     public void sendReview(){
