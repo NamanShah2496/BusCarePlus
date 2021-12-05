@@ -1,5 +1,6 @@
 package ca.codingcomrades.it.buscareplus;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -39,6 +40,7 @@ public class Notification extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
+    @SuppressLint("UnspecifiedImmutableFlag")
     @Override
     public int onStartCommand(Intent intent,int flags, int startId){
 
@@ -95,7 +97,7 @@ public class Notification extends Service {
                     }
                     updateUI();
                 }
-            }), 1000);
+            }), 5000);
         }
         public void isDanger(){
             Boolean danger = false;
@@ -171,15 +173,7 @@ public class Notification extends Service {
     }
 
     public boolean stopService(Intent name) {
-
-        // TODO Auto-generated method stub
-
-//        timer.cancel();
-//
-//        task.cancel();
-
         return super.stopService(name);
-
     }
 
 }
