@@ -61,7 +61,7 @@ public class SafetyFragment extends Fragment {
         people = view.findViewById(R.id.people);
         people.setFrame(10);
         prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-        busNum = prefs.getInt("busNo",36);
+
         speedLabel = view.findViewById(R.id.speedometerLabel);
         speedoMeterView =view.findViewById(R.id.speedoMeter);
         speedTextView = view.findViewById(R.id.safetySpeedReadings);
@@ -71,6 +71,7 @@ public class SafetyFragment extends Fragment {
         return view;
     }
     public void getData() {
+        busNum = prefs.getInt("busNo",927);
         handler.postDelayed(() -> database.child("Data/" + busNum + "/Safety").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {

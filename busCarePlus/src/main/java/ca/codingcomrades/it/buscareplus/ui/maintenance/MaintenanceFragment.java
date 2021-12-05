@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -45,6 +47,7 @@ public class MaintenanceFragment extends Fragment {
     double temp,carbon;
     LottieAnimationView thermometer;
     DatabaseReference database;
+    SharedPreferences prefs;
     int busNum=927;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class MaintenanceFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_maintenance,container,false);
         thermometer = view.findViewById(R.id.thermometer);
+        prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
 
       //  thermometer.setSpeed(1);
        thermometer.setFrame(55);
@@ -73,7 +77,8 @@ public class MaintenanceFragment extends Fragment {
 
     }
     public void getData() {
-       handler.postDelayed(() -> database.child("Data/" + busNum + "/Maintenance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        busNum = prefs.getInt("busNo",927);
+        handler.postDelayed(() -> database.child("Data/" + busNum + "/Maintenance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {

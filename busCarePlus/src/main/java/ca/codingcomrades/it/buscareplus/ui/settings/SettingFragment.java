@@ -156,10 +156,6 @@ public class SettingFragment extends Fragment {
             }
         });
 
-//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-//            darkSwitch.setChecked(true);
-//        }
-
         saveButton = view.findViewById(R.id.SettingsSaveBtn);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

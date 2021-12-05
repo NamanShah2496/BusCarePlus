@@ -36,18 +36,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
+import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
-
+    SharedPreferences.Editor editor;
+    SharedPreferences prefs;
     Handler handler = new Handler();
     DatabaseReference database;
+    LocalData localData;
     private HomeViewModel homeViewModel;
     private View view;
     ImageButton speedBtn,passengersBtn,carbonBtn,temperatureBtn;
     double speed,temperatureReading;
+    double speedLimit;
+    int passengerLimit;
+    double speed_mph;
+    boolean isMetric = true;
     int passengers,carbonReading;
     Spinner busSpinner;
     Switch notification;
@@ -63,6 +70,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         homeViewModel.getText();
+        localData = new LocalData();
 
 
     }
@@ -88,12 +96,23 @@ public void updateUI(){
 }
 
 public void changeColor(double speed,int passengers){
-    if(speed>50){
-        speedBtn.setBackgroundColor(Color.RED);
-    }else{
-       speedBtn.setBackgroundColor(0xFF3BDF35);
-    }
-    if(passengers>30)
+        if(isMetric){
+            if(speed>speedLimit){
+                speedBtn.setBackgroundColor(Color.RED);
+            }else{
+                speedBtn.setBackgroundColor(0xFF3BDF35);
+            }
+        }
+        else{
+            speed_mph = speed/1.609;
+            if(speed_mph>speedLimit){
+                speedBtn.setBackgroundColor(Color.RED);
+            }else{
+                speedBtn.setBackgroundColor(0xFF3BDF35);
+            }
+        }
+
+    if(passengers>passengerLimit)
         passengersBtn.setBackgroundColor(Color.RED);
     else
         passengersBtn.setBackgroundColor(0xFF3BDF35);
@@ -112,28 +131,45 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        busSpinner.setOnItemSelectedListener(this);
-
-
-        textView = view.findViewById(R.id.busno);
+        prefs = getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
+        editor = prefs.edit();
+     textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
         notification = view.findViewById(R.id.notification_switch);
+     fetchLocalData();
+     if(prefs.getInt("busNo",927) == 927)
+         busSpinner.setSelection(0);
+     else if(prefs.getInt("busNo",927) == 36)
+         busSpinner.setSelection(1);
+    else
+        busSpinner.setSelection(2);
+     busSpinner.setOnItemSelectedListener(this);
 
-         updateUI();
+     updateUI();
 return view;
     }
 
     public void busSelected(){
-        SharedPreferences.Editor editor = getContext().getSharedPreferences("pref",Context.MODE_PRIVATE).edit();
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);
+        editor.apply();
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
-
+        Log.d("Shared", "busSelected: "+ prefs.getInt("busNo",45));
     }
 
+    public void fetchLocalData(){
+
+        passengerLimit = Integer.parseInt(prefs.getString("capacityval","5"));
+        speedLimit = Integer.parseInt(prefs.getString("speedval","15"));
+        isMetric = Boolean.getBoolean(prefs.getString("metricB","false"));
+
+//        passengerLimit = Integer.parseInt(localData.getPreference(getActivity(),"capacityval",1));
+//        speedLimit = Integer.parseInt(localData.getPreference(getActivity(),"speedval",1));
+//        isMetric = localData.getPreference(getActivity(),"metricB");
+    }
 
     @Override
     public void onResume() {
