@@ -104,7 +104,7 @@ public void changeColor(double speed,int passengers){
             }
         }
         else{
-            speed_mph = speed/1.609;
+            speed_mph = speed*0.621371;
             if(speed_mph>speedLimit){
                 speedBtn.setBackgroundColor(Color.RED);
             }else{

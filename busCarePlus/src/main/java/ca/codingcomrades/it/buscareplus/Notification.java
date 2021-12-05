@@ -31,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Notification extends Service {
     Intent intent1;
     PendingIntent pendingIntent;
+    SharedPreferences prefs;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -39,7 +41,8 @@ public class Notification extends Service {
     @Override
     public int onStartCommand(Intent intent,int flags, int startId){
 
-        Intent intent1 = new Intent(this, MainActivity.class);
+//        Intent intent1 = new Intent(this, MainActivity.class);
+        intent1 = new Intent(this, MainActivity.class);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         pendingIntent  = PendingIntent.getActivity(getApplicationContext(), 0, intent1, 0);
 
@@ -96,11 +99,14 @@ public class Notification extends Service {
         public void isDanger(){
             Boolean danger = false;
             String msg = " ";
-            if(speed>50){
+            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            String speedVal = prefs.getString("speedval","0");
+            String capacityVal = prefs.getString("capacityval","0");
+            if(speed>Integer.parseInt(speedVal)){
                 msg="Bus is Overspeeding";
                 addNotification(msg);
                 danger = true;
-            }if(passengers>30) {
+            }if(passengers>Integer.parseInt(capacityVal)) {
                 danger = true;
                 msg = "Bus is Overcrowded, passenger count: " + passengers;
                 addNotification(msg);
@@ -119,6 +125,9 @@ public class Notification extends Service {
                 addNotification(msg);
             }
         }
+
+
+
         public void addNotification(String msg) {
             NotificationChannel channel = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -140,6 +149,18 @@ public class Notification extends Service {
             NotificationManagerCompat managerCompat= NotificationManagerCompat.from(Notification.this);
             managerCompat.notify(1,warningNotification.build());
         }
+    }
+
+    public boolean stopService(Intent name) {
+
+        // TODO Auto-generated method stub
+
+//        timer.cancel();
+//
+//        task.cancel();
+
+        return super.stopService(name);
+
     }
 
 }
