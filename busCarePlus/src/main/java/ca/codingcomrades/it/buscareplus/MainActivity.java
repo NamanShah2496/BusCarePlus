@@ -66,16 +66,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        Runnable sendnotification = new sendNotification();
-        Thread t1 = new Thread(sendnotification);
-        t1.start();
         usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
         Log.d("MainAct", "onCreate: "+ isConnected);
-//        startService(new Intent(getBaseContext(),Notification.class));
     }
+
+
     //Behavioral Patterns
-//Command Design Pattern
+    //Command Design Pattern
     @Override
     public void onResume() {
 
@@ -104,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         if(level == TRIM_MEMORY_UI_HIDDEN){
             isBackground = true;
             myIntent = new Intent(getBaseContext(),Notification.class);
-//            startService(new Intent(getBaseContext(),Notification.class));
             startService(myIntent);
             Log.d("vishesh", "onTrimMemory: start");
         }
@@ -193,15 +189,4 @@ public class MainActivity extends AppCompatActivity {
         stopService((new Intent(MainActivity.this, Notification.class)));
         finish();
     }
-
-    public class sendNotification implements Runnable{
-
-        @Override
-        public void run() {
-           // startService(new Intent(getBaseContext(),Notification.class));
-
-        }
-    }
-
-
 }

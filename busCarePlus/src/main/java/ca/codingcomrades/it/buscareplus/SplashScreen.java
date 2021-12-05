@@ -25,7 +25,6 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applySettings();
-      //  startService(new Intent(getBaseContext(),Notification.class));
         handler.postDelayed(runnable,3000);
     }
 
@@ -62,7 +61,7 @@ public class SplashScreen extends AppCompatActivity {
             if (!isFinishing()) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                finish(); //so that splash screen doesnt open on resuming
+                finish(); //so that splash screen doesn't open on resuming
             }
         }
     };
