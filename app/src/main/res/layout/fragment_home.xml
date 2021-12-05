@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.735"
+        android:contentDescription="@string/content_description_of_tempbtn" />
 
     <ImageButton
         android:id="@+id/carbonBtn"
@@ -31,7 +32,8 @@
         app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.735"
+        android:contentDescription="@string/content_description_of_carbonbtn" />
 
     <ImageButton
         android:id="@+id/speedBtn"
@@ -44,7 +46,8 @@
         app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.457"
+        android:contentDescription="@string/content_description_of_speedbtn" />
 
     <Spinner
         android:id="@+id/busoption"
@@ -61,7 +64,7 @@
         android:id="@+id/busno"
         android:layout_width="143dp"
         android:layout_height="80dp"
-        android:text="927"
+        android:text="@string/bus_927"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="38sp"
@@ -83,6 +86,7 @@
         app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.457"
+        android:contentDescription="@string/content_description_of_passengerbtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

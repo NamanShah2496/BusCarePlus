@@ -5,6 +5,8 @@
 
 package ca.codingcomrades.it.buscareplus;
 
+import static ca.codingcomrades.it.buscareplus.R.string.exitmessage;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,8 +16,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -28,20 +28,17 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-      setSupportActionBar(binding.appBarMain.toolbar);
+        setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -53,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
     }
     //Behavioral Patterns
-//Command Design Pattern
+    //Command Design Pattern
     @Override
     public void onResume() {
 
@@ -79,16 +75,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void onBack() {
         //Creational Pattern
         //Builder Pattern
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Exit!!");
-        builder.setMessage("Are you to exit?")
+        builder.setTitle(R.string.exit);
+        builder.setMessage(exitmessage)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() { //yes to french oui cannot be change, needs team discussion on it (Technical Debt)
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                         System.exit(0);
@@ -104,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
@@ -117,32 +110,36 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-        @Override
-        public void onBackPressed(){
+    @Override
+    public void onBackPressed(){
             onBack();
         }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.help:
-                Onclick();
-                return true;
-            case R.id.myaccountImage:
-                Intent intent = new Intent(this, MyAccount.class);
-                startActivity(intent);
-            case R.id.feedback:
-                Onclick1();
-                return true;
-            case R.id.logout:
-                userLogout();
-                return true;
-            case R.id.aboutus:
-                Intent intent1 = new Intent(this, AboutusActivity.class);
-                startActivity(intent1);
-            default:
-                return super.onOptionsItemSelected(item);
+        int id  = item.getItemId();
+        if( id == R.id.help){
+            Onclick();
+            return true;
         }
+        else if(id == R.id.myaccountImage){
+            Intent intent = new Intent(this, MyAccount.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.feedback){
+            Onclick1();
+            return true;
+        }
+        else if (id == R.id.logout){
+            userLogout();
+            return true;
+        }
+        else if (id == R.id.aboutus){
+            Intent intent1 = new Intent(this, AboutusActivity.class);
+            startActivity(intent1);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public void Onclick(View v){
         Intent intent = new Intent(this, MyAccount.class);
@@ -156,10 +153,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
-
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
         finish();
     }
-
 }

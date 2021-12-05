@@ -5,9 +5,6 @@
 
 package ca.codingcomrades.it.buscareplus.ui.home;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,25 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-//import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.R;
-//import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     Handler handler = new Handler();
@@ -45,7 +35,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed,temperatureReading;
     int passengers,carbonReading;
     Spinner busSpinner;
-    Button busbutton;
     TextView textView;
     int busNum=927;
 
@@ -58,7 +47,23 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
         homeViewModel.getText();
 
+    }
 
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_home,container,false);
+
+        busSpinner = view.findViewById(R.id.busoption);
+        busSpinner.setOnItemSelectedListener(this);
+        textView = view.findViewById(R.id.busno);
+        speedBtn = view.findViewById(R.id.speedBtn);
+        passengersBtn = view.findViewById(R.id.passengersBtn);
+        temperatureBtn =view.findViewById(R.id.temperatureBtn);
+        carbonBtn = view.findViewById(R.id.carbonBtn);
+
+        updateUI();
+        return view;
     }
 
     public void updateUI(){
@@ -100,44 +105,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         else
             carbonBtn.setBackgroundColor(0xFF3BDF35);
     }
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
-        view = inflater.inflate(R.layout.fragment_home,container,false);
-
-        busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        busSpinner.setOnItemSelectedListener(this);
-
-
-        textView = view.findViewById(R.id.busno);
-        speedBtn = view.findViewById(R.id.speedBtn);
-        passengersBtn = view.findViewById(R.id.passengersBtn);
-        temperatureBtn =view.findViewById(R.id.temperatureBtn);
-        carbonBtn = view.findViewById(R.id.carbonBtn);
-        //   applySettings();
-
-        updateUI();
-        return view;
-    }
-
-    public void applySettings(){
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
-
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
-        if(ds.equalsIgnoreCase("true")){
-
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
@@ -148,7 +115,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     public void onResume() {
 
         super.onResume();
-        // applySettings();
     }
 
     @Override
@@ -164,8 +130,5 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     public void updateText() {
         textView.setText(String.valueOf(busNum));
     }
-
-
-
 
 }

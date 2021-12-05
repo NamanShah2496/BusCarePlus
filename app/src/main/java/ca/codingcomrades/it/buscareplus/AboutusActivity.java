@@ -3,9 +3,6 @@
 // Aryan Sood , n01393003, Section RNA
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
-
-
-
 package ca.codingcomrades.it.buscareplus;
 
 import android.content.Context;
@@ -21,43 +18,28 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class AboutusActivity extends AppCompatActivity {
+public class AboutusActivity extends AppCompatActivity implements View.OnClickListener {
 
+    Intent viewIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.aboutus_activity);
-        Button button1 = (Button) findViewById(R.id.naman_link);
-        Button button2 = (Button) findViewById(R.id.vishesh_link);
-        Button button3 = (Button) findViewById(R.id.aryan_link);
-        Button button4 = (Button) findViewById(R.id.jaskirat_link);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        Button button1 = findViewById(R.id.naman_link);
+        button1.setOnClickListener(this);
+        Button button2 = findViewById(R.id.vishesh_link);
+        button2.setOnClickListener(this);
+        Button button3 = findViewById(R.id.aryan_link);
+        button3.setOnClickListener(this);
+        Button button4 = findViewById(R.id.jaskirat_link);
+        button4.setOnClickListener(this);
 
-        // Technical debt
-        button1.setOnClickListener(arg0 -> {
-            Intent viewIntent = new Intent("android.intent.action.VIEW",
-                    Uri.parse("https://www.linkedin.com/in/namanshahdeveloper/"));
-            startActivity(viewIntent);});
-            button2.setOnClickListener(arg1 -> {
-                        Intent Intent = new Intent("android.intent.action.VIEW",
-                                Uri.parse("https://www.linkedin.com/in/visheshbansal369/"));
-                        startActivity(Intent);
-                    });
-                button3.setOnClickListener(arg2 -> {
-                            Intent Intent1 = new Intent("android.intent.action.VIEW",
-                                    Uri.parse("https://www.linkedin.com/in/aryan-sood-4800351a1/"));
-                            startActivity(Intent1);
-                        });
-                    button4.setOnClickListener(arg3 -> {
-                                Intent Intent2 = new Intent("android.intent.action.VIEW",
-                                        Uri.parse("https://www.linkedin.com/in/jaskirat-singh-855902219/"));
-                                startActivity(Intent2);
-                            });
-                        ActionBar actionBar = getSupportActionBar();
-                        if (actionBar != null) {
-                            actionBar.setHomeButtonEnabled(true);
-                            actionBar.setDisplayHomeAsUpEnabled(true);
-                        }
     }
     public void onResume() {
 
@@ -80,4 +62,30 @@ public class AboutusActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
-}
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+       if( id == R.id.naman_link) {
+           viewIntent = new Intent("android.intent.action.VIEW",
+                   Uri.parse("https://www.linkedin.com/in/namanshahdeveloper/"));
+           startActivity(viewIntent);
+       }
+       else if(id == R.id.vishesh_link) {
+           viewIntent = new Intent("android.intent.action.VIEW",
+                   Uri.parse("https://www.linkedin.com/in/visheshbansal369/"));
+           startActivity(viewIntent);
+       }
+       else if(id == R.id.jaskirat_link) {
+           viewIntent = new Intent("android.intent.action.VIEW",
+                   Uri.parse("https://www.linkedin.com/in/jaskirat-singh-855902219/"));
+           startActivity(viewIntent);
+       }
+       else if(id == R.id.aryan_link) {
+           viewIntent = new Intent("android.intent.action.VIEW",
+                   Uri.parse("https://www.linkedin.com/in/aryan-sood-4800351a1/"));
+           startActivity(viewIntent);
+       }
+        }
+    }
+
