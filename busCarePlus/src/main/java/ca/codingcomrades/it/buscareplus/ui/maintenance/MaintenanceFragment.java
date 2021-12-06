@@ -98,7 +98,7 @@ public class MaintenanceFragment extends Fragment {
         carbonTextView.setText(String.valueOf(carbon));
 
         thermometer.setMinAndMaxFrame(60,60);
-        if(temp>25) {
+        if(temp>24) {
             temperatureTextView.setTextColor(Color.RED);
             thermometer.setMinAndMaxFrame(158,158);
         }
