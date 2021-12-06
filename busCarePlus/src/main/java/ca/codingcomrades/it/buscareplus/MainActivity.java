@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,8 +31,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 
 import java.net.NoRouteToHostException;
 
@@ -39,7 +45,9 @@ import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
+    Snackbar snackbar;
 
+    Handler handler = new Handler();
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     public boolean isConnected = true;
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img;
     public boolean isBackground;
     public Intent myIntent;
+    boolean flag= true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
+        snackbar = Snackbar.make(binding.getRoot(), "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
+        checkInternet();
         Log.d("MainAct", "onCreate: "+ isConnected);
     }
 
@@ -94,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
+
 
     @Override
     public void onTrimMemory(int level){
@@ -189,4 +200,25 @@ public class MainActivity extends AppCompatActivity {
         stopService((new Intent(MainActivity.this, Notification.class)));
         finish();
     }
+  public void checkInternet(){
+
+     handler.postDelayed((new Runnable() {
+        @Override
+        public void run() {
+            if(!usr.isInternetAvailable(getApplicationContext(), binding.getRoot())){
+                if(flag){
+                    flag = false;
+                    snackbar.show();
+                }}
+            else{
+                    snackbar.dismiss();
+                    flag =true;
+
+                Log.d("internet", "run: We have internet");
+            }
+            checkInternet();
+        }
+     } ),1000);
+}
+
 }

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         rememberMe = findViewById(R.id.RememberMeCheckBox);
         email = findViewById(R.id.LoginEmail);
         password = findViewById(R.id.LoginPassword);
-
+        Log.d("TAG", "onCreate: "+ fAuth.getUid());
         login = findViewById(R.id.Login_btn);
         login.setOnClickListener(v-> callHome());
         ActionBar actionBar = getSupportActionBar();
@@ -119,6 +120,9 @@ public class LoginActivity extends AppCompatActivity {
         remember = isRemember();
 
         if((FirebaseAuth.getInstance().getCurrentUser() != null) && (remember)){
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            Log.d("TAG", "onStart: Check");
+            Log.d("TAG", "onStart: " + firebaseAuth.getUid());
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
     }

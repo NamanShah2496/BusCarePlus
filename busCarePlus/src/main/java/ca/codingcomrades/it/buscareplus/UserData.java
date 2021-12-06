@@ -40,8 +40,6 @@ public class UserData extends AppCompatActivity {
 
 
     public boolean isInternetAvailable(Context context,View view) {
-        Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
-
         final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (connMgr != null) {
@@ -50,18 +48,19 @@ public class UserData extends AppCompatActivity {
             if (activeNetworkInfo != null) { // connected to the internet
                 // connected to the mobile provider's data plan
                 if (activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                    // connected to wifi
-                    snackbar.dismiss();
                     return true;
                 } else{
-                    snackbar.dismiss();
+
                     return activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
                 }
             }
         }
-        snackbar.show();
         return false;
     }
+
+
+
+
 
     public boolean isInternetAvailable(View view) {
         Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);

@@ -31,14 +31,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
+import ca.codingcomrades.it.buscareplus.UserData;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -75,12 +78,15 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
 public void updateUI(){
     handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
             if (!task.isSuccessful()) {
+
                 Log.e("firebase", "Error getting data", task.getException());
             }
             else {
+
                   temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
@@ -88,7 +94,8 @@ public void updateUI(){
                 changeColor(speed,passengers);
                 //TODO no need to pass para, remove and check in test branch
                  }
-         updateUI();
+
+            updateUI();
         }
     }), 1000);
 }

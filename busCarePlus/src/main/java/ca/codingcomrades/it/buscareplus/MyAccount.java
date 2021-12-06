@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,12 +41,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 public class MyAccount extends AppCompatActivity {
-EditText firstName,lastName,phone,age,address,city,province,country;
-Button save;
-FirebaseAuth fAuth;
-String cityName,uid;
+    EditText firstName,lastName,phone,age,address,city,province,country;
+    Button save;
+    FirebaseAuth fAuth;
+    String cityName,uid;
     Integer count;
     ProgressBar progressBar;
     Map<String, Object> arr;
@@ -53,10 +53,10 @@ String cityName,uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("TAG", "My Account onCreate: ");
         setContentView(R.layout.activity_my_account);
         LoginActivity log =new LoginActivity();
-       bindFields();
+        bindFields();
         retriveUserData();
         save.setOnClickListener(v -> saveUserData());
         ActionBar actionBar = getSupportActionBar();
@@ -125,11 +125,14 @@ String cityName,uid;
         df.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                arr = value.getData();
-                Log.d("firebase", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
-                    Log.d("firebase", "onEvent: "+firstName.getText().toString());
-               setFields();
-
+               try {
+                   arr = value.getData();
+                   Log.d("firebase", "onEvent: " + arr.get("LastName") + arr.values().toString() + "reg" + arr.values());
+                   Log.d("firebase", "onEvent: " + firstName.getText().toString());
+                   setFields();
+               }catch (Exception e){
+                   Log.d("TAG", "My account Exception: ");
+               }
             }
         });
 
