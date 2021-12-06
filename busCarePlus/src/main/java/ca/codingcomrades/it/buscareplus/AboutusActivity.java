@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 public class AboutusActivity extends AppCompatActivity {
-
+    LocalData data = new LocalData();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,24 +59,29 @@ public class AboutusActivity extends AppCompatActivity {
                             actionBar.setDisplayHomeAsUpEnabled(true);
                         }
     }
+    @Override
     public void onResume() {
 
         super.onResume();
+        applySettings();
 
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+    }
+
+    public void applySettings(){
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
+
+        if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if(ds.equalsIgnoreCase("true")){
+        if (ds.equalsIgnoreCase("true")) {
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
-        }else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }

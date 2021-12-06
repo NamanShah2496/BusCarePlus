@@ -76,33 +76,6 @@ public class UserData extends AppCompatActivity {
         }
     }
 
-//    public String retriveUserData(){
-//        //final Map<String, Object>[] userInfo = new Map[]{new HashMap<>()};
-//
-//        fStore =FirebaseFirestore.getInstance();
-//        DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
-//
-//        df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if(task.isSuccessful()){
-//                    DocumentSnapshot document = task.getResult();
-//                    if(document.exists()){
-//                        value[0] = (String) document.getData().get("Country");
-//                        Log.d("TAG", "onComplete: " + value[0]);
-//
-//                    }else{
-//                        Log.d("TAG", "onComplete: Error" );
-//                    }
-//                }else{
-//                    Log.d("TAG", "onComplete: " + task.getException());
-//                }
-//            }
-//        });
-//
-//        Log.d("TAG", "retriveUserData: "+value[0]);
-//        return value[0];
-//    }
 
     public void updateUserData(){
         DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");

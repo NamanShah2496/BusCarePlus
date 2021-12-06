@@ -46,7 +46,7 @@ import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     Snackbar snackbar;
-
+    LocalData data = new LocalData();
     Handler handler = new Handler();
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -87,20 +87,25 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+        applySettings();
+
+    }
+
+    public void applySettings(){
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
+
+        if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if(ds.equalsIgnoreCase("true")){
+        if (ds.equalsIgnoreCase("true")) {
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }

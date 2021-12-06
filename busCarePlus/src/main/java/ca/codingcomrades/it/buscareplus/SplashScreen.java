@@ -30,7 +30,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public void applySettings(){
 
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){

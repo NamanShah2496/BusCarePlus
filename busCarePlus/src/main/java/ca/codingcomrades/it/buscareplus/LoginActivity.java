@@ -8,8 +8,12 @@ package ca.codingcomrades.it.buscareplus;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -25,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
-
+    LocalData data = new LocalData();
     String userEmail,userPassword;
     Button login;
     Boolean remember = false;
@@ -60,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         email.setText("");
         password.setText("");
+        applySettings();
     }
     public void callHome(){
        if(validateName()){
@@ -109,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public boolean isRemember(){
         Boolean rem;
-        LocalData data = new LocalData();
+
         rem = data.getPreference(this,"remember");
 
         return rem;
@@ -124,6 +129,23 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("TAG", "onStart: Check");
             Log.d("TAG", "onStart: " + firebaseAuth.getUid());
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        }
+    }
+       public void applySettings(){
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
+
+        if (port.equalsIgnoreCase("true")) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if (ds.equalsIgnoreCase("true")) {
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
 }

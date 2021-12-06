@@ -47,6 +47,7 @@ public class MyAccount extends AppCompatActivity {
     FirebaseAuth fAuth;
     String cityName,uid;
     Integer count;
+    LocalData data = new LocalData();
     ProgressBar progressBar;
     Map<String, Object> arr;
     FirebaseFirestore fStore;
@@ -86,10 +87,14 @@ public class MyAccount extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
+        applySettings();
 
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port", "false");
-        String ds = prefs.getString("ds", "false");
+    }
+
+    public void applySettings(){
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
         if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
