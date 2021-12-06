@@ -28,10 +28,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.net.NoRouteToHostException;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
@@ -144,12 +143,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id  = item.getItemId();
         if( id == R.id.help){
-            Onclick();
+            Onclick2();
             return true;
         }
         else if(id == R.id.myaccountImage){
-            Intent intent = new Intent(this, MyAccount.class);
-            startActivity(intent);
+                Intent intent = new Intent(this, MyAccount.class);
+                startActivity(intent);
         }
         else if (id == R.id.feedback){
             Onclick1();
@@ -170,12 +169,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyAccount.class);
         startActivity(intent);
     }
-    public void Onclick(){
-        Intent intent = new Intent(this, HelpActivity.class);
-        startActivity(intent);
-    }
     public void Onclick1(){
         Intent intent = new Intent(this, FeedbackActivity.class);
+        startActivity(intent);
+    }
+    public void Onclick2(){
+        Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
     public void userLogout() {
