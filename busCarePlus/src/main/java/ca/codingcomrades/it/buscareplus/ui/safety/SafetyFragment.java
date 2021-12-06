@@ -32,6 +32,7 @@ import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.SpeedGauge;
 
 public class SafetyFragment extends Fragment {
+
     Handler handler = new Handler();
     private SafetyViewModel safetyViewModel;
     private View view;
@@ -60,6 +61,7 @@ public class SafetyFragment extends Fragment {
         people = view.findViewById(R.id.people);
         people.setFrame(10);
         prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+
         speedLabel = view.findViewById(R.id.speedometerLabel);
         speedoMeterView =view.findViewById(R.id.speedoMeter);
         speedTextView = view.findViewById(R.id.safetySpeedReadings);
@@ -69,6 +71,7 @@ public class SafetyFragment extends Fragment {
         return view;
     }
     public void getData() {
+        busNum = prefs.getInt("busNo",927);
         handler.postDelayed(() -> database.child("Data/" + busNum + "/Safety").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -85,31 +88,42 @@ public class SafetyFragment extends Fragment {
     }
     public void changeView(int passengers,double speed){
         Log.d("speed", "changeView: "+ prefs.getString("metricB","false"));
-        if(prefs.getString("metricB", "false").equals("true")) {
+        String speedVal = prefs.getString("speedval","0");
+        String capacityVal = prefs.getString("capacityval","0");
+        if(prefs.getString("metricB", "false").equalsIgnoreCase("false")) {
             Log.d("speed", "changeView: Its inside");
             speedoMeterView.setSpeed((float) (speed/1.609));
             speedTextView.setText(String.valueOf((float)speed/1.6));
-            speedoMeterView.changeLimit();
+            speedoMeterView.changeLimit(Integer.parseInt(speedVal));
             speedLabel.setText("m.p.h");
+            int fres = (int)(speed*0.621371);
+            if (fres>Integer.parseInt(speedVal))
+                speedTextView.setTextColor(Color.RED);
+            else
+                speedTextView.setTextColor(Color.GREEN);
         }else {
             speedoMeterView.setSpeed((float) speed);
             speedLabel.setText("km/h");
+            speedoMeterView.changeLimit(Integer.parseInt(speedVal));
             speedTextView.setText(String.valueOf(speed));
+            if (speed>Integer.parseInt(speedVal))
+                speedTextView.setTextColor(Color.RED);
+            else
+                speedTextView.setTextColor(Color.GREEN);
         }
         people.setMinAndMaxFrame(10,10);
         passengersTextView.setText(String.valueOf(passengers));
 
-        if(passengers>30) {
+        if(passengers>Integer.parseInt(capacityVal)) {
             passengersTextView.setTextColor(Color.RED);
             people.setMinAndMaxFrame(50, 50);
         }
         else
             passengersTextView.setTextColor(Color.GREEN);
-        if (speed>50)
-            speedTextView.setTextColor(Color.RED);
-
-        else
-            speedTextView.setTextColor(Color.GREEN);
+//        if (speed>Integer.parseInt(speedVal))
+//            speedTextView.setTextColor(Color.RED);
+//        else
+//            speedTextView.setTextColor(Color.GREEN);
     }
 
 }

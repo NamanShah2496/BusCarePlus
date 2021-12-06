@@ -8,15 +8,18 @@ package ca.codingcomrades.it.buscareplus;
 import static ca.codingcomrades.it.buscareplus.R.string.exitmessage;
 
 import android.content.Context;
-import static com.google.firebase.auth.FirebaseAuth.*;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -27,12 +30,19 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.net.NoRouteToHostException;
+
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    public boolean isConnected = true;
+    UserData usr = new UserData();
+    public boolean isBackground;
+    public Intent myIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        startService(new Intent(getBaseContext(),Notification.class));
+        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
+        Log.d("MainAct", "onCreate: "+ isConnected);
     }
     //Behavioral Patterns
     //Command Design Pattern
@@ -59,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-
+        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
         SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
@@ -77,6 +88,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onTrimMemory(int level){
+        super.onTrimMemory(level);
+        if(level == TRIM_MEMORY_UI_HIDDEN){
+            isBackground = true;
+            myIntent = new Intent(getBaseContext(),Notification.class);
+            startService(myIntent);
+            Log.d("vishesh", "onTrimMemory: start");
+        }
+    }
+
     public void onBack() {
         //Creational Pattern
         //Builder Pattern
@@ -84,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.exit);
         builder.setMessage(exitmessage)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() { //yes to french oui cannot be change, needs team discussion on it (Technical Debt)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                         System.exit(0);
@@ -100,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
@@ -152,11 +175,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void Onclick1(){
-        Intent intent = new Intent(this, ReviewActivity.class);
+        Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
+        stopService((new Intent(MainActivity.this, Notification.class)));
         finish();
     }
 }
