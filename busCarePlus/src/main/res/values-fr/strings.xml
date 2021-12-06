@@ -36,7 +36,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="french_language">français</string>
     <string name="portrait_lock">Verrouillage portrait :</string>
     <string name="dark_theme">Thème sombre:</string>
-    <string name="userPass_5_error">Le mot de passe doit contenir plus de 5 caractères</string>
+    <string name="userPass_8_error">Le mot de passe doit contenir plus de 5 caractères</string>
     <string name="empty_email_error">La valeur ne peut pas être vide</string>
     <string name="userPass_empty_error">Le mot de passe ne peut pas être vide</string>
     <string name="invalid_email_error">Adresse e-mail invalide</string>

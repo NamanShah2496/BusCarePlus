@@ -203,7 +203,9 @@ public class MainActivity extends AppCompatActivity {
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
         stopService((new Intent(MainActivity.this, Notification.class)));
-        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+//        finish();
     }
   public void checkInternet(){
 

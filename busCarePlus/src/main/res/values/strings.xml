@@ -36,7 +36,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="french_language">French</string>
     <string name="portrait_lock">Portrait Lock:</string>
     <string name="dark_theme">Dark Theme:</string>
-    <string name="userPass_5_error">Password must be more than 5 characters long</string>
+    <string name="userPass_8_error">Password must be more than 8 characters long</string>
     <string name="empty_email_error">Value can\'t be empty</string>
     <string name="userPass_empty_error">Password cannot be empty</string>
     <string name="invalid_email_error">Invalid Email Address</string>

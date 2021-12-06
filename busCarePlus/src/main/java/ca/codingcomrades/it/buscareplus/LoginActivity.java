@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox rememberMe;
     EditText email,password;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String passwordPattern ="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+
 
 
     @Override
@@ -92,15 +93,14 @@ public class LoginActivity extends AppCompatActivity {
         if (userEmail.isEmpty()) {
             validate = false;
             email.setError(getString(R.string.empty_email_error));
-        }else if (!(userEmail.matches(emailPattern))){
+        }
+        if (!(userEmail.matches(emailPattern))){
             validate = false;
             email.setError(getString(R.string.invalid_email_error));
-        }else  if(userPassword.length()<5){
-        password.setError(getString(R.string.userPass_5_error));
-        validate = false;
-        }else if(userPassword.isEmpty()){
+        }
+        if(!(userPassword.matches(passwordPattern))){
             validate = false;
-            password.setError(getString(R.string.userPass_empty_error));
+            password.setError("Invalid Password");
         }
         return validate;
     }
