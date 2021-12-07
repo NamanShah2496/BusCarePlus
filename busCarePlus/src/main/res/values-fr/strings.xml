@@ -14,8 +14,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">En-tête de navigation</string>
     <string name="action_settings">Paramètres</string>
-    <string name="menu_home">Accueil</string>
 
+    <string name="menu_home">Accueil</string>
     <string name="menu_safety">Sécurité</string>
     <string name="title_activity_login">Activité de connexion</string>
     <string name="prompt_email">E-mail</string>
@@ -97,8 +97,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="validating_msg">Validating</string>
     <string name="remember">remember</string>
     <string name="contact_number">+1234567890</string>
-    <string name="radioMetricBtnText">Metric(mi/h)</string>
-    <string name="radioImperialBtnText">Imperial(km/h)</string>
+    <string name="radioMetricBtnText">Métrique(mi/h)</string>
+    <string name="radioImperialBtnText">Impérial(km/h)</string>
     <string name="login_label">Login</string>
     <string name="emailAddressTitle">Email Address</string>
     <string name="passwordTitle">Password</string>
@@ -126,8 +126,17 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="content_description_of_speedbtn">État de la vitesse</string>
     <string name="content_description_of_carbonbtn">Statut Co2</string>
     <string name="bus_927">927</string>
+    <string name="toast_login_success">Connecté avec succès !</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="units_of_data">Sélectionnez Unités de données:</string>
+    <string name="threshold_values">Définir les valeurs de seuil:</string>
+    <string name="max_speed">Vitesse maximum:</string>
+    <string name="max_people">Maximum de personnes:</string>
+    <string name="speed_of_bus">Vitesse du bus</string>
+    <string name="number_of_people">Nombre de personnes:</string>
+    <string name="temperature_in_celsius">Température (en Celsius):</string>
+    <string name="carbondioxide_levels">Niveaux de dioxyde de carbone:</string>
 
 
 </resources>

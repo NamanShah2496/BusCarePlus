@@ -45,7 +45,7 @@
         android:checked="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintHorizontal_bias="0.665"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.106" />
@@ -54,7 +54,7 @@
         android:id="@+id/UnitsDataTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Units of data:"
+        android:text="@string/units_of_data"
         android:textSize="22dp"
         android:textStyle="bold"
 
@@ -115,7 +115,7 @@
         android:id="@+id/SetThresholdTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Set Threshold values:"
+        android:text="@string/threshold_values"
         android:textSize="22dp"
         android:textStyle="bold"
 
@@ -130,7 +130,7 @@
         android:id="@+id/MaxSpeedTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maximum Speed:"
+        android:text="@string/max_speed"
         android:textSize="18dp"
         android:textStyle="bold"
 
@@ -145,7 +145,7 @@
         android:id="@+id/MaxPeopleTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maximum people:"
+        android:text="@string/max_people"
         android:textSize="18dp"
         android:textStyle="bold"
 
@@ -164,7 +164,7 @@
         android:min="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.661" />
@@ -177,7 +177,7 @@
         android:min="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.773" />
@@ -204,7 +204,7 @@
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.697"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.678" />
@@ -216,7 +216,7 @@
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.697"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.787" />
