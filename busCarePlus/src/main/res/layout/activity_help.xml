@@ -9,17 +9,17 @@
 
     <TextView
         android:id="@+id/it_support"
-        android:layout_width="387dp"
-        android:layout_height="86dp"
+        android:layout_width="341dp"
+        android:layout_height="64dp"
         android:text="@string/it_support"
         android:textColor="@color/maroon"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953" />
+        app:layout_constraintVertical_bias="0.878" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/call_fab"
@@ -39,135 +39,134 @@
 
     <TextView
         android:id="@+id/question_1"
-        android:layout_width="380dp"
-        android:layout_height="59dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/question_1"
         android:textColor="@color/naroon"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.171" />
 
     <TextView
         android:id="@+id/answer_1"
-        android:layout_width="381dp"
-        android:layout_height="81dp"
+        android:layout_width="385dp"
+        android:layout_height="55dp"
         android:text="@string/answer_1"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <TextView
         android:id="@+id/question_2"
-        android:layout_width="379dp"
-        android:layout_height="90dp"
+        android:layout_width="394dp"
+        android:layout_height="39dp"
         android:text="@string/question_2"
         android:textColor="@color/naroon"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.718"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.346" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <TextView
         android:id="@+id/answer_2"
-        android:layout_width="382dp"
-        android:layout_height="78dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/answer_2"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.392" />
 
     <TextView
         android:id="@+id/answer_2_a"
-        android:layout_width="367dp"
-        android:layout_height="50dp"
+        android:layout_width="311dp"
+        android:layout_height="41dp"
         android:text="@string/answer_2_a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/answer_2_b"
-        android:layout_width="359dp"
-        android:layout_height="50dp"
+        android:layout_width="340dp"
+        android:layout_height="37dp"
         android:text="@string/answer_2_b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.605"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <TextView
         android:id="@+id/question_3"
-        android:layout_width="369dp"
-        android:layout_height="68dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/question_3"
         android:textColor="@color/naroon"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        app:layout_constraintVertical_bias="0.568" />
 
     <TextView
         android:id="@+id/answer_3"
-        android:layout_width="377dp"
-        android:layout_height="68dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/answer_3"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.623" />
 
     <TextView
         android:id="@+id/answer_3_a"
-        android:layout_width="364dp"
-        android:layout_height="54dp"
+        android:layout_width="374dp"
+        android:layout_height="38dp"
         android:text="@string/answer_3_a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.759" />
+        app:layout_constraintVertical_bias="0.697" />
 
     <TextView
         android:id="@+id/answer_3_b"
-        android:layout_width="369dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/answer_3_b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.577"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.841" />
+        app:layout_constraintVertical_bias="0.735" />
 
     <ImageView
         android:id="@+id/help_image"

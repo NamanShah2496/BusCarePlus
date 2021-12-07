@@ -44,15 +44,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="207dp"
-        android:layout_height="179dp"
+        android:layout_width="229dp"
+        android:layout_height="187dp"
         android:background="@color/white"
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,10 +72,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <TextView
         android:id="@+id/MaintainanceThermoValueTV"

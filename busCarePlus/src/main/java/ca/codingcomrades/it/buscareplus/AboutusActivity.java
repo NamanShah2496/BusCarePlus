@@ -14,8 +14,10 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,12 +28,14 @@ public class AboutusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        TextView ans;
         setContentView(R.layout.aboutus_activity);
         Button button1 = (Button) findViewById(R.id.naman_link);
         Button button2 = (Button) findViewById(R.id.vishesh_link);
         Button button3 = (Button) findViewById(R.id.aryan_link);
         Button button4 = (Button) findViewById(R.id.jaskirat_link);
+        ans = (TextView)findViewById(R.id.ans_2);
+
 
         // Technical debt
         button1.setOnClickListener(arg0 -> {
@@ -58,6 +62,7 @@ public class AboutusActivity extends AppCompatActivity {
                             actionBar.setHomeButtonEnabled(true);
                             actionBar.setDisplayHomeAsUpEnabled(true);
                         }
+       ans.setMovementMethod(new ScrollingMovementMethod());
     }
     @Override
     public void onResume() {
