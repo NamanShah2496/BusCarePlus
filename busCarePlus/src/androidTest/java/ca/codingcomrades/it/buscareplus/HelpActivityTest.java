@@ -36,21 +36,15 @@ public class HelpActivityTest {
     public void activityResult_DisplaysContactsPhoneNumber() {
         // Build the result to return when the activity is launched.
         Intent resultData = new Intent();
-        String phoneNumber = "123-345-6789";
+        String phoneNumber = "123-456-7890";
         resultData.putExtra("phone", phoneNumber);
         ActivityResult result =
                 new ActivityResult(Activity.RESULT_OK, resultData);
 
-//        onView(withId(R.id.))
         // Set up result stubbing when an intent sent to "contacts" is seen.
         intending(toPackage("ca.codingcomrades.it.buscareplus.HelpActivity")).respondWith(result);
-
-        // User action that results in "contacts" activity being launched.
-        // Launching activity expects phoneNumber to be returned and displayed.
         onView(withId(R.id.call_fab)).perform(click());
 
-        // Assert that the data we set up above is shown.
-//        onView(withId(R.id.phoneNumber)).check(matches(withText(phoneNumber)));
     }
 
 

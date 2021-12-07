@@ -1,8 +1,10 @@
-package ca.codingcomrades.it.buscareplus.ui.settings;
+package ca.codingcomrades.it.buscareplus;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import ca.codingcomrades.it.buscareplus.ui.settings.SettingFragment;
 
 
 public class SettingFragmentTest {
