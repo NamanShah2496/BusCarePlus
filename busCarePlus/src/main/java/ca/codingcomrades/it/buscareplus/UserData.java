@@ -37,6 +37,8 @@ public class UserData extends AppCompatActivity {
     DatabaseReference myRef;
     Map<String, Object> arr;
 
+   static String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    static String passwordPattern ="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
 
     public boolean isInternetAvailable(Context context,View view) {
@@ -57,11 +59,6 @@ public class UserData extends AppCompatActivity {
         }
         return false;
     }
-
-
-
-
-
     public boolean isInternetAvailable(View view) {
         Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
 
@@ -75,7 +72,25 @@ public class UserData extends AppCompatActivity {
             return false;
         }
     }
-
+    static public boolean validateName(String Email, String Password){
+//        toastPrint(getString(R.string.validating_msg));
+        String userEmail = Email;
+        String userPassword = Password;
+        boolean validate = true;
+        if (userEmail.isEmpty()) {
+            validate = false;
+//            emailField.setError(getString(R.string.empty_email_error));
+        }
+        if (!(userEmail.matches(emailPattern))){
+            validate = false;
+//            emailField.setError(getString(R.string.invalid_email_error));
+        }
+        if(!(userPassword.matches(passwordPattern))){
+            validate = false;
+//            passwordField.setError("Invalid Password");
+        }
+        return validate;
+    }
 
     public void updateUserData(){
         DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");

@@ -33,10 +33,10 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
     Boolean remember = false;
     CheckBox rememberMe;
-    EditText email,password;
+    EditText emailField, passwordField;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String passwordPattern ="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
-
+    int errorCode = 0;
 
 
     @Override
@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         fStore =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         rememberMe = findViewById(R.id.RememberMeCheckBox);
-        email = findViewById(R.id.LoginEmail);
-        password = findViewById(R.id.LoginPassword);
+        emailField = findViewById(R.id.LoginEmail);
+        passwordField = findViewById(R.id.LoginPassword);
         Log.d("TAG", "onCreate: "+ fAuth.getUid());
         login = findViewById(R.id.Login_btn);
         login.setOnClickListener(v-> callHome());
@@ -63,14 +63,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        email.setText("");
-        password.setText("");
+        emailField.setText("");
+        passwordField.setText("");
         applySettings();
     }
     public void callHome(){
-       if(validateName()){
+        userEmail = emailField.getText().toString().trim();
+        userPassword = passwordField.getText().toString();
+       if(validateName(userEmail,userPassword)){
 
-           fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(authResult -> { // Firebase authentication
+           fAuth.signInWithEmailAndPassword(emailField.getText().toString(), passwordField.getText().toString()).addOnSuccessListener(authResult -> { // Firebase authentication
                savePreference();
                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                startActivity(intent);
@@ -85,24 +87,48 @@ public class LoginActivity extends AppCompatActivity {
         LocalData data = new LocalData();
         data.savePreferences(this,getString(R.string.remember),remember);
     }
-    public boolean validateName(){
-        toastPrint(getString(R.string.validating_msg));
-        userEmail = email.getText().toString().trim();
-        userPassword = password.getText().toString();
+
+   public  boolean validateName(String Email, String Password){
+
+  toastPrint(getString(R.string.validating_msg));
+        String userEmail = Email;
+        String userPassword = Password;
         boolean validate = true;
-        if (userEmail.isEmpty()) {
+        if (!validator(userEmail,userPassword) && errorCode==1 ) {
             validate = false;
-            email.setError(getString(R.string.empty_email_error));
+            emailField.setError(getString(R.string.empty_email_error));
         }
-        if (!(userEmail.matches(emailPattern))){
+        if (!validator(userEmail,userPassword) && errorCode==2 ){
             validate = false;
-            email.setError(getString(R.string.invalid_email_error));
+            emailField.setError(getString(R.string.invalid_email_error));
         }
-        if(!(userPassword.matches(passwordPattern))){
+        if(!validator(userEmail,userPassword) && errorCode==3){
             validate = false;
-            password.setError("Invalid Password");
+            passwordField.setError("Invalid Password");
         }
         return validate;
+    }
+    public boolean validator(String Email, String Password){
+        String userEmail = Email;
+        String userPassword = Password;
+        boolean validate = true;
+        if (userEmail.isEmpty()) {
+            errorCode =1;
+         return false;
+        }
+        if (!(userEmail.matches(emailPattern))){
+            errorCode =2;
+            return false;
+        }
+        if(!(userPassword.matches(passwordPattern))){
+            errorCode =3;
+            return false;
+        }
+        return validate;
+
+    }
+    public void displayError(){
+
     }
     public void toastPrint(String msg) {
 
