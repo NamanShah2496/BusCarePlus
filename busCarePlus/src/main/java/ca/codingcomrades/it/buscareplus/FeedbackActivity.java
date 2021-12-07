@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -73,11 +74,7 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                count =1;
-                progressBar.setVisibility(View.VISIBLE);
-                progressBar.setProgress(0);
-
-                new MyTask().execute(100);
+                sendReview();
 
 
             }
@@ -139,9 +136,16 @@ public class FeedbackActivity extends AppCompatActivity {
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
-            addNotification();
-            finish();
+            count =1;
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(0);
+            new MyTask().execute(100);
         }
+        else {
+        Snackbar.make(findViewById(R.id.submitBtn), R.string.empty_review,
+                Snackbar.LENGTH_SHORT)
+                .show();
+    }
     }
 
     public void bindFields(){
@@ -185,7 +189,7 @@ public class FeedbackActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             progressBar.setVisibility(View.GONE);
-            sendReview();
+            addNotification();
             finish();
 
         }
