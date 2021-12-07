@@ -75,8 +75,13 @@ public class Notification extends Service {
 
         @Override
         protected Integer doInBackground(Integer... integers) {
-
-
+            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            if(prefs.getInt("busNo",927) == 927)
+                busNum = 927;
+            else if(prefs.getInt("busNo",927) == 36)
+                busNum = 36;
+            else if(prefs.getInt("busNo",927) == 511)
+                busNum = 511;
 
             updateUI();
             return null;
