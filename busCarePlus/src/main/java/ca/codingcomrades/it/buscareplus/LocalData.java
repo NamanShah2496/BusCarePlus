@@ -33,6 +33,7 @@ public class LocalData {
         return sp.getBoolean(context,false);
 
     }
+
     public String getPreference(Activity act, String context,int i){
 
         SharedPreferences sp =act.getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
