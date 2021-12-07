@@ -126,6 +126,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="content_description_of_speedbtn">État de la vitesse</string>
     <string name="content_description_of_carbonbtn">Statut Co2</string>
     <string name="bus_927">927</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 
 
 </resources>

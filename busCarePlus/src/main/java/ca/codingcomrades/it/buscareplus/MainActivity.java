@@ -105,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.exit);
         builder.setMessage(exitmessage)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                         System.exit(0);
                     }
                 })
                 .setIcon(R.drawable.alert)
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
