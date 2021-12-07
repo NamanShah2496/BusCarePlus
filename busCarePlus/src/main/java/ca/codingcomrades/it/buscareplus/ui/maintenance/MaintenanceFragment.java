@@ -35,8 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import ca.codingcomrades.it.buscareplus.R;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentMaintenanceBinding;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
+
 import ca.codingcomrades.it.buscareplus.ui.settings.SettingViewModel;
 
 public class MaintenanceFragment extends Fragment {

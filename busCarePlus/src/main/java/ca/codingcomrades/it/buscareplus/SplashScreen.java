@@ -25,7 +25,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applySettings();
-        handler.postDelayed(runnable,3000);
+        handler.postDelayed(runnable,1250);
     }
 
     public void applySettings(){

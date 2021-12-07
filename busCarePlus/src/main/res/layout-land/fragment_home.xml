@@ -59,8 +59,8 @@
 
     <TextView
         android:id="@+id/busno"
-        android:layout_width="143dp"
-        android:layout_height="80dp"
+        android:layout_width="132dp"
+        android:layout_height="47dp"
         android:text="927"
         android:textAlignment="center"
         android:textColor="@color/yellow"

@@ -59,8 +59,8 @@
 
     <TextView
         android:id="@+id/busno"
-        android:layout_width="143dp"
-        android:layout_height="80dp"
+        android:layout_width="146dp"
+        android:layout_height="45dp"
         android:text="927"
         android:textAlignment="center"
         android:textColor="@color/yellow"
@@ -68,9 +68,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
+        app:layout_constraintVertical_bias="0.276" />
 
     <ImageButton
         android:id="@+id/passengersBtn"

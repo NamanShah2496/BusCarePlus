@@ -60,9 +60,7 @@ public class Notification extends Service {
     @Override
     public void onDestroy(){
         super.onDestroy();
-
     }
-
 
     private class DoBackgroundTask extends AsyncTask<Integer,Integer,Integer>{
 
@@ -75,9 +73,6 @@ public class Notification extends Service {
 
         @Override
         protected Integer doInBackground(Integer... integers) {
-
-
-
             updateUI();
             return null;
         }
@@ -102,7 +97,7 @@ public class Notification extends Service {
         public void isDanger(){
             Boolean danger = false;
             String msg = " ";
-            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            prefs = getApplication().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
             String speedVal = prefs.getString("speedval","0");
             String capacityVal = prefs.getString("capacityval","0");
             String metricB = prefs.getString("metricB","false");
@@ -171,6 +166,7 @@ public class Notification extends Service {
             managerCompat.notify(1,warningNotification.build());
         }
     }
+
 
     public boolean stopService(Intent name) {
         return super.stopService(name);
