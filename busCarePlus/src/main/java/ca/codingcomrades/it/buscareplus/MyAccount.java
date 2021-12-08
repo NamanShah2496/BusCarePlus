@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,23 +41,23 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 public class MyAccount extends AppCompatActivity {
-EditText firstName,lastName,phone,age,address,city,province,country;
-Button save;
-FirebaseAuth fAuth;
-String cityName,uid;
+    EditText firstName,lastName,phone,age,address,city,province,country;
+    Button save;
+    FirebaseAuth fAuth;
+    String cityName,uid;
     Integer count;
+    LocalData data = new LocalData();
     ProgressBar progressBar;
     Map<String, Object> arr;
     FirebaseFirestore fStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("TAG", "My Account onCreate: ");
         setContentView(R.layout.activity_my_account);
         LoginActivity log =new LoginActivity();
-       bindFields();
+        bindFields();
         retriveUserData();
         save.setOnClickListener(v -> saveUserData());
         ActionBar actionBar = getSupportActionBar();
@@ -86,10 +87,14 @@ String cityName,uid;
     public void onResume() {
 
         super.onResume();
+        applySettings();
 
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port", "false");
-        String ds = prefs.getString("ds", "false");
+    }
+
+    public void applySettings(){
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
         if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -125,11 +130,14 @@ String cityName,uid;
         df.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                arr = value.getData();
-                Log.d("firebase", "onEvent: " + arr.get("LastName")+arr.values().toString() + "reg" +arr.values());
-                    Log.d("firebase", "onEvent: "+firstName.getText().toString());
-               setFields();
-
+               try {
+                   arr = value.getData();
+                   Log.d("firebase", "onEvent: " + arr.get("LastName") + arr.values().toString() + "reg" + arr.values());
+                   Log.d("firebase", "onEvent: " + firstName.getText().toString());
+                   setFields();
+               }catch (Exception e){
+                   Log.d("TAG", "My account Exception: ");
+               }
             }
         });
 
@@ -158,7 +166,7 @@ String cityName,uid;
         userInfo.put(getString(R.string.firebaseKeyCountry), country.getText().toString());
         userInfo.put("isUser","1");
         df.set(userInfo);
-        toastPrint("Information Saved!!");
+        toastPrint(getString(R.string.my_acc_info_saved_msg));
 
     }
     public void toastPrint(String msg) {

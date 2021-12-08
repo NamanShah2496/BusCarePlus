@@ -60,7 +60,7 @@ public class SafetyFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_safety,container,false);
         people = view.findViewById(R.id.people);
         people.setFrame(10);
-        prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
 
         speedLabel = view.findViewById(R.id.speedometerLabel);
         speedoMeterView =view.findViewById(R.id.speedoMeter);

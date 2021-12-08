@@ -35,8 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import ca.codingcomrades.it.buscareplus.R;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentMaintenanceBinding;
-import ca.codingcomrades.it.buscareplus.databinding.FragmentSafetyBinding;
+
 import ca.codingcomrades.it.buscareplus.ui.settings.SettingViewModel;
 
 public class MaintenanceFragment extends Fragment {
@@ -65,7 +64,7 @@ public class MaintenanceFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_maintenance,container,false);
         thermometer = view.findViewById(R.id.thermometer);
-        prefs = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
 
       //  thermometer.setSpeed(1);
        thermometer.setFrame(55);
@@ -98,7 +97,7 @@ public class MaintenanceFragment extends Fragment {
         carbonTextView.setText(String.valueOf(carbon));
 
         thermometer.setMinAndMaxFrame(60,60);
-        if(temp>25) {
+        if(temp>24) {
             temperatureTextView.setTextColor(Color.RED);
             thermometer.setMinAndMaxFrame(158,158);
         }

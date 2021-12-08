@@ -31,9 +31,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
 import ca.codingcomrades.it.buscareplus.LocalData;
@@ -54,7 +56,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed_mph;
     int passengers,carbonReading;
     Spinner busSpinner;
-    Switch notification;
     Button busbutton;
     TextView textView;
     int busNum=927;
@@ -130,14 +131,13 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        prefs = getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-        notification = view.findViewById(R.id.notification_switch);
      fetchLocalData();
      if(prefs.getInt("busNo",927) == 927)
          busSpinner.setSelection(0);
@@ -151,6 +151,24 @@ public void changeColor(double speed,int passengers){
 return view;
     }
 
+    public void applySettings(){
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
+        if(port.equalsIgnoreCase("true")){
+
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }else {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if(ds.equalsIgnoreCase("true")){
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);
@@ -164,17 +182,12 @@ return view;
         passengerLimit = prefs.getString("capacityval","0");
         speedLimit = prefs.getString("speedval","0");
         isMetric = prefs.getString("metricB","false");
-
-//        passengerLimit = Integer.parseInt(prefs.getString("capacityval","5"));
-//        speedLimit = Integer.parseInt(prefs.getString("speedval","15"));
-//        isMetric = Boolean.getBoolean(prefs.getString("metricB","false"));
     }
 
     @Override
     public void onResume() {
 
         super.onResume();
-       // applySettings();
     }
 
     @Override

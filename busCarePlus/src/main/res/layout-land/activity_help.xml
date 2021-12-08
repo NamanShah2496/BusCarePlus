@@ -38,8 +38,8 @@
 
     <TextView
         android:id="@+id/question_1"
-        android:layout_width="181dp"
-        android:layout_height="41dp"
+        android:layout_width="367dp"
+        android:layout_height="35dp"
         android:text="@string/question_1"
         android:textColor="@color/naroon"
         android:textSize="15sp"

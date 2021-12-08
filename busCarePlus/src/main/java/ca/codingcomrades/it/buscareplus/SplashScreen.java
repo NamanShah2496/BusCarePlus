@@ -25,12 +25,12 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applySettings();
-        handler.postDelayed(runnable,3000);
+        handler.postDelayed(runnable,1250);
     }
 
     public void applySettings(){
 
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){

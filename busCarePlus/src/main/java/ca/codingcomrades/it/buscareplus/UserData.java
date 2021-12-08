@@ -37,11 +37,11 @@ public class UserData extends AppCompatActivity {
     DatabaseReference myRef;
     Map<String, Object> arr;
 
+   static String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    static String passwordPattern ="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
 
     public boolean isInternetAvailable(Context context,View view) {
-        Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
-
         final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (connMgr != null) {
@@ -50,19 +50,15 @@ public class UserData extends AppCompatActivity {
             if (activeNetworkInfo != null) { // connected to the internet
                 // connected to the mobile provider's data plan
                 if (activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                    // connected to wifi
-                    snackbar.dismiss();
                     return true;
                 } else{
-                    snackbar.dismiss();
+
                     return activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
                 }
             }
         }
-        snackbar.show();
         return false;
     }
-
     public boolean isInternetAvailable(View view) {
         Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
 
@@ -76,34 +72,25 @@ public class UserData extends AppCompatActivity {
             return false;
         }
     }
-
-//    public String retriveUserData(){
-//        //final Map<String, Object>[] userInfo = new Map[]{new HashMap<>()};
-//
-//        fStore =FirebaseFirestore.getInstance();
-//        DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
-//
-//        df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if(task.isSuccessful()){
-//                    DocumentSnapshot document = task.getResult();
-//                    if(document.exists()){
-//                        value[0] = (String) document.getData().get("Country");
-//                        Log.d("TAG", "onComplete: " + value[0]);
-//
-//                    }else{
-//                        Log.d("TAG", "onComplete: Error" );
-//                    }
-//                }else{
-//                    Log.d("TAG", "onComplete: " + task.getException());
-//                }
-//            }
-//        });
-//
-//        Log.d("TAG", "retriveUserData: "+value[0]);
-//        return value[0];
-//    }
+    static public boolean validateName(String Email, String Password){
+//        toastPrint(getString(R.string.validating_msg));
+        String userEmail = Email;
+        String userPassword = Password;
+        boolean validate = true;
+        if (userEmail.isEmpty()) {
+            validate = false;
+//            emailField.setError(getString(R.string.empty_email_error));
+        }
+        if (!(userEmail.matches(emailPattern))){
+            validate = false;
+//            emailField.setError(getString(R.string.invalid_email_error));
+        }
+        if(!(userPassword.matches(passwordPattern))){
+            validate = false;
+//            passwordField.setError("Invalid Password");
+        }
+        return validate;
+    }
 
     public void updateUserData(){
         DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");

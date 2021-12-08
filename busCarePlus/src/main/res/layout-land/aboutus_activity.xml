@@ -23,11 +23,11 @@
 
     <TextView
         android:id="@+id/ques_1"
-        android:layout_width="134dp"
-        android:layout_height="23dp"
+        android:layout_width="402dp"
+        android:layout_height="30dp"
         android:text="@string/ques_1"
-        android:textStyle="bold"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.036"
@@ -50,11 +50,11 @@
 
     <TextView
         android:id="@+id/ques_2"
-        android:layout_width="216dp"
-        android:layout_height="23dp"
+        android:layout_width="434dp"
+        android:layout_height="52dp"
         android:text="@string/ques_2"
-        android:textStyle="bold"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.031"
@@ -64,25 +64,25 @@
 
     <TextView
         android:id="@+id/ans_2"
-        android:layout_width="436dp"
-        android:layout_height="84dp"
+        android:layout_width="427dp"
+        android:layout_height="106dp"
         android:text="@string/ans_2"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintVertical_bias="0.904" />
 
     <Button
         android:id="@+id/naman_link"
         android:layout_width="97dp"
         android:layout_height="35dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Naman"
+        android:text="@string/naman_shah"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.965"
@@ -94,9 +94,9 @@
         android:layout_width="97dp"
         android:layout_height="35dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Vishesh"
+        android:text="@string/vishesh_bansal"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.753"
@@ -108,9 +108,9 @@
         android:layout_width="97dp"
         android:layout_height="35dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Aryan"
+        android:text="@string/aryan_sood"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.753"
@@ -123,9 +123,9 @@
         android:layout_width="97dp"
         android:layout_height="35dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Jaskirat"
+        android:text="@string/jaskirat_singh"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.965"
@@ -158,7 +158,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
         app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        android:contentDescription="@string/content_description_of_naman"/>
 
     <ImageView
         android:id="@+id/jaskiratimage"
@@ -170,7 +171,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.769"
-        app:srcCompat="@drawable/jk" />
+        app:srcCompat="@drawable/jk"
+        android:contentDescription="@string/content_description_of_jaskirat"/>
 
     <ImageView
         android:id="@+id/visheshimage"
@@ -182,7 +184,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
         app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="@drawable/vish" />
+        app:srcCompat="@drawable/vish"
+        android:contentDescription="@string/content_description_of_vishesh"/>
 
     <ImageView
         android:id="@+id/aryanimage"
@@ -194,5 +197,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.769"
-        app:srcCompat="@drawable/ary" />
+        app:srcCompat="@drawable/ary"
+        android:contentDescription="@string/content_description_of_aryan"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

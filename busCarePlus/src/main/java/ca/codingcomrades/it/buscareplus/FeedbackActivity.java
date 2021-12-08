@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,6 +39,7 @@ import java.util.Map;
 
 //Single Responsibility Principal
 public class FeedbackActivity extends AppCompatActivity {
+    LocalData data = new LocalData();
     FirebaseDatabase database;
     Button submit;
     RatingBar ratingBar;
@@ -72,11 +74,7 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                count =1;
-                progressBar.setVisibility(View.VISIBLE);
-                progressBar.setProgress(0);
-
-                new MyTask().execute(100);
+                sendReview();
 
 
             }
@@ -85,18 +83,25 @@ public class FeedbackActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
+        applySettings();
 
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+    }
+
+    public void applySettings(){
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
+
+        if (port.equalsIgnoreCase("true")) {
+
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if(ds.equalsIgnoreCase("true")){
+        if (ds.equalsIgnoreCase("true")) {
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
@@ -131,9 +136,16 @@ public class FeedbackActivity extends AppCompatActivity {
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
-            addNotification();
-            finish();
+            count =1;
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(0);
+            new MyTask().execute(100);
         }
+        else {
+        Snackbar.make(findViewById(R.id.submitBtn), R.string.empty_review,
+                Snackbar.LENGTH_SHORT)
+                .show();
+    }
     }
 
     public void bindFields(){
@@ -177,7 +189,7 @@ public class FeedbackActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             progressBar.setVisibility(View.GONE);
-            sendReview();
+            addNotification();
             finish();
 
         }

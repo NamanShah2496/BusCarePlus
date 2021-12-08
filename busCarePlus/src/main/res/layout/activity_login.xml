@@ -12,7 +12,6 @@
         android:layout_height="43dp"
         android:ems="10"
         android:inputType="textPassword"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
@@ -25,7 +24,6 @@
         android:layout_width="258dp"
         android:layout_height="39dp"
         android:ems="10"
-
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

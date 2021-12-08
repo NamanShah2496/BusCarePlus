@@ -74,8 +74,6 @@ public class SettingFragment extends Fragment {
             getActivity().setTheme(R.style.AppTheme);
         }
 
-
-
         view = inflater.inflate(R.layout.fragment_settings,container,false);
         portraitSwitch = view.findViewById(R.id.PortraitLockSwitch);
         darkSwitch = view.findViewById(R.id.DarkThemeSwitch);
@@ -91,8 +89,6 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 int val=speedbar.getProgress();
                 int res = (int)(val*1.609344);
-//                speedbar.setProgress((int)(val*1.609344));
-//                speedValue.setText(Integer.toString((int)(val*1.609344)) + " Km/hrs");
                 speedbar.setProgress(res);
                 speedValue.setText(Integer.toString(res) + " Km/hrs");
             }
@@ -103,12 +99,11 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 int val=speedbar.getProgress();
                 int res = (int)(val*0.621371);
-//                speedbar.setProgress((int)(val*0.621371));
-//                speedValue.setText(Integer.toString((int)(val*0.621371)) + " miles/hrs");
                 speedbar.setProgress(res);
                 speedValue.setText(Integer.toString(res) + " miles/hrs");
             }
         });
+
         speedbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int value = 0;
             @Override
@@ -120,8 +115,6 @@ public class SettingFragment extends Fragment {
                 }else{
                     speedValue.setText(Integer.toString(value)+" miles/hrs");
                 }
-//                Toast.makeText(getActivity(),value,Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -142,7 +135,6 @@ public class SettingFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 value = progress;
                 maxPeopleValue.setText(Integer.toString(value));
-//                maxPeopleValue.setText(value);
             }
 
             @Override
@@ -160,7 +152,7 @@ public class SettingFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = getContext().getSharedPreferences("pref",Context.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getContext().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE).edit();
                 if(portraitSwitch.isChecked()){
                     editor.putString("port","true");
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -168,15 +160,12 @@ public class SettingFragment extends Fragment {
                     editor.putString("port","false");
                     getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                 }
-//                editor.apply();
 
                 if(darkSwitch.isChecked()){
-//                    getActivity().getTheme().applyStyle(R.style.darkTheme, true);
                     editor.putString("ds","true");
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     restartApp();
                 }else {
-//                    getActivity().getTheme().applyStyle(R.style.AppTheme, true);
                     editor.putString("ds","false");
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     restartApp();
@@ -204,7 +193,7 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         String metricB = prefs.getString("metricB","false");
@@ -212,14 +201,14 @@ public class SettingFragment extends Fragment {
         String speedVal = prefs.getString("speedval","0");
         String capacityVal = prefs.getString("capacityval","0");
 
-        if(port.equalsIgnoreCase("true")){
+        if(isPortraitOn(port)){
             portraitSwitch.setChecked(true);
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         else {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if(ds.equalsIgnoreCase("true")){
+        if(isDarkThemeOn(ds)){
             darkSwitch.setChecked(true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
@@ -227,11 +216,11 @@ public class SettingFragment extends Fragment {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        if (metricB.equalsIgnoreCase("true")){
+        if (isMetricOn(metricB)){
             metricButton.setChecked(true);
             radioChoice = "metric";
         }
-        if(imperialB.equalsIgnoreCase("true")){
+        if(isImperialOn(imperialB)){
             imperialButton.setChecked(true);
             radioChoice = "imperial";
         }
@@ -246,6 +235,34 @@ public class SettingFragment extends Fragment {
         maxPeopleValue.setText(capacityVal);
 
         return view;
+    }
+
+    public boolean isPortraitOn(String port){
+        if(port.equalsIgnoreCase("true")){
+            return true;
+        }
+            return false;
+    }
+
+    public boolean isDarkThemeOn(String ds){
+        if(ds.equalsIgnoreCase("true")){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMetricOn(String metricB){
+        if (metricB.equalsIgnoreCase("true")){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isImperialOn(String imperialB){
+        if(imperialB.equalsIgnoreCase("true")){
+            return true;
+        }
+        return false;
     }
 
     private void restartApp(){

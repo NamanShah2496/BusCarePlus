@@ -75,8 +75,13 @@ public class Notification extends Service {
 
         @Override
         protected Integer doInBackground(Integer... integers) {
-
-
+            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            if(prefs.getInt("busNo",927) == 927)
+                busNum = 927;
+            else if(prefs.getInt("busNo",927) == 36)
+                busNum = 36;
+            else if(prefs.getInt("busNo",927) == 511)
+                busNum = 511;
 
             updateUI();
             return null;
@@ -102,13 +107,15 @@ public class Notification extends Service {
         public void isDanger(){
             Boolean danger = false;
             String msg = " ";
-            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            prefs = getApplication().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+
             String speedVal = prefs.getString("speedval","0");
             String capacityVal = prefs.getString("capacityval","0");
             String metricB = prefs.getString("metricB","false");
+            Log.d("Sharedprefs", "isDanger: "+ metricB);
             if (metricB.equalsIgnoreCase("true")){
                 if(speed>Integer.parseInt(speedVal)) {
-                    msg = "Bus is Overspeeding";
+                    msg = "Bus No" +busNum + "is Overspeeding";
                     addNotification(msg);
                     danger = true;
                 }
@@ -116,30 +123,25 @@ public class Notification extends Service {
             }else{
                 speed_mph = speed*0.621371;
                 if(speed_mph>Integer.parseInt(speedVal)) {
-                    msg = "Bus is Overspeeding";
+                    msg = "Bus No" +busNum + "is Overspeeding ";
                     addNotification(msg);
                     danger = true;
                 }
             }
 
-
-            if(speed>Integer.parseInt(speedVal)){
-                msg="Bus is Overspeeding";
-                addNotification(msg);
+            if(passengers>Integer.parseInt(capacityVal)) {
                 danger = true;
-            }if(passengers>Integer.parseInt(capacityVal)) {
-                danger = true;
-                msg = "Bus is Overcrowded, passenger count: " + passengers;
+                msg = "Bus "+busNum + " is Overcrowded, passenger count: " + passengers;
                 addNotification(msg);
             }
             if(temperatureReading>24) {
                 danger = true;
-                msg = "Bus is Overheated, temp:" + temperatureReading + " Celsius";
+                msg = "Bus "+ busNum +" is Overheated, temp:" + temperatureReading + " Celsius";
                 addNotification(msg);
             }
             if(carbonReading>1000) {
                 danger = true;
-                msg = "Too much CO2 in the bus, readings: " + carbonReading + " ppm";
+                msg = "Too much CO2 in the bus "+busNum+" , readings: " + carbonReading + " ppm";
                 addNotification(msg);
             }
             if(danger) {

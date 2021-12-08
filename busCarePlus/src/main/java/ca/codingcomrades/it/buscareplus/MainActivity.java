@@ -5,8 +5,8 @@
 
 package ca.codingcomrades.it.buscareplus;
 
-import android.app.Activity;
-import android.app.Application;
+import static ca.codingcomrades.it.buscareplus.R.string.exitmessage;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +32,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 
 import java.net.NoRouteToHostException;
 
@@ -39,7 +42,9 @@ import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    Snackbar snackbar;
+    LocalData data = new LocalData();
+    Handler handler = new Handler();
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     public boolean isConnected = true;
@@ -47,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView img;
     public boolean isBackground;
     public Intent myIntent;
+    boolean flag= true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
@@ -66,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
+        snackbar = Snackbar.make(binding.getRoot(), "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
+        checkInternet();
         Log.d("MainAct", "onCreate: "+ isConnected);
     }
 
@@ -77,11 +83,17 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        usr.isInternetAvailable(getApplicationContext(),binding.getRoot());
-        SharedPreferences prefs = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+        checkInternet();
+        applySettings();
+
+    }
+
+    public void applySettings(){
+        SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        String port = data.getPreference(this,"port",1);
+        String ds = data.getPreference(this,"ds",1);
+
+        if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }else {
@@ -112,17 +124,17 @@ public class MainActivity extends AppCompatActivity {
         //Creational Pattern
         //Builder Pattern
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Exit!!");
-        builder.setMessage("Are you to exit?")
+        builder.setTitle(R.string.exit);
+        builder.setMessage(exitmessage)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                         System.exit(0);
                     }
                 })
                 .setIcon(R.drawable.alert)
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
@@ -144,49 +156,75 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-        @Override
-        public void onBackPressed(){
+    @Override
+    public void onBackPressed(){
             onBack();
         }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.help:
-                Onclick();
-                return true;
-            case R.id.myaccountImage:
+        int id  = item.getItemId();
+        if( id == R.id.help){
+            Onclick2();
+            return true;
+        }
+        else if(id == R.id.myaccountImage){
                 Intent intent = new Intent(this, MyAccount.class);
                 startActivity(intent);
-            case R.id.feedback:
-                Onclick1();
-                return true;
-            case R.id.logout:
-                userLogout();
-                return true;
-            case R.id.aboutus:
-                Intent intent1 = new Intent(this, AboutusActivity.class);
-                startActivity(intent1);
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        else if (id == R.id.feedback){
+            Onclick1();
+            return true;
+        }
+        else if (id == R.id.logout){
+            userLogout();
+            return true;
+        }
+        else if (id == R.id.aboutus){
+            Intent intent1 = new Intent(this, AboutusActivity.class);
+            startActivity(intent1);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public void Onclick(View v){
         Intent intent = new Intent(this, MyAccount.class);
-        startActivity(intent);
-    }
-    public void Onclick(){
-        Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
     public void Onclick1(){
         Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }
-
+    public void Onclick2(){
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+    }
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
         stopService((new Intent(MainActivity.this, Notification.class)));
-        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+//        finish();
     }
+  public void checkInternet(){
+
+     handler.postDelayed((new Runnable() {
+        @Override
+        public void run() {
+            if(!usr.isInternetAvailable(getApplicationContext(), binding.getRoot())){
+                if(flag){
+                    flag = false;
+                    snackbar.show();
+                }}
+            else{
+                    snackbar.dismiss();
+                    flag =true;
+
+                Log.d("internet", "run: We have internet");
+            }
+            checkInternet();
+        }
+     } ),1000);
+}
+
 }
