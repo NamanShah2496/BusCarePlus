@@ -2,15 +2,11 @@
 
 package ca.codingcomrades.it.buscareplus;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import android.content.Context;
-
-import androidx.test.core.app.ApplicationProvider;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
