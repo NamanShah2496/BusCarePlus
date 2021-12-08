@@ -166,7 +166,7 @@ public class MyAccount extends AppCompatActivity {
         userInfo.put(getString(R.string.firebaseKeyCountry), country.getText().toString());
         userInfo.put("isUser","1");
         df.set(userInfo);
-        toastPrint("Information Saved!!");
+        toastPrint(getString(R.string.my_acc_info_saved_msg));
 
     }
     public void toastPrint(String msg) {
