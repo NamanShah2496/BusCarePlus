@@ -115,7 +115,7 @@ public class Notification extends Service {
             Log.d("Sharedprefs", "isDanger: "+ metricB);
             if (metricB.equalsIgnoreCase("true")){
                 if(speed>Integer.parseInt(speedVal)) {
-                    msg = "Bus No" +busNum + "is Overspeeding";
+                    msg = "Bus No " +busNum + " is Overspeeding";
                     addNotification(msg);
                     danger = true;
                 }
@@ -123,7 +123,7 @@ public class Notification extends Service {
             }else{
                 speed_mph = speed*0.621371;
                 if(speed_mph>Integer.parseInt(speedVal)) {
-                    msg = "Bus No" +busNum + "is Overspeeding ";
+                    msg = "Bus No " +busNum + " is Overspeeding ";
                     addNotification(msg);
                     danger = true;
                 }
@@ -131,7 +131,7 @@ public class Notification extends Service {
 
             if(passengers>Integer.parseInt(capacityVal)) {
                 danger = true;
-                msg = "Bus "+busNum + " is Overcrowded, passenger count: " + passengers;
+                msg = "Bus  "+busNum + " is Overcrowded, passenger count: " + passengers;
                 addNotification(msg);
             }
             if(temperatureReading>24) {
