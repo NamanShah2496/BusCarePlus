@@ -41,7 +41,6 @@ import com.google.firebase.firestore.auth.User;
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
-import ca.codingcomrades.it.buscareplus.UserData;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -77,15 +76,12 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
 public void updateUI(){
     handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
             if (!task.isSuccessful()) {
-
                 Log.e("firebase", "Error getting data", task.getException());
             }
             else {
-
                   temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
@@ -93,8 +89,7 @@ public void updateUI(){
                 changeColor(speed,passengers);
                 //TODO no need to pass para, remove and check in test branch
                  }
-
-            updateUI();
+         updateUI();
         }
     }), 1000);
 }
@@ -136,14 +131,14 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-       fetchLocalData();
+     fetchLocalData();
      if(prefs.getInt("busNo",927) == 927)
          busSpinner.setSelection(0);
      else if(prefs.getInt("busNo",927) == 36)
@@ -156,6 +151,24 @@ public void changeColor(double speed,int passengers){
 return view;
     }
 
+    public void applySettings(){
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String port = prefs.getString("port","false");
+        String ds = prefs.getString("ds","false");
+        if(port.equalsIgnoreCase("true")){
+
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }else {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        }
+        if(ds.equalsIgnoreCase("true")){
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);

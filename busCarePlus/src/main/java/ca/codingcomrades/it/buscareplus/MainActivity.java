@@ -5,8 +5,8 @@
 
 package ca.codingcomrades.it.buscareplus;
 
-import android.app.Activity;
-import android.app.Application;
+import static ca.codingcomrades.it.buscareplus.R.string.exitmessage;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,9 +31,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
@@ -99,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
         if (port.equalsIgnoreCase("true")) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
+        }else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        if (ds.equalsIgnoreCase("true")) {
+        if(ds.equalsIgnoreCase("true")){
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
+        }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
@@ -127,17 +123,17 @@ public class MainActivity extends AppCompatActivity {
         //Creational Pattern
         //Builder Pattern
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Exit!!");
-        builder.setMessage("Are you to exit?")
+        builder.setTitle(R.string.exit);
+        builder.setMessage(exitmessage)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                         System.exit(0);
                     }
                 })
                 .setIcon(R.drawable.alert)
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
@@ -159,46 +155,49 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-        @Override
-        public void onBackPressed(){
+    @Override
+    public void onBackPressed(){
             onBack();
         }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.help:
-                Onclick();
-                return true;
-            case R.id.myaccountImage:
+        int id  = item.getItemId();
+        if( id == R.id.help){
+            Onclick2();
+            return true;
+        }
+        else if(id == R.id.myaccountImage){
                 Intent intent = new Intent(this, MyAccount.class);
                 startActivity(intent);
-            case R.id.feedback:
-                Onclick1();
-                return true;
-            case R.id.logout:
-                userLogout();
-                return true;
-            case R.id.aboutus:
-                Intent intent1 = new Intent(this, AboutusActivity.class);
-                startActivity(intent1);
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        else if (id == R.id.feedback){
+            Onclick1();
+            return true;
+        }
+        else if (id == R.id.logout){
+            userLogout();
+            return true;
+        }
+        else if (id == R.id.aboutus){
+            Intent intent1 = new Intent(this, AboutusActivity.class);
+            startActivity(intent1);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public void Onclick(View v){
         Intent intent = new Intent(this, MyAccount.class);
-        startActivity(intent);
-    }
-    public void Onclick(){
-        Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
     public void Onclick1(){
         Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }
-
+    public void Onclick2(){
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+    }
     public void userLogout() {
         FirebaseAuth.getInstance().signOut();
         stopService((new Intent(MainActivity.this, Notification.class)));

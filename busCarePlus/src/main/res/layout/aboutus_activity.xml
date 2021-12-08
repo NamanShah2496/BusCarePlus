@@ -81,7 +81,7 @@
         android:layout_height="54dp"
         android:layout_marginTop="480dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Naman Shah"
+        android:text="@string/naman_shah"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.858"
@@ -95,7 +95,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="480dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Vishesh Bansal"
+        android:text="@string/vishesh_bansal"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/naman_link"
         app:layout_constraintHorizontal_bias="0.0"
@@ -109,7 +109,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="676dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Aryan Sood"
+        android:text="@string/aryan_sood"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +120,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="676dp"
         android:backgroundTint="@color/menu_blue"
-        android:text="Jaskirat Singh"
+        android:text="@string/jaskirat_singh"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.852"
@@ -152,7 +152,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
         app:layout_constraintVertical_bias="0.421"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        android:contentDescription="@string/content_description_of_naman" />
 
     <ImageView
         android:id="@+id/jaskiratimage"
@@ -165,7 +166,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/naman_link"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jk" />
+        app:srcCompat="@drawable/jk"
+        android:contentDescription="@string/content_description_of_jaskirat"
+        />
 
     <ImageView
         android:id="@+id/visheshimage"
@@ -177,7 +180,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
         app:layout_constraintVertical_bias="0.043"
-        app:srcCompat="@drawable/vish" />
+        app:srcCompat="@drawable/vish"
+        android:contentDescription="@string/content_description_of_vishesh"/>
 
     <ImageView
         android:id="@+id/aryanimage"
@@ -190,6 +194,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vishesh_link"
         app:layout_constraintVertical_bias="0.969"
-        app:srcCompat="@drawable/ary" />
+        app:srcCompat="@drawable/ary"
+        android:contentDescription="@string/content_description_of_aryan"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
