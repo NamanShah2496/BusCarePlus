@@ -131,7 +131,7 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        prefs = getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
         speedBtn = view.findViewById(R.id.speedBtn);
@@ -152,7 +152,7 @@ return view;
     }
 
     public void applySettings(){
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){

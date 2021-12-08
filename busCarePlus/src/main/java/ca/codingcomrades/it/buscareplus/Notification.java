@@ -107,7 +107,7 @@ public class Notification extends Service {
         public void isDanger(){
             Boolean danger = false;
             String msg = " ";
-            prefs = getApplication().getSharedPreferences("pref", Context.MODE_PRIVATE);
+            prefs = getApplication().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
 
             String speedVal = prefs.getString("speedval","0");
             String capacityVal = prefs.getString("capacityval","0");
