@@ -57,7 +57,7 @@ public class MainActivityTest {
     public void openReview() throws InterruptedException {
         // Testing whether the review screen is opened.
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
-        onView(withText(R.string.review)).perform(click());
+        onView(withText(R.string.feedback)).perform(click());
         Thread.sleep(2000);
 
     }

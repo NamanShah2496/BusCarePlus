@@ -138,6 +138,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="temperature_in_celsius">Temperature (in Celsius):</string>
     <string name="carbondioxide_levels">CarbonDioxide Levels:</string>
     <string name="empty_review">Please fill in all the required fields.</string>
+    <string name="save_btn_label">Save</string>
 
 
 </resources>

@@ -55,6 +55,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.758" />
 
+
   <TextView
       android:id="@+id/addressTitle"
       android:layout_width="wrap_content"
@@ -242,7 +243,7 @@
       android:id="@+id/saveInfoBtn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Save"
+      android:text="@string/save_btn_label"
       android:backgroundTint="@color/naroon"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"

@@ -99,10 +99,10 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="contact_number">+1234567890</string>
     <string name="radioMetricBtnText">Métrique(mi/h)</string>
     <string name="radioImperialBtnText">Impérial(km/h)</string>
-    <string name="login_label">Login</string>
-    <string name="emailAddressTitle">Email Address</string>
-    <string name="passwordTitle">Password</string>
-    <string name="rememberLabel">"Remember me "</string>
+    <string name="login_label">connexion</string>
+    <string name="emailAddressTitle">adresse e-mail</string>
+    <string name="passwordTitle">le mot de passe</string>
+    <string name="rememberLabel">"rappelles moi "</string>
     <string name="firebaseKeyFirstName">FirstName</string>
     <string name="firebaseKeyLastName">LastName</string>
     <string name="firebaseKeyPhone">Phone</string>
@@ -137,6 +137,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="number_of_people">Nombre de personnes:</string>
     <string name="temperature_in_celsius">Température (en Celsius):</string>
     <string name="carbondioxide_levels">Niveaux de dioxyde de carbone:</string>
+    <string name="empty_review">Please fill in all the required fields.</string>
+    <string name="save_btn_label">Enregistrer</string>
 
 
 </resources>
