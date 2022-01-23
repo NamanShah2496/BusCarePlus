@@ -47,7 +47,7 @@ public class FeedbackActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     EditText fullName,phone,email,comment;
     Float rating;
-    String name,num,emailAddress,Comment;
+    String modelNumber,name,num,emailAddress,Comment;
     Button addnotification;
     Integer count;
     ProgressBar progressBar;
@@ -59,6 +59,7 @@ public class FeedbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feedback);
         bindFields();
         String str = android.os.Build.MODEL;
+        modelNumber = str;
         model.setText(str);
         addnotification = (Button) findViewById(R.id.submitBtn);
         progressBar = findViewById(R.id.progressBar);
@@ -136,6 +137,8 @@ public class FeedbackActivity extends AppCompatActivity {
             commentChild.setValue(Comment);
             DatabaseReference ratingChild = myRef.child("Rating");
             ratingChild.setValue(rating);
+            DatabaseReference modelNum = myRef.child("Model Number");
+            modelNum.setValue(modelNumber);
             count =1;
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(0);

@@ -198,8 +198,8 @@ public class SettingFragment extends Fragment {
         String ds = prefs.getString("ds","false");
         String metricB = prefs.getString("metricB","false");
         String imperialB = prefs.getString("imperialB","false");
-        String speedVal = prefs.getString("speedval","0");
-        String capacityVal = prefs.getString("capacityval","0");
+        String speedVal = prefs.getString("speedval","30");
+        String capacityVal = prefs.getString("capacityval","20");
 
         if(isPortraitOn(port)){
             portraitSwitch.setChecked(true);

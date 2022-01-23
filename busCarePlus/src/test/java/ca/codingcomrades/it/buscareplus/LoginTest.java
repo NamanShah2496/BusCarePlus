@@ -29,6 +29,7 @@ public class LoginTest {
         login = new LoginActivity();
         System.out.println("Run with every test case");
     }
+    @After
     @Test
     public void loginWithEmptyEmail() throws Exception{
 //        try(ActivityScenario<LoginActivity> activity = ActivityScenario.launch(LoginActivity.class)) {
