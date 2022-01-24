@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -38,6 +39,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.auth.User;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
@@ -60,6 +64,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     TextView textView;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
+    List<String> names;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +76,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         homeViewModel.getText();
         localData = new LocalData();
 
-
+        names = new ArrayList<>();
     }
 
 public void updateUI(){
@@ -131,6 +136,7 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
+        buses();
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
@@ -139,16 +145,40 @@ public void changeColor(double speed,int passengers){
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
      fetchLocalData();
-     if(prefs.getInt("busNo",927) == 927)
-         busSpinner.setSelection(0);
-     else if(prefs.getInt("busNo",927) == 36)
-         busSpinner.setSelection(1);
-    else
-        busSpinner.setSelection(2);
-     busSpinner.setOnItemSelectedListener(this);
+//     if(prefs.getInt("busNo",927) == 927)
+//         busSpinner.setSelection(0);
+//     else if(prefs.getInt("busNo",927) == 36)
+//         busSpinner.setSelection(1);
+//    else
+//        busSpinner.setSelection(2);
+//     busSpinner.setOnItemSelectedListener(this);
 
      updateUI();
 return view;
+    }
+    public void buses(){
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                database.child("Data/").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        } else {
+
+                            String test = String.valueOf((task.getResult().child("/").getValue()));
+                            Log.d("data", test);
+                            names.add(test);
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, names);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                            busSpinner.setAdapter(adapter);
+                            //TODO no need to pass para, remove and check in test branch
+                        }
+                    }
+                });
+            }
+        },1000);
     }
 
     public void applySettings(){

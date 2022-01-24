@@ -45,7 +45,7 @@ public class MyAccount extends AppCompatActivity {
     EditText firstName,lastName,phone,age,address,city,province,country;
     Button save;
     FirebaseAuth fAuth;
-    String cityName,uid;
+    String uid;
     Integer count;
     LocalData data = new LocalData();
     ProgressBar progressBar;
@@ -56,7 +56,7 @@ public class MyAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("TAG", "My Account onCreate: ");
         setContentView(R.layout.activity_my_account);
-        LoginActivity log =new LoginActivity();
+        // LoginActivity log =new LoginActivity();
         bindFields();
         retriveUserData();
         save.setOnClickListener(v -> saveUserData());
