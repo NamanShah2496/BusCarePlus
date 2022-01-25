@@ -53,7 +53,7 @@
         android:id="@+id/busoption"
         android:layout_width="125dp"
         android:layout_height="36dp"
-        android:entries="@array/bus"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.376"

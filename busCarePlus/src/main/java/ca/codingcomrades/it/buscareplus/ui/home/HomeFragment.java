@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     TextView textView;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
-    List<String> names;
+    List<Integer> names;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -151,34 +151,49 @@ public void changeColor(double speed,int passengers){
 //         busSpinner.setSelection(1);
 //    else
 //        busSpinner.setSelection(2);
-//     busSpinner.setOnItemSelectedListener(this);
+     busSpinner.setOnItemSelectedListener(this);
 
      updateUI();
 return view;
     }
-    public void buses(){
+
+    public void buses() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                database.child("Data/").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                database.child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if (!task.isSuccessful()) {
                             Log.e("firebase", "Error getting data", task.getException());
-                        } else {
-
-                            String test = String.valueOf((task.getResult().child("/").getValue()));
-                            Log.d("data", test);
-                            names.add(test);
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, names);
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                            busSpinner.setAdapter(adapter);
-                            //TODO no need to pass para, remove and check in test branch
                         }
+
+
+
+                            if(task.getResult().child("/").getChildrenCount() == busSpinner.getCount()){
+                                Log.d("busCount",String.valueOf(busSpinner.getCount()));
+                            }
+                            else {
+                                busUpdated(task);
+                            }
+
                     }
                 });
+                buses();
             }
-        },1000);
+        }, 1000);
+    }
+    public void busUpdated(Task<DataSnapshot> task){
+        names.clear();
+        for (DataSnapshot task1 : task.getResult().getChildren()) {
+
+            busNum = Integer.parseInt(task1.getKey());
+            names.add(busNum);
+
+        }
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, names);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        busSpinner.setAdapter(adapter);
     }
 
     public void applySettings(){
