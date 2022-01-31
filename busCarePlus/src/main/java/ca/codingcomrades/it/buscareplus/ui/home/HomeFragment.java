@@ -72,7 +72,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         database =FirebaseDatabase.getInstance().getReference();
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
         homeViewModel.getText();
         localData = new LocalData();
 
@@ -154,7 +153,6 @@ public void changeColor(double speed,int passengers){
 
      busSpinner.setOnItemSelectedListener(this);
 
-
      updateUI();
 return view;
     }
@@ -169,31 +167,25 @@ return view;
                         if (!task.isSuccessful()) {
                             Log.e("firebase", "Error getting data", task.getException());
                         }
-
-
-
                             if(task.getResult().child("/").getChildrenCount() == busSpinner.getCount()){
                                 Log.d("busCount",String.valueOf(busSpinner.getCount()));
                             }
                             else {
                                 busUpdated(task);
                             }
-
                     }
                 });
                 buses();
             }
         }, 1000);
     }
+
     public void busUpdated(Task<DataSnapshot> task){
         names.clear();
         for (DataSnapshot task1 : task.getResult().getChildren()) {
-
             busNum = Integer.parseInt(task1.getKey());
             names.add(busNum);
-
         }
-
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         busSpinner.setAdapter(adapter);
@@ -204,7 +196,6 @@ return view;
         String port = prefs.getString("port","false");
         String ds = prefs.getString("ds","false");
         if(port.equalsIgnoreCase("true")){
-
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }else {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
@@ -217,6 +208,7 @@ return view;
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
+
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);
@@ -226,7 +218,6 @@ return view;
     }
 
     public void fetchLocalData(){
-
         passengerLimit = prefs.getString("capacityval","0");
         speedLimit = prefs.getString("speedval","0");
         isMetric = prefs.getString("metricB","false");
@@ -234,7 +225,6 @@ return view;
 
     @Override
     public void onResume() {
-
         super.onResume();
     }
 
@@ -251,8 +241,5 @@ return view;
     public void updateText() {
         textView.setText(String.valueOf(busNum));
     }
-
-
-
 
 }
