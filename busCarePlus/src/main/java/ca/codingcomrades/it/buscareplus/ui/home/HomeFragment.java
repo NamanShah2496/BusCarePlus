@@ -151,7 +151,9 @@ public void changeColor(double speed,int passengers){
 //         busSpinner.setSelection(1);
 //    else
 //        busSpinner.setSelection(2);
+
      busSpinner.setOnItemSelectedListener(this);
+
 
      updateUI();
 return view;
@@ -191,8 +193,9 @@ return view;
             names.add(busNum);
 
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, names);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         busSpinner.setAdapter(adapter);
     }
 
