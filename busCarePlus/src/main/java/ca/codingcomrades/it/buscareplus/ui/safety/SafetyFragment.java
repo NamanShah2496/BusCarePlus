@@ -25,8 +25,10 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import ca.codingcomrades.it.buscareplus.R;
 import ca.codingcomrades.it.buscareplus.SpeedGauge;
@@ -71,20 +73,26 @@ public class SafetyFragment extends Fragment {
         return view;
     }
     public void getData() {
+
         busNum = prefs.getInt("busNo",927);
-        handler.postDelayed(() -> database.child("Data/" + busNum + "/Safety").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        database.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                } else {
-                    passengers = Integer.parseInt(String.valueOf(task.getResult().child("Passengers").getValue()));
-                    speed = Double.parseDouble(String.valueOf(task.getResult().child("Speed").getValue()));
-                    changeView(passengers, speed);
-                }
-                getData();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = String.valueOf(dataSnapshot.child("Data/"+busNum).getValue());
+                passengers = Integer.parseInt(String.valueOf(dataSnapshot.child("Data/"+busNum+"/Safety/Passengers").getValue()));
+                speed = Double.parseDouble(String.valueOf(dataSnapshot.child("Data/"+busNum+"/Safety/Speed").getValue()));
+                changeView(passengers, speed);
+                Log.d("New ", "Value is: " + value);
             }
-        }),1000);
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
     public void changeView(int passengers,double speed){
         Log.d("speed", "changeView: "+ prefs.getString("metricB","false"));

@@ -3,7 +3,7 @@
 // Vishesh Bansal, n01395119, Section RNA
 // Jaskirat Singh , N01403975 , Section RNB
 
-package ca.codingcomrades.it.buscareplus;
+package ca.codingcomrades.it.buscareplus.menu;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +26,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
+
+import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.R;
 
 public class HelpActivity extends AppCompatActivity {
     LocalData data = new LocalData();

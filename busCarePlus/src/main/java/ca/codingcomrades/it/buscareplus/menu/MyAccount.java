@@ -5,7 +5,7 @@
 
 
 
-package ca.codingcomrades.it.buscareplus;
+package ca.codingcomrades.it.buscareplus.menu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +41,10 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.R;
+
 public class MyAccount extends AppCompatActivity {
     EditText firstName,lastName,phone,age,address,city,province,country;
     Button save;

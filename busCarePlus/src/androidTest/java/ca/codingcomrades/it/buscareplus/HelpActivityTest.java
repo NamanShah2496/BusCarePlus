@@ -18,6 +18,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import ca.codingcomrades.it.buscareplus.menu.HelpActivity;
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class HelpActivityTest {
@@ -35,7 +37,7 @@ public class HelpActivityTest {
                 new ActivityResult(Activity.RESULT_OK, resultData);
 
         // Set up result stubbing when an intent sent to "contacts" is seen.
-        intending(toPackage("ca.codingcomrades.it.buscareplus.HelpActivity")).respondWith(result);
+        intending(toPackage("ca.codingcomrades.it.buscareplus.menu.HelpActivity")).respondWith(result);
         onView(withId(R.id.call_fab)).perform(click());
 
     }

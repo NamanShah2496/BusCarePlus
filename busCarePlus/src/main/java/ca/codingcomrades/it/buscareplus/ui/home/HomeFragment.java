@@ -38,7 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.auth.User;
 
-//import ca.codingcomrades.it.buscareplus.HelpActivity;
+//import ca.codingcomrades.it.buscareplus.menu.HelpActivity;
 import java.util.ArrayList;
 import java.util.List;
 

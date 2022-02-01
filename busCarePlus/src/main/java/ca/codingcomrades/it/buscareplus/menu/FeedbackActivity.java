@@ -4,7 +4,7 @@
 // Jaskirat Singh , N01403975 , Section RNB
 
 
-package ca.codingcomrades.it.buscareplus;
+package ca.codingcomrades.it.buscareplus.menu;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -36,6 +36,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
+
+import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.R;
 
 //Single Responsibility Principal
 public class FeedbackActivity extends AppCompatActivity {
