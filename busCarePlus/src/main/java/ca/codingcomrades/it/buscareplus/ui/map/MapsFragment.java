@@ -36,14 +36,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MapsFragment extends Fragment{
+public class MapsFragment extends Fragment {
 
 
     private GoogleMap map;
     DatabaseReference database;
     MarkerOptions markerOptions;
-//    SupportMapFragment mapFragment;
-    double lat,lng;
+    //    SupportMapFragment mapFragment;
+    double lat, lng;
 //    double lat=43.7446603;
 //    double lng = -79.5940434;
 
@@ -64,19 +64,20 @@ public class MapsFragment extends Fragment{
         public void onMapReady(GoogleMap googleMap) {
 
 //            MarkerOptions markerOptions = new MarkerOptions();
-            Log.d("maps","onMap  ");
+            Log.d("maps", "onMap  ");
 //            getData();
 //            lat =retLat();
 //            lng = retLat();
             markerOptions = new MarkerOptions();
-            Log.d("Maps", "onMapReady: "+ retLng() +" lat " +retLat());
-            LatLng sydney = new LatLng(retLat(),retLng());
+            Log.d("Maps", "onMapReady: " + retLng() + " lat " + retLat());
+            LatLng sydney = new LatLng(retLat(), retLng());
 
-map = googleMap;
+            map = googleMap;
             googleMap.addMarker(markerOptions.position(sydney).title("Marker of Live location"));
 
-            googleMap.moveCamera(CameraUpdateFactory.zoomTo(5.0f));
+            googleMap.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
 
 
         }
@@ -102,7 +103,7 @@ map = googleMap;
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
 //            getData();
-              mapFragment.getMapAsync(callback);
+            mapFragment.getMapAsync(callback);
         }
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,14 +114,13 @@ map = googleMap;
                 map.clear();
                 lat = Double.parseDouble(String.valueOf(dataSnapshot.child("TestData/Lat").getValue()));
                 lng = Double.parseDouble(String.valueOf(dataSnapshot.child("TestData/Long").getValue()));
-                LatLng updated = new LatLng(lat,lng);
+                LatLng updated = new LatLng(lat, lng);
 
 
                 map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
 
-                map.moveCamera(CameraUpdateFactory.zoomTo(5.0f));
+                map.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
                 map.moveCamera(CameraUpdateFactory.newLatLng(updated));
-
             }
 
             @Override
@@ -129,14 +129,17 @@ map = googleMap;
             }
         });
     }
-    public double retLat(){
+
+    public double retLat() {
 //        getData();
         return lat;
     }
-    public double retLng(){
+
+    public double retLng() {
 //        getData();
         return lng;
     }
+
     public void getData() {
 //        database.addValueEventListener(new ValueEventListener() {
 //            @Override
