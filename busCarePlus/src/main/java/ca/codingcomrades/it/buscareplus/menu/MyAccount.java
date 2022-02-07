@@ -49,12 +49,12 @@ public class MyAccount extends AppCompatActivity {
     EditText firstName,lastName,phone,age,address,city,province,country;
     Button save;
     FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
     String uid;
     Integer count;
     LocalData data = new LocalData();
     ProgressBar progressBar;
     Map<String, Object> arr;
-    FirebaseFirestore fStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
