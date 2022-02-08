@@ -26,21 +26,33 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.auth.User;
 
 //import ca.codingcomrades.it.buscareplus.menu.HelpActivity;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
@@ -52,6 +64,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     SharedPreferences prefs;
     Handler handler = new Handler();
     DatabaseReference database;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String uid,rootPath;
+    Map<String, Object> arr;
     LocalData localData;
     private HomeViewModel homeViewModel;
     private View view;
@@ -77,26 +93,44 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         localData = new LocalData();
 
         names = new ArrayList<>();
+        retriveUserData();
     }
 
 public void updateUI(){
-    handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    database.child(rootPath+"/Data").addValueEventListener(new ValueEventListener() {
         @Override
-        public void onComplete(@NonNull Task<DataSnapshot> task) {
-            if (!task.isSuccessful()) {
-                Log.e("firebase", "Error getting data", task.getException());
-            }
-            else {
-                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
-                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
-                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
-                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
-                changeColor(speed,passengers);
-                //TODO no need to pass para, remove and check in test branch
-                 }
-         updateUI();
+        public void onDataChange(DataSnapshot task) {
+            temperatureReading = Double.parseDouble(String.valueOf(task.child("Maintenance/Temperature").getValue()));
+            carbonReading = Integer.parseInt(String.valueOf(task.child("Maintenance/Co2").getValue()));
+            passengers = Integer.parseInt(String.valueOf(task.child("Safety/Passengers").getValue()));
+            speed = Double.parseDouble(String.valueOf(task.child("Safety/Speed").getValue()));
+            changeColor(speed,passengers);
         }
-    }), 1000);
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
+//    handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//
+//        @Override
+//        public void onComplete(@NonNull Task<DataSnapshot> task) {
+//            if (!task.isSuccessful()) {
+//                Log.e("firebase", "Error getting data", task.getException());
+//            }
+//            else {
+//              //  Log.d("Firebase", "onComplete: bus: " +task.getResult().toString() );
+//                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
+//                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
+//                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
+//                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+//                changeColor(speed,passengers);
+//
+//                 }
+//         updateUI();
+//        }
+//    }), 1000);
 }
 
 public void changeColor(double speed,int passengers){
@@ -145,12 +179,7 @@ public void changeColor(double speed,int passengers){
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
      fetchLocalData();
-//     if(prefs.getInt("busNo",927) == 927)
-//         busSpinner.setSelection(0);
-//     else if(prefs.getInt("busNo",927) == 36)
-//         busSpinner.setSelection(1);
-//    else
-//        busSpinner.setSelection(2);
+
      busSpinner.setOnItemSelectedListener(this);
 
      updateUI();
@@ -158,10 +187,29 @@ return view;
     }
 
     public void buses() {
+//        database.child(rootPath+"/Data").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot task) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+////                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
+//                if(task.child("/").getChildrenCount() == busSpinner.getCount()){
+//                    Log.d("busCount",String.valueOf(busSpinner.getCount()));
+//                }
+//                else {
+//                    busUpdated(task);
+//                }
+//                 }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                database.child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                database.child(rootPath+"/Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if (!task.isSuccessful()) {
@@ -183,10 +231,10 @@ return view;
             }
         }, 1000);
     }
-    public void busUpdated(Task<DataSnapshot> task){
+    public void busUpdated(Task <DataSnapshot> task){
         names.clear();
         for (DataSnapshot task1 : task.getResult().getChildren()) {
-
+            Log.d("Firebase", "busUpdated: task: "+task1);
             busNum = Integer.parseInt(task1.getKey());
             names.add(busNum);
 
@@ -196,23 +244,25 @@ return view;
         busSpinner.setAdapter(adapter);
     }
 
-    public void applySettings(){
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+    public void retriveUserData(){
+        fStore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
 
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        }
-        if(ds.equalsIgnoreCase("true")){
+        uid = fAuth.getUid();
+        DocumentReference df = fStore.collection("Users").document(uid);
+        df.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                try {
+                    arr = value.getData();
+                    rootPath = arr.get("accessPath").toString();
+                    Log.d("Firebase", "onEvent: access: " +rootPath);
+                }catch (Exception e){
+                    Log.d("TAG", "My account Exception: ");
+                }
+            }
+        });
 
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
     }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
