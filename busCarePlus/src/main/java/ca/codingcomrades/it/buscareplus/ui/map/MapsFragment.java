@@ -30,15 +30,27 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.Map;
 
 public class MapsFragment extends Fragment {
 
-
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String uid,rootPath;
+    Map<String, Object> arr;
+    Handler handler = new Handler();
     private GoogleMap map;
     DatabaseReference database;
     MarkerOptions markerOptions;
@@ -90,6 +102,7 @@ public class MapsFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         database = FirebaseDatabase.getInstance().getReference();
+        retriveUserData();
 //        getData();
         return inflater.inflate(R.layout.fragment_maps, container, false);
     }
@@ -105,29 +118,81 @@ public class MapsFragment extends Fragment {
 //            getData();
             mapFragment.getMapAsync(callback);
         }
-        database.addValueEventListener(new ValueEventListener() {
+      maps();
+
+//        database.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+////                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
+//                map.clear();
+//                Log.d("Maps", "onDataChange: "+rootPath);
+//                lat = Double.parseDouble(String.valueOf(dataSnapshot.child("Canada/TTC/Data/36/Location/Lat").getValue()));
+//                lng = Double.parseDouble(String.valueOf(dataSnapshot.child("Canada/TTC/Data/36/Location/Long").getValue()));
+//                LatLng updated = new LatLng(lat, lng);
+//
+//
+//                map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
+//
+//                map.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
+//                map.moveCamera(CameraUpdateFactory.newLatLng(updated));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+    }
+    public void maps(){
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-//                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
-                map.clear();
-                lat = Double.parseDouble(String.valueOf(dataSnapshot.child("TestData/Lat").getValue()));
-                lng = Double.parseDouble(String.valueOf(dataSnapshot.child("TestData/Long").getValue()));
-                LatLng updated = new LatLng(lat, lng);
+            public void run() {
+                database.child(rootPath+"/Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        }
+
+                        map.clear();
+                        Log.d("Maps", "onDataChange: "+rootPath);
+                        lat = Double.parseDouble(String.valueOf(task.getResult().child("Canada/TTC/Data/36/Location/Lat").getValue()));
+                        lng = Double.parseDouble(String.valueOf(task.getResult().child("Canada/TTC/Data/36/Location/Long").getValue()));
+                        LatLng updated = new LatLng(lat, lng);
 
 
-                map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
+                        map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
 
-                map.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
-                map.moveCamera(CameraUpdateFactory.newLatLng(updated));
+                        map.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
+                        map.moveCamera(CameraUpdateFactory.newLatLng(updated));
+
+                    }
+                });
+                maps();
             }
+        }, 1000);
+    }
+    public void retriveUserData(){
+        fStore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
 
+        uid = fAuth.getUid();
+        DocumentReference df = fStore.collection("Users").document(uid);
+        df.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                try {
+                    arr = value.getData();
+                    rootPath = arr.get("accessPath").toString();
+                    Log.d("Firebase", "onEvent: access: " +rootPath);
+                }catch (Exception e){
+                    Log.d("TAG", "My account Exception: ");
+                }
             }
         });
+
     }
 
     public double retLat() {
