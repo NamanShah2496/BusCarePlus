@@ -39,8 +39,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.auth.User;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
@@ -59,9 +64,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed,temperatureReading;
     double speed_mph;
     int passengers,carbonReading;
+    String epoch="";
     Spinner busSpinner;
     Button busbutton;
-    TextView textView;
+    TextView textView,epoch_display;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
     List<Integer> names;
@@ -82,6 +88,21 @@ public void updateUI(){
     handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
+            Log.d("inside", epoch);
+            String result;
+            if (epoch == "")
+                result = "0";
+            else{
+                result = String.format("%.0f", Double.parseDouble(epoch));
+        }
+          long d=Long.parseLong(result);
+       Date date = new Date((d* 1000L));
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formatted = format.format(date);
+
+//         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//          String val =sdf.format(new Date(d));
+ epoch_display.setText(formatted);
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
             }
@@ -90,6 +111,8 @@ public void updateUI(){
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+                  epoch=(String.valueOf(task.getResult().child("TimeStamp").getValue()));
+                  Log.d("test",epoch);
                 changeColor(speed,passengers);
                 //TODO no need to pass para, remove and check in test branch
                  }
@@ -139,6 +162,7 @@ public void changeColor(double speed,int passengers){
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
+       epoch_display=view.findViewById(R.id.epoch);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
