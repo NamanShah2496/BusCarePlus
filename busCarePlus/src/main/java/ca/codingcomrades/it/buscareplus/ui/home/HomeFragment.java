@@ -97,9 +97,12 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
 
 public void updateUI(){
-    database.child(rootPath+"/Data").addValueEventListener(new ValueEventListener() {
+    database.child(rootPath+"/Data/"+busNum).addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot task) {
+            String value = task.getValue().toString();
+            Log.d("Maps", "Value is: " + value);
+            Log.d("Maps", "onDataChange: Lats "+ task.child("Location/Lat").getValue());
             temperatureReading = Double.parseDouble(String.valueOf(task.child("Maintenance/Temperature").getValue()));
             carbonReading = Integer.parseInt(String.valueOf(task.child("Maintenance/Co2").getValue()));
             passengers = Integer.parseInt(String.valueOf(task.child("Safety/Passengers").getValue()));
@@ -112,25 +115,26 @@ public void updateUI(){
 
         }
     });
-//    handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//
-//        @Override
-//        public void onComplete(@NonNull Task<DataSnapshot> task) {
-//            if (!task.isSuccessful()) {
-//                Log.e("firebase", "Error getting data", task.getException());
-//            }
-//            else {
-//              //  Log.d("Firebase", "onComplete: bus: " +task.getResult().toString() );
-//                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
-//                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
-//                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
-//                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
-//                changeColor(speed,passengers);
-//
-//                 }
-//         updateUI();
-//        }
-//    }), 1000);
+    handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+        @Override
+        public void onComplete(@NonNull Task<DataSnapshot> task) {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            }
+            else {
+              //  Log.d("Firebase", "onComplete: bus: " +task.getResult().toString() );
+                Log.d("Maps", "onDataChange: Lats "+ task.getResult().child("Location/Lat").getValue());
+                  temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
+                  carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
+                  passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
+                  speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+                changeColor(speed,passengers);
+
+                 }
+         updateUI();
+        }
+    }), 1000);
 }
 
 public void changeColor(double speed,int passengers){
@@ -218,7 +222,7 @@ return view;
 
 
 
-                            if(task.getResult().child("/").getChildrenCount() == busSpinner.getCount()){
+                            if(task.    getResult().child("/").getChildrenCount() == busSpinner.getCount()){
                                 Log.d("busCount",String.valueOf(busSpinner.getCount()));
                             }
                             else {
