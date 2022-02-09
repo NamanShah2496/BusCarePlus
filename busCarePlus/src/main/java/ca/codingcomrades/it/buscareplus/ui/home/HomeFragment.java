@@ -49,10 +49,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.auth.User;
 
-//import ca.codingcomrades.it.buscareplus.menu.HelpActivity;
+//import ca.codingcomrades.it.buscareplus.HelpActivity;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
@@ -75,9 +79,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed,temperatureReading;
     double speed_mph;
     int passengers,carbonReading;
+    String epoch="";
     Spinner busSpinner;
     Button busbutton;
-    TextView textView;
+    TextView textView,epoch_display;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
     List<Integer> names;
@@ -118,6 +123,21 @@ public void updateUI(){
 
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
+            Log.d("inside", epoch);
+            String result;
+            if (epoch == "")
+                result = "0";
+            else{
+                result = String.format("%.0f", Double.parseDouble(epoch));
+        }
+          long d=Long.parseLong(result);
+       Date date = new Date((d* 1000L));
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formatted = format.format(date);
+
+//         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//          String val =sdf.format(new Date(d));
+ epoch_display.setText(formatted);
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
             }
@@ -128,8 +148,10 @@ public void updateUI(){
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+                  epoch=(String.valueOf(task.getResult().child("TimeStamp").getValue()));
+                  Log.d("test",epoch);
                 changeColor(speed,passengers);
-
+                //TODO no need to pass para, remove and check in test branch
                  }
          updateUI();
         }
@@ -177,11 +199,18 @@ public void changeColor(double speed,int passengers){
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
+       epoch_display=view.findViewById(R.id.epoch);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
      fetchLocalData();
+//     if(prefs.getInt("busNo",927) == 927)
+//         busSpinner.setSelection(0);
+//     else if(prefs.getInt("busNo",927) == 36)
+//         busSpinner.setSelection(1);
+//    else
+//        busSpinner.setSelection(2);
 
      busSpinner.setOnItemSelectedListener(this);
 
@@ -190,7 +219,6 @@ return view;
     }
 
     public void buses() {
-
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -224,8 +252,8 @@ return view;
             names.add(busNum);
 
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, names);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         busSpinner.setAdapter(adapter);
     }
 
@@ -248,7 +276,11 @@ return view;
             }
         });
 
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
+
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);
