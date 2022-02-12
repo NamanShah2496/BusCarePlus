@@ -89,8 +89,9 @@ public class SafetyFragment extends Fragment {
                 String value = String.valueOf(dataSnapshot.child("/Data/"+busNum).getValue());
                 passengers = Integer.parseInt(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Safety/Passengers").getValue()));
                 speed = Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Safety/Speed").getValue()));
+                Log.d("New ", "Value is: " + speed);
                 changeView(passengers, speed);
-                Log.d("New ", "Value is: " + value);
+
             }
 
             @Override
@@ -100,27 +101,29 @@ public class SafetyFragment extends Fragment {
         });
 
     }
+
     public void changeView(int passengers,double speed){
         Log.d("speed", "changeView: "+ prefs.getString("metricB","false"));
         String speedVal = prefs.getString("speedval","30");
         String capacityVal = prefs.getString("capacityval","20");
-        if(prefs.getString("metricB", "false").equalsIgnoreCase("false")) {
-            Log.d("speed", "changeView: Its inside");
+        if(prefs.getString("imperialB", "false").equalsIgnoreCase("false")) {
+           Log.d("speed", "changeView: Its inside");
+            speedoMeterView.setSpeed((float) speed);
+            speedLabel.setText("km/h");
+            speedoMeterView.changeLimit(Integer.parseInt(speedVal));
+            speedTextView.setText(String.valueOf(speed));
+            if (speed>Integer.parseInt(speedVal))
+                speedTextView.setTextColor(Color.RED);
+            else
+                speedTextView.setTextColor(Color.GREEN);
+        }else {
+                    Log.d("speed", "changeView: Its inside");
             speedoMeterView.setSpeed((float) (speed/1.609));
             speedTextView.setText(String.valueOf((float)speed/1.6));
             speedoMeterView.changeLimit(Integer.parseInt(speedVal));
             speedLabel.setText("m.p.h");
             int fres = (int)(speed*0.621371);
             if (fres>Integer.parseInt(speedVal))
-                speedTextView.setTextColor(Color.RED);
-            else
-                speedTextView.setTextColor(Color.GREEN);
-        }else {
-            speedoMeterView.setSpeed((float) speed);
-            speedLabel.setText("km/h");
-            speedoMeterView.changeLimit(Integer.parseInt(speedVal));
-            speedTextView.setText(String.valueOf(speed));
-            if (speed>Integer.parseInt(speedVal))
                 speedTextView.setTextColor(Color.RED);
             else
                 speedTextView.setTextColor(Color.GREEN);
