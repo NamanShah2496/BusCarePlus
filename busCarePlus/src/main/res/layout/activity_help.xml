@@ -9,17 +9,17 @@
 
     <TextView
         android:id="@+id/it_support"
-        android:layout_width="341dp"
-        android:layout_height="64dp"
+        android:layout_width="349dp"
+        android:layout_height="84dp"
         android:text="@string/it_support"
         android:textColor="@color/maroon"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878" />
+        app:layout_constraintVertical_bias="0.871" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/call_fab"
@@ -179,5 +179,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.011"
         app:srcCompat="@drawable/ic" />
+
+    <Button
+        android:id="@+id/download"
+        android:layout_width="126dp"
+        android:layout_height="51dp"
+        android:backgroundTint="@color/naroon"
+        android:text="Download"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/it_support" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

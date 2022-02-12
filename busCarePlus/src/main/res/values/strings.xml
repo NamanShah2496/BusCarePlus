@@ -43,7 +43,7 @@ Jaskirat Singh , N01403975 , Section RNB
 
     <string name="forgot_password_text"><b><u>Forgot Password?</u></b></string>
     <string name="register_text"><b><u>Register Now</u></b></string>
-    <string name="it_support">For I.T. Support, Please contact us by clicking the below button</string>
+    <string name="it_support">To get access to the User Manual of the app, please click on the Download button. For I.T. Support, Please contact us by clicking the below call icon button</string>
     <string name="help">Help</string>
     <string name="question_1">Q. What is BusCare+ ?</string>
     <string name="answer_1">A. BusCare+ is an application that is designed to provide safety to the passengers and provide up to date info about the maintenance of the bus.</string>

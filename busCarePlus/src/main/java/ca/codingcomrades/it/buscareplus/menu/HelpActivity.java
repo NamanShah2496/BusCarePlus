@@ -5,14 +5,8 @@
 
 package ca.codingcomrades.it.buscareplus.menu;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +14,15 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.widget.Button;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -32,6 +34,7 @@ import ca.codingcomrades.it.buscareplus.R;
 
 public class HelpActivity extends AppCompatActivity {
     LocalData data = new LocalData();
+
 //Don't Repeat yourself Principle
     public static final int REQUEST_PHONE_CALL = 1;
 
@@ -44,7 +47,24 @@ public class HelpActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        Button download = findViewById(R.id.download);
+        download.setOnClickListener(view -> {
+        DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            Uri uri = Uri.parse("https://drive.google.com/file/d/1D_5kAUidtlpWOb1JWsS7u-MsFOxEmYxe/view?usp=sharing");
 
+            DownloadManager.Request request = new DownloadManager.Request(uri);
+            request.setTitle("User-Manual");
+            request.setDescription("Downloading...");
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "file.extension");
+            manager.enqueue(request);
+//                manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+//                Uri uri = Uri.parse("https://docs.google.com/document/d/1tMgGMfWN4ESFrmGqYeVpRESVaFau5R3gO3MZyy_2e70/edit?usp=sharing");
+//                DownloadManager.Request request = new DownloadManager.Request(uri);
+//                request.setTitle("User-Manual");
+//                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+//                long reference = manager.enqueue(request);
+        });
         FloatingActionButton fab = findViewById(R.id.call_fab);
         fab.setOnClickListener(view -> insertDummyContactWrapper());
 
