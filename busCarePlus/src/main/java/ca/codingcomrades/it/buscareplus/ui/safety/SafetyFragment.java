@@ -41,7 +41,7 @@ public class SafetyFragment extends Fragment {
     double speed;
     int passengers;
     LottieAnimationView people;
-
+    String rootPath;
     SpeedGauge speedoMeterView;
     TextView speedTextView,passengersTextView,speedLabel;
     DatabaseReference database;
@@ -69,20 +69,26 @@ public class SafetyFragment extends Fragment {
         speedTextView = view.findViewById(R.id.safetySpeedReadings);
         passengersTextView = view.findViewById(R.id.safetyPassengersReading);
         database = FirebaseDatabase.getInstance().getReference();
+        fetchLocalData();
         getData();
         return view;
+    }
+    public void fetchLocalData(){
+    rootPath = prefs.getString("accessPath","Canada/TTC");
+
     }
     public void getData() {
 
         busNum = prefs.getInt("busNo",927);
-        database.addValueEventListener(new ValueEventListener() {
+        database.child(rootPath).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = String.valueOf(dataSnapshot.child("Data/"+busNum).getValue());
-                passengers = Integer.parseInt(String.valueOf(dataSnapshot.child("Data/"+busNum+"/Safety/Passengers").getValue()));
-                speed = Double.parseDouble(String.valueOf(dataSnapshot.child("Data/"+busNum+"/Safety/Speed").getValue()));
+
+                String value = String.valueOf(dataSnapshot.child("/Data/"+busNum).getValue());
+                passengers = Integer.parseInt(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Safety/Passengers").getValue()));
+                speed = Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Safety/Speed").getValue()));
                 changeView(passengers, speed);
                 Log.d("New ", "Value is: " + value);
             }
@@ -96,8 +102,8 @@ public class SafetyFragment extends Fragment {
     }
     public void changeView(int passengers,double speed){
         Log.d("speed", "changeView: "+ prefs.getString("metricB","false"));
-        String speedVal = prefs.getString("speedval","0");
-        String capacityVal = prefs.getString("capacityval","0");
+        String speedVal = prefs.getString("speedval","30");
+        String capacityVal = prefs.getString("capacityval","20");
         if(prefs.getString("metricB", "false").equalsIgnoreCase("false")) {
             Log.d("speed", "changeView: Its inside");
             speedoMeterView.setSpeed((float) (speed/1.609));

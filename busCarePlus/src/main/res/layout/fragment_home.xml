@@ -46,9 +46,7 @@
         app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457"
-<!--        android:contentDescription="@string/content_description_of_speedbtn" -->
-    />
+        app:layout_constraintVertical_bias="0.457" />
 
     <Spinner
         android:id="@+id/busoption"

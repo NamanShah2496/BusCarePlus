@@ -56,6 +56,7 @@ import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.TimeZone;
 
 import ca.codingcomrades.it.buscareplus.LocalData;
@@ -205,12 +206,7 @@ public void changeColor(double speed,int passengers){
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
      fetchLocalData();
-//     if(prefs.getInt("busNo",927) == 927)
-//         busSpinner.setSelection(0);
-//     else if(prefs.getInt("busNo",927) == 36)
-//         busSpinner.setSelection(1);
-//    else
-//        busSpinner.setSelection(2);
+
 
      busSpinner.setOnItemSelectedListener(this);
 
@@ -257,7 +253,7 @@ return view;
         busSpinner.setAdapter(adapter);
     }
 
-    public void retriveUserData(){
+    public void retriveUserData() {
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
@@ -269,18 +265,16 @@ return view;
                 try {
                     arr = value.getData();
                     rootPath = arr.get("accessPath").toString();
-                    Log.d("Firebase", "onEvent: access: " +rootPath);
-                }catch (Exception e){
+                    editor.putString("accessPath",rootPath);
+                    editor.apply();
+                    Log.d("Firebase", "onEvent: access: " + rootPath);
+                } catch (Exception e) {
                     Log.d("TAG", "My account Exception: ");
                 }
             }
         });
 
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
     }
-
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);
@@ -291,8 +285,8 @@ return view;
 
     public void fetchLocalData(){
 
-        passengerLimit = prefs.getString("capacityval","0");
-        speedLimit = prefs.getString("speedval","0");
+        passengerLimit = prefs.getString("capacityval","20");
+        speedLimit = prefs.getString("speedval","40");
         isMetric = prefs.getString("metricB","false");
     }
 
