@@ -7,34 +7,48 @@
     android:layout_height="match_parent"
     tools:context=".menu.HelpActivity">
 
+    <Button
+        android:id="@+id/download2"
+        android:layout_width="126dp"
+        android:layout_height="51dp"
+        android:backgroundTint="@color/naroon"
+        android:text="Download"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/it_support"
+        app:layout_constraintVertical_bias="0.594" />
+
     <TextView
         android:id="@+id/it_support"
-        android:layout_width="186dp"
-        android:layout_height="113dp"
+        android:layout_width="202dp"
+        android:layout_height="135dp"
         android:text="@string/it_support"
         android:textColor="@color/naroon"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintVertical_bias="0.547" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/call_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="50dp"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:contentDescription="@string/submit"
         android:src="@drawable/call_fab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.994" />
 
     <TextView
         android:id="@+id/question_1"
@@ -170,14 +184,14 @@
 
     <ImageView
         android:id="@+id/help_image"
-        android:layout_width="116dp"
-        android:layout_height="114dp"
+        android:layout_width="86dp"
+        android:layout_height="85dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067"
+        app:layout_constraintVertical_bias="0.064"
         app:srcCompat="@drawable/ic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
