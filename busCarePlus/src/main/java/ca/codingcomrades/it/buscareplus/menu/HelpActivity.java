@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
@@ -48,26 +49,20 @@ public class HelpActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         Button download = findViewById(R.id.download);
-        download.setOnClickListener(view -> {
-        DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-            Uri uri = Uri.parse("https://drive.google.com/file/d/1D_5kAUidtlpWOb1JWsS7u-MsFOxEmYxe/view?usp=sharing");
+        download.setOnClickListener(view  -> onDownload());
 
-            DownloadManager.Request request = new DownloadManager.Request(uri);
-            request.setTitle("User-Manual");
-            request.setDescription("Downloading...");
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "file.extension");
-            manager.enqueue(request);
-//                manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-//                Uri uri = Uri.parse("https://docs.google.com/document/d/1tMgGMfWN4ESFrmGqYeVpRESVaFau5R3gO3MZyy_2e70/edit?usp=sharing");
-//                DownloadManager.Request request = new DownloadManager.Request(uri);
-//                request.setTitle("User-Manual");
-//                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
-//                long reference = manager.enqueue(request);
-        });
+
         FloatingActionButton fab = findViewById(R.id.call_fab);
         fab.setOnClickListener(view -> insertDummyContactWrapper());
 
+    }
+
+    public void onDownload() {
+        String website = "https://firebasestorage.googleapis.com/v0/b/buscareplus-db77c.appspot.com/o/usermanual-mobile-converted.pdf?alt=media&token=9b5a57df-e023-4224-a5ad-d97c3f8a3c72";
+
+        Intent intent = null;
+        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(website));
+        startActivity(intent);
     }
 
     @Override
@@ -77,6 +72,7 @@ public class HelpActivity extends AppCompatActivity {
         applySettings();
 
     }
+
 
     public void applySettings(){
         SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);

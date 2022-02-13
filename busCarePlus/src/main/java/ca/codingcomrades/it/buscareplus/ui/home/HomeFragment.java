@@ -87,27 +87,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
 
 public void updateUI(){
-//       String busn="36";
-//        String v= rootPath.trim()+"/Data/"+busn.trim();
-//
-//    database.child(v.trim()).addValueEventListener(new ValueEventListener() {
-//        @Override
-//        public void onDataChange(DataSnapshot task) {
-////            String value = task.getValue().toString();
-////            Log.d("Maps", "Value is: " + value);
-//            Log.d("Maps", "onDataChange: Lats "+ task.child("Location/Lat").getValue());
-//            temperatureReading = Double.parseDouble(String.valueOf(task.child("Maintenance/Temperature").getValue()));
-//            carbonReading = Integer.parseInt(String.valueOf(task.child("Maintenance/Co2").getValue()));
-//            passengers = Integer.parseInt(String.valueOf(task.child("Safety/Passengers").getValue()));
-//            speed = Double.parseDouble(String.valueOf(task.child("Safety/Speed").getValue()));
-//            changeColor(speed,passengers);
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull DatabaseError error) {
-//
-//        }
-//    });
+
     handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 
         @Override
@@ -184,25 +164,7 @@ return view;
     }
 
     public void buses() {
-//        database.child(rootPath+"/Data").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot task) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-////                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
-//                if(task.child("/").getChildrenCount() == busSpinner.getCount()){
-//                    Log.d("busCount",String.valueOf(busSpinner.getCount()));
-//                }
-//                else {
-//                    busUpdated(task);
-//                }
-//                 }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
