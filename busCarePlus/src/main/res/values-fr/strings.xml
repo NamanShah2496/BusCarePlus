@@ -140,6 +140,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="empty_review">Veuillez remplir tous les champs obligatoires.</string>
     <string name="save_btn_label">Enregistrer</string>
     <string name="my_acc_info_saved_msg">Informations enregistrées !!</string>
-
+    <string name="select_bus_no">Sélectionnez le numéro de bus:</string>
+    <string name="last_update">Dernière mise à jour à</string>
 
 </resources>

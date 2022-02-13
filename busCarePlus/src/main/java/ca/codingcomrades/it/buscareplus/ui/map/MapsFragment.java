@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -49,11 +51,13 @@ public class MapsFragment extends Fragment {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String uid,rootPath;
+    SharedPreferences prefs;
     Map<String, Object> arr;
     Handler handler = new Handler();
     private GoogleMap map;
     DatabaseReference database;
     MarkerOptions markerOptions;
+    int busNum;
     //    SupportMapFragment mapFragment;
     double lat, lng;
 //    double lat=43.7446603;
@@ -102,7 +106,9 @@ public class MapsFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         database = FirebaseDatabase.getInstance().getReference();
-        retriveUserData();
+        prefs = getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+
+        fetchLocalData();
 //        getData();
         return inflater.inflate(R.layout.fragment_maps, container, false);
     }
@@ -118,18 +124,17 @@ public class MapsFragment extends Fragment {
 //            getData();
             mapFragment.getMapAsync(callback);
         }
-//      maps();
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.child(rootPath).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 //                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
                 map.clear();
-                Log.d("Maps", "onDataChange: "+rootPath);
-                lat = Double.parseDouble(String.valueOf(dataSnapshot.child("Canada/TTC/Data/36/Location/Lat").getValue()));
-                lng = Double.parseDouble(String.valueOf(dataSnapshot.child("Canada/TTC/Data/36/Location/Long").getValue()));
+//                Log.d("Maps", "onDataChange: "+rootPath);
+                lat = Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Location/Lat").getValue()));
+                lng =  Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Location/Long").getValue()));
                 LatLng updated = new LatLng(lat, lng);
 
 
@@ -145,55 +150,12 @@ public class MapsFragment extends Fragment {
             }
         });
     }
-    public void maps(){
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                database.child(rootPath+"/Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (!task.isSuccessful()) {
-                            Log.e("firebase", "Error getting data", task.getException());
-                        }
-
-                        map.clear();
-                        Log.d("Maps", "onDataChange: "+rootPath);
-                        lat = Double.parseDouble(String.valueOf(task.getResult().child("/Location/Lat").getValue()));
-                        lng = Double.parseDouble(String.valueOf(task.getResult().child("/Location/Long").getValue()));
-                        LatLng updated = new LatLng(lat, lng);
-
-
-                        map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
-
-                        map.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
-                        map.moveCamera(CameraUpdateFactory.newLatLng(updated));
-
-                    }
-                });
-                maps();
-            }
-        }, 1000);
-    }
-    public void retriveUserData(){
-        fStore = FirebaseFirestore.getInstance();
-        fAuth = FirebaseAuth.getInstance();
-
-        uid = fAuth.getUid();
-        DocumentReference df = fStore.collection("Users").document(uid);
-        df.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                try {
-                    arr = value.getData();
-                    rootPath = arr.get("accessPath").toString();
-                    Log.d("Firebase", "onEvent: access: " +rootPath);
-                }catch (Exception e){
-                    Log.d("TAG", "My account Exception: ");
-                }
-            }
-        });
+    public void fetchLocalData(){
+        busNum = prefs.getInt("busNo",927);
+        rootPath = prefs.getString("accessPath","Canada/TTC");
 
     }
+
 
     public double retLat() {
 //        getData();
@@ -205,34 +167,9 @@ public class MapsFragment extends Fragment {
         return lng;
     }
 
-    public void getData() {
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-////                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
-//                lat = Double.parseDouble(String.valueOf(dataSnapshot.child("TestData/Lat").getValue()));
-//                lng = Double.parseDouble(String.valueOf(dataSnapshot.child("TestData/Long").getValue()));
-//                LatLng updated = new LatLng(lat,lng);
-//
-//
-////                map.addMarker(new MarkerOptions().position(updated).title("Marker of Live location"));
-//
-//                map.moveCamera(CameraUpdateFactory.zoomTo(5.0f));
-//                map.moveCamera(CameraUpdateFactory.newLatLng(updated));
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
+
 
     }
 
 
 
-}

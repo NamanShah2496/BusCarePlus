@@ -12,14 +12,14 @@
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/green"
+        android:contentDescription="@string/content_description_of_tempbtn"
         android:src="@drawable/ic_launcher_thermo_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735"
-        android:contentDescription="@string/content_description_of_tempbtn" />
+        app:layout_constraintVertical_bias="0.735" />
 
     <ImageButton
         android:id="@+id/carbonBtn"
@@ -32,27 +32,26 @@
         app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735"
-        android:contentDescription="@string/content_description_of_carbonbtn" />
+        app:layout_constraintVertical_bias="0.735" />
 
     <ImageButton
         android:id="@+id/speedBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
-        android:src="@drawable/ic_launcher_speed_foreground"
         android:background="@color/green"
+        android:contentDescription="@string/content_description_of_speedbtn"
+        android:src="@drawable/ic_launcher_speed_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457"
-        android:contentDescription="@string/content_description_of_speedbtn" />
+        app:layout_constraintVertical_bias="0.457" />
 
     <Spinner
         android:id="@+id/busoption"
         android:layout_width="125dp"
-        android:layout_height="36dp"
+        android:layout_height="48dp"
         android:spinnerMode="dropdown"
         android:textAlignment="center"
 
@@ -96,7 +95,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Bus No:"
+        android:text="@string/select_bus_no"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,17 +106,22 @@
         app:layout_constraintVertical_bias="0.104" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="361dp"
-        android:layout_height="46dp"
-        android:text="Last Updated at: 5th Feburary, 2022"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        android:id="@+id/epoch"
+        android:layout_width="173dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="636dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="602dp"
+        android:text="@string/last_update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
