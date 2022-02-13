@@ -6,7 +6,7 @@
 
 
 
-package ca.codingcomrades.it.buscareplus;
+package ca.codingcomrades.it.buscareplus.menu;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +22,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.R;
 
 public class AboutusActivity extends AppCompatActivity implements View.OnClickListener {
 

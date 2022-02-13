@@ -12,7 +12,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -21,8 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -31,17 +28,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-
-import java.net.NoRouteToHostException;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
+import ca.codingcomrades.it.buscareplus.menu.AboutusActivity;
+import ca.codingcomrades.it.buscareplus.menu.FeedbackActivity;
+import ca.codingcomrades.it.buscareplus.menu.HelpActivity;
+import ca.codingcomrades.it.buscareplus.menu.MyAccount;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     Snackbar snackbar;
     LocalData data = new LocalData();
     Handler handler = new Handler();
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance)
+                R.id.nav_home, R.id.nav_settings, R.id.nav_safety,R.id.nav_maintenance,R.id.nav_map)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -73,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         snackbar = Snackbar.make(binding.getRoot(), "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
         checkInternet();
+
+//        Fragment fragment = new MapsFragment();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.nav_map,fragment)
+//                .commit();
         Log.d("MainAct", "onCreate: "+ isConnected);
     }
 

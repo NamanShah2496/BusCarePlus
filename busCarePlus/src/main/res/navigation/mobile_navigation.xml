@@ -27,4 +27,9 @@
         android:name="ca.codingcomrades.it.buscareplus.ui.maintenance.MaintenanceFragment"
         android:label="@string/menu_maintenance"
         tools:layout="@layout/fragment_maintenance" />
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="ca.codingcomrades.it.buscareplus.ui.map.MapsFragment"
+        android:label="Maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

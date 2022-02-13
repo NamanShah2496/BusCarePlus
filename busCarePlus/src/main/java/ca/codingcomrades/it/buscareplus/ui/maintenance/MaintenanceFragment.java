@@ -44,6 +44,7 @@ public class MaintenanceFragment extends Fragment {
     private View view;
     private TextView temperatureTextView,carbonTextView;
     double temp,carbon;
+    String rootPath;
     LottieAnimationView thermometer;
     DatabaseReference database;
     SharedPreferences prefs;
@@ -71,13 +72,14 @@ public class MaintenanceFragment extends Fragment {
         temperatureTextView = view.findViewById(R.id.MaintainanceThermoValueTV);
         carbonTextView = view.findViewById(R.id.MaintainanceCarbonValueTV);
         database = FirebaseDatabase.getInstance().getReference();
+        fetchLocalData();
         getData();
         return view;
 
     }
     public void getData() {
         busNum = prefs.getInt("busNo",927);
-        handler.postDelayed(() -> database.child("Data/" + busNum + "/Maintenance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        handler.postDelayed(() -> database.child(rootPath+"/Data/" + busNum + "/Maintenance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -91,6 +93,11 @@ public class MaintenanceFragment extends Fragment {
                 getData();
             }
         }),1000);
+    }
+    public void fetchLocalData(){
+        rootPath = prefs.getString("accessPath","Canada/TTC");
+        Log.d("accessPath", "fetchLocalData: " + rootPath);
+
     }
     public void changeView(double temp,double carbon){
         temperatureTextView.setText(String.valueOf(temp));

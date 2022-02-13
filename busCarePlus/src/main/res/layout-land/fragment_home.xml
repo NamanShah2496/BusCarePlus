@@ -12,53 +12,56 @@
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/green"
+        android:contentDescription="@string/content_description_of_tempbtn"
         android:src="@drawable/ic_launcher_thermo_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677"
-        android:contentDescription="@string/content_description_of_tempbtn" />
+        app:layout_constraintVertical_bias="0.456" />
 
     <ImageButton
         android:id="@+id/carbonBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/green"
+        android:contentDescription="@string/content_description_of_carbonbtn"
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.616"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677"
-        android:contentDescription="@string/content_description_of_carbonbtn"/>
+        app:layout_constraintVertical_bias="0.456" />
 
     <ImageButton
         android:id="@+id/speedBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/green"
+        android:contentDescription="@string/content_description_of_speedbtn"
         android:src="@drawable/ic_launcher_speed_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677"
-        android:contentDescription="@string/content_description_of_speedbtn"/>
+        app:layout_constraintVertical_bias="0.456" />
 
     <Spinner
         android:id="@+id/busoption"
         android:layout_width="125dp"
-        android:layout_height="36dp"
-        android:entries="@array/bus"
+        android:layout_height="48dp"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintVertical_bias="0.033"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/busno"
@@ -71,22 +74,60 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
+        app:layout_constraintVertical_bias="0.181" />
 
     <ImageButton
         android:id="@+id/passengersBtn"
         android:layout_width="128dp"
         android:layout_height="126dp"
         android:background="@color/green"
+        android:contentDescription="@string/content_description_of_passengerbtn"
         android:src="@drawable/ic_launcher_people_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677"
-        android:contentDescription="@string/content_description_of_passengerbtn"/>
+        app:layout_constraintVertical_bias="0.456" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_bus_no"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <TextView
+        android:id="@+id/epoch"
+        android:layout_width="173dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="392dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:text="@string/last_update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/epoch"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.795" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

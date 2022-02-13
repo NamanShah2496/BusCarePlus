@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -25,19 +26,39 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.auth.User;
 
 //import ca.codingcomrades.it.buscareplus.HelpActivity;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimeZone;
+
 import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
@@ -48,6 +69,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     SharedPreferences prefs;
     Handler handler = new Handler();
     DatabaseReference database;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String uid,rootPath;
+    Map<String, Object> arr;
     LocalData localData;
     private HomeViewModel homeViewModel;
     private View view;
@@ -55,11 +80,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed,temperatureReading;
     double speed_mph;
     int passengers,carbonReading;
+    String epoch="";
     Spinner busSpinner;
     Button busbutton;
-    TextView textView;
+    TextView textView,epoch_display;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
+    List<Integer> names;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,21 +98,42 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         homeViewModel.getText();
         localData = new LocalData();
 
-
+        names = new ArrayList<>();
+        retriveUserData();
     }
 
 public void updateUI(){
-    handler.postDelayed(() -> database.child("Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+    handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
+            Log.d("inside", epoch);
+            String result;
+            if (epoch == "")
+                result = "0";
+            else{
+                result = String.format("%.0f", Double.parseDouble(epoch));
+        }
+          long d=Long.parseLong(result);
+       Date date = new Date((d* 1000L));
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formatted = format.format(date);
+
+ epoch_display.setText(formatted);
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
             }
             else {
+              //  Log.d("Firebase", "onComplete: bus: " +task.getResult().toString() );
+                Log.d("Maps", "onDataChange: Lats "+ task.getResult().child("Location/Lat").getValue());
                   temperatureReading = Double.parseDouble(String.valueOf(task.getResult().child("Maintenance/Temperature").getValue()));
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+
+                  epoch=(String.valueOf(task.getResult().child("TimeStamp").getValue()));
+                  Log.d("test",epoch);
                 changeColor(speed,passengers);
                 //TODO no need to pass para, remove and check in test branch
                  }
@@ -131,43 +179,106 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
+        buses();
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
+       epoch_display=view.findViewById(R.id.epoch);
         speedBtn = view.findViewById(R.id.speedBtn);
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
      fetchLocalData();
-     if(prefs.getInt("busNo",927) == 927)
-         busSpinner.setSelection(0);
-     else if(prefs.getInt("busNo",927) == 36)
-         busSpinner.setSelection(1);
-    else
-        busSpinner.setSelection(2);
+
+
      busSpinner.setOnItemSelectedListener(this);
 
      updateUI();
 return view;
     }
 
-    public void applySettings(){
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
-        String port = prefs.getString("port","false");
-        String ds = prefs.getString("ds","false");
-        if(port.equalsIgnoreCase("true")){
+    public void buses() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                database.child(rootPath+"/Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        }
 
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }else {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+
+
+                            if(task.getResult().child("/").getChildrenCount() == busSpinner.getCount()){
+                                Log.d("busCount",String.valueOf(busSpinner.getCount()));
+                            }
+                            else {
+                                busUpdated(task);
+                            }
+
+                    }
+                });
+                buses();
+            }
+        }, 1000);
+    }
+    public void busUpdated(Task <DataSnapshot> task){
+        names.clear();
+        for (DataSnapshot task1 : task.getResult().getChildren()) {
+            Log.d("Firebase", "busUpdated: task: "+task1);
+            busNum = Integer.parseInt(task1.getKey());
+            names.add(busNum);
+
         }
-        if(ds.equalsIgnoreCase("true")){
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+        busSpinner.setAdapter(adapter);
+    }
 
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    public void downloads(){
+        database.child("Documents/UserManual").addValueEventListener(new ValueEventListener() {
 
-        }else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String dwnLink = dataSnapshot.getValue().toString();
+                Log.d("downlaod", "onDataChange: " +dwnLink);
+                editor.putString("userManualDwnLink",dwnLink);
+                editor.apply();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void retriveUserData() {
+        downloads();
+
+        fStore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+
+        uid = fAuth.getUid();
+        DocumentReference df = fStore.collection("Users").document(uid);
+        df.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                try {
+                    arr = value.getData();
+                    rootPath = arr.get("accessPath").toString();
+                    editor.putString("accessPath",rootPath);
+                    editor.apply();
+                    Log.d("Firebase", "onEvent: access: " + rootPath);
+                } catch (Exception e) {
+                    Log.d("TAG", "My account Exception: ");
+                }
+            }
+        });
+
     }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
@@ -179,8 +290,8 @@ return view;
 
     public void fetchLocalData(){
 
-        passengerLimit = prefs.getString("capacityval","0");
-        speedLimit = prefs.getString("speedval","0");
+        passengerLimit = prefs.getString("capacityval","20");
+        speedLimit = prefs.getString("speedval","40");
         isMetric = prefs.getString("metricB","false");
     }
 

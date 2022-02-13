@@ -43,7 +43,7 @@ Jaskirat Singh , N01403975 , Section RNB
 
     <string name="forgot_password_text"><b>  <u>Forgot Password?</u></b>  </string>
     <string name="register_text"><b>  <u>Register Now</u></b>  </string>
-    <string name="it_support">Pour ça. Assistance, veuillez nous contacter en cliquant sur le bouton ci-dessous</string>
+    <string name="it_support">Pour accéder au manuel utilisation de application, veuillez cliquer sur le bouton Télécharger. Pour ça. Assistance, veuillez nous contacter en cliquant sur le bouton d icône d appel ci-dessous</string>
     <string name="help">Aider</string>
     <string name="question_1">Q. Qu\'est-ce que BusCare ?</string>
     <string name="answer_1">R. BusCare est une application conçue pour assurer la sécurité des passagers et fournir des informations à jour sur l\'entretien du bus.</string>
@@ -140,6 +140,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="empty_review">Veuillez remplir tous les champs obligatoires.</string>
     <string name="save_btn_label">Enregistrer</string>
     <string name="my_acc_info_saved_msg">Informations enregistrées !!</string>
-
+    <string name="select_bus_no">Sélectionnez le numéro de bus:</string>
+    <string name="last_update">Dernière mise à jour à</string>
 
 </resources>

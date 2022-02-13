@@ -5,7 +5,7 @@
 
 
 
-package ca.codingcomrades.it.buscareplus;
+package ca.codingcomrades.it.buscareplus.menu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,22 +41,26 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.R;
+
 public class MyAccount extends AppCompatActivity {
     EditText firstName,lastName,phone,age,address,city,province,country;
     Button save;
     FirebaseAuth fAuth;
-    String cityName,uid;
+    FirebaseFirestore fStore;
+    String uid;
     Integer count;
     LocalData data = new LocalData();
     ProgressBar progressBar;
     Map<String, Object> arr;
-    FirebaseFirestore fStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("TAG", "My Account onCreate: ");
         setContentView(R.layout.activity_my_account);
-        LoginActivity log =new LoginActivity();
+        // LoginActivity log =new LoginActivity();
         bindFields();
         retriveUserData();
         save.setOnClickListener(v -> saveUserData());

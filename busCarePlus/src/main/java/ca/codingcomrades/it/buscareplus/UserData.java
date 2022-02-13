@@ -59,19 +59,19 @@ public class UserData extends AppCompatActivity {
         }
         return false;
     }
-    public boolean isInternetAvailable(View view) {
-        Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
-
-        try {
-            InetAddress ipAddr = InetAddress.getByName("google.com");
-            snackbar.dismiss();
-            return !ipAddr.equals("");
-
-        } catch (Exception e) {
-            snackbar.show();
-            return false;
-        }
-    }
+//    public boolean isInternetAvailable(View view) {
+//        Snackbar snackbar = Snackbar.make(view, "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
+//
+//        try {
+//            InetAddress ipAddr = InetAddress.getByName("google.com");
+//            snackbar.dismiss();
+//            return !ipAddr.equals("");
+//
+//        } catch (Exception e) {
+//            snackbar.show();
+//            return false;
+//        }
+//    }
     static public boolean validateName(String Email, String Password){
 //        toastPrint(getString(R.string.validating_msg));
         String userEmail = Email;
@@ -92,41 +92,41 @@ public class UserData extends AppCompatActivity {
         return validate;
     }
 
-    public void updateUserData(){
-        DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
-        Map<String,Object> userInfo = new HashMap<>();
-        userInfo.put("FirstName","Test");
-        userInfo.put("LastName","User");
-        userInfo.put("Phone", "94459945648");
-        userInfo.put("Age", "23");
-        userInfo.put("Address", "123 Jane St");
-        userInfo.put("City", "Toronto");
-        userInfo.put("Province", "Ontario");
-        userInfo.put("Country", "Canada");
-        userInfo.put("isUser","1");
-       // toastPrint(userInfo.get("Country").toString());
-        df.set(userInfo);
-
-
-        Log.d("TAG",df.get().toString() );
-    }
-    public class checkInternet implements Runnable{
-
-        Context context;
-        View view;
-        checkInternet(Context context,View view){
-            this.context = context;
-            this.view = view;
-        }
-        @Override
-        public void run() {
-            //usr.isInternetAvailable(context,view);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            run();
-        }
-    }
+//    public void updateUserData(){
+//        DocumentReference df = fStore.collection("Users").document("mSZ8gSOQN2MoE8I1ibiU0F2UF1A3");
+//        Map<String,Object> userInfo = new HashMap<>();
+//        userInfo.put("FirstName","Test");
+//        userInfo.put("LastName","User");
+//        userInfo.put("Phone", "94459945648");
+//        userInfo.put("Age", "23");
+//        userInfo.put("Address", "123 Jane St");
+//        userInfo.put("City", "Toronto");
+//        userInfo.put("Province", "Ontario");
+//        userInfo.put("Country", "Canada");
+//        userInfo.put("isUser","1");
+//       // toastPrint(userInfo.get("Country").toString());
+//        df.set(userInfo);
+//
+//
+//        Log.d("TAG",df.get().toString() );
+//    }
+//    public class checkInternet implements Runnable{
+//
+//        Context context;
+//        View view;
+//        checkInternet(Context context,View view){
+//            this.context = context;
+//            this.view = view;
+//        }
+//        @Override
+//        public void run() {
+//            //usr.isInternetAvailable(context,view);
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            run();
+//        }
+//    }
 }
