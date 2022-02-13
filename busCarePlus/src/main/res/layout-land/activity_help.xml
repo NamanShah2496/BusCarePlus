@@ -8,18 +8,18 @@
     tools:context=".menu.HelpActivity">
 
     <Button
-        android:id="@+id/download2"
-        android:layout_width="126dp"
-        android:layout_height="51dp"
+        android:id="@+id/download"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
         android:backgroundTint="@color/naroon"
-        android:text="Download"
+        android:text="@string/user_manual"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/it_support"
-        app:layout_constraintVertical_bias="0.594" />
+        app:layout_constraintVertical_bias="0.822" />
 
     <TextView
         android:id="@+id/it_support"
@@ -30,10 +30,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintVertical_bias="0.438" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/call_fab"
@@ -45,10 +45,10 @@
         android:src="@drawable/call_fab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.994" />
+        app:layout_constraintVertical_bias="0.963" />
 
     <TextView
         android:id="@+id/question_1"
