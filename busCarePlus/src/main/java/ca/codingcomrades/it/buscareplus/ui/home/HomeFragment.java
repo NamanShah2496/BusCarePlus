@@ -103,23 +103,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
 
 public void updateUI(){
-//    database.child(rootPath+"/Data/"+busNum).addValueEventListener(new ValueEventListener() {
-//        @Override
-//        public void onDataChange(DataSnapshot task) {
-//
-//            Log.d("Maps", "onDataChange: Lats "+ task.child("Location/Lat").getValue());
-//            temperatureReading = Double.parseDouble(String.valueOf(task.child("Maintenance/Temperature").getValue()));
-//            carbonReading = Integer.parseInt(String.valueOf(task.child("Maintenance/Co2").getValue()));
-//            passengers = Integer.parseInt(String.valueOf(task.child("Safety/Passengers").getValue()));
-//            speed = Double.parseDouble(String.valueOf(task.child("Safety/Speed").getValue()));
-//            changeColor(speed,passengers);
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull DatabaseError error) {
-//
-//        }
-//    });
+
     handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 
         @Override
@@ -136,8 +120,6 @@ public void updateUI(){
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formatted = format.format(date);
 
-//         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//          String val =sdf.format(new Date(d));
  epoch_display.setText(formatted);
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
@@ -149,6 +131,7 @@ public void updateUI(){
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+
                   epoch=(String.valueOf(task.getResult().child("TimeStamp").getValue()));
                   Log.d("test",epoch);
                 changeColor(speed,passengers);
@@ -253,7 +236,29 @@ return view;
         busSpinner.setAdapter(adapter);
     }
 
+    public void downloads(){
+        database.child("Documents/UserManual").addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String dwnLink = dataSnapshot.getValue().toString();
+                Log.d("downlaod", "onDataChange: " +dwnLink);
+                editor.putString("userManualDwnLink",dwnLink);
+                editor.apply();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void retriveUserData() {
+        downloads();
+
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 

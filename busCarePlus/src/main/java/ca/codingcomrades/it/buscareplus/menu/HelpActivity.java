@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -34,6 +35,7 @@ import ca.codingcomrades.it.buscareplus.LocalData;
 import ca.codingcomrades.it.buscareplus.R;
 
 public class HelpActivity extends AppCompatActivity {
+    SharedPreferences prefs;
     LocalData data = new LocalData();
 
 //Don't Repeat yourself Principle
@@ -48,6 +50,7 @@ public class HelpActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        prefs = this.getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
         Button download = findViewById(R.id.download);
         download.setOnClickListener(view  -> onDownload());
 
@@ -58,8 +61,9 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     public void onDownload() {
-        String website = "https://firebasestorage.googleapis.com/v0/b/buscareplus-db77c.appspot.com/o/usermanual-mobile-converted.pdf?alt=media&token=9b5a57df-e023-4224-a5ad-d97c3f8a3c72";
 
+        String website = prefs.getString("userManualDwnLink","https://developer.android.com/training/data-storage/shared/documents-files");
+        Log.d("download", "onDownload: "+ website);
         Intent intent = null;
         intent = new Intent(Intent.ACTION_VIEW, Uri.parse(website));
         startActivity(intent);
