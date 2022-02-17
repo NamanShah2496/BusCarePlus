@@ -50,7 +50,7 @@ public class MyAccount extends AppCompatActivity {
     Button save;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    String uid;
+    String uid,path;
     Integer count;
     LocalData data = new LocalData();
     ProgressBar progressBar;
@@ -97,6 +97,7 @@ public class MyAccount extends AppCompatActivity {
 
     public void applySettings(){
         SharedPreferences prefs = getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
+        path = prefs.getString("accessPath","");
         String port = data.getPreference(this,"port",1);
         String ds = data.getPreference(this,"ds",1);
         if (port.equalsIgnoreCase("true")) {
@@ -169,6 +170,7 @@ public class MyAccount extends AppCompatActivity {
         userInfo.put(getString(R.string.firebaseKeyProvince), province.getText().toString());
         userInfo.put(getString(R.string.firebaseKeyCountry), country.getText().toString());
         userInfo.put("isUser","1");
+        userInfo.put(getString(R.string.path),path);
         df.set(userInfo);
         toastPrint(getString(R.string.my_acc_info_saved_msg));
 

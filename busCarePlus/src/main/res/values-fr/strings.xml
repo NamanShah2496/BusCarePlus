@@ -143,5 +143,6 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="select_bus_no">Sélectionnez le numéro de bus:</string>
     <string name="last_update">Dernière mise à jour à</string>
     <string name="user_manual">Manuel de l Utilisateur</string>
+    <string name="path">accessPath</string>
 
 </resources>
