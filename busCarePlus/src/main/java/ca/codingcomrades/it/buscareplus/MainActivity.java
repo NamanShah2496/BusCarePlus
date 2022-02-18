@@ -14,12 +14,15 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -32,6 +35,9 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 import ca.codingcomrades.it.buscareplus.databinding.ActivityMainBinding;
 import ca.codingcomrades.it.buscareplus.menu.AboutusActivity;
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity{
     public boolean isBackground;
     public Intent myIntent;
     boolean flag= true;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +80,7 @@ public class MainActivity extends AppCompatActivity{
         snackbar = Snackbar.make(binding.getRoot(), "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
         checkInternet();
 
+
 //        Fragment fragment = new MapsFragment();
 //        getSupportFragmentManager()
 //                .beginTransaction()
@@ -80,6 +88,7 @@ public class MainActivity extends AppCompatActivity{
 //                .commit();
         Log.d("MainAct", "onCreate: "+ isConnected);
     }
+
 
 
     //Behavioral Patterns

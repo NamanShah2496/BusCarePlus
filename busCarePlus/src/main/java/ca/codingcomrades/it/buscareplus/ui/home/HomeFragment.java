@@ -13,6 +13,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,10 +58,12 @@ import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
 import ca.codingcomrades.it.buscareplus.LocalData;
+import ca.codingcomrades.it.buscareplus.MainActivity;
 import ca.codingcomrades.it.buscareplus.Notification;
 import ca.codingcomrades.it.buscareplus.R;
 //import ca.codingcomrades.it.buscareplus.databinding.FragmentHomeBinding;
@@ -87,6 +91,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
     List<Integer> names;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,26 +105,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
         names = new ArrayList<>();
         retriveUserData();
+        speech();
     }
 
 public void updateUI(){
-//    database.child(rootPath+"/Data/"+busNum).addValueEventListener(new ValueEventListener() {
-//        @Override
-//        public void onDataChange(DataSnapshot task) {
-//
-//            Log.d("Maps", "onDataChange: Lats "+ task.child("Location/Lat").getValue());
-//            temperatureReading = Double.parseDouble(String.valueOf(task.child("Maintenance/Temperature").getValue()));
-//            carbonReading = Integer.parseInt(String.valueOf(task.child("Maintenance/Co2").getValue()));
-//            passengers = Integer.parseInt(String.valueOf(task.child("Safety/Passengers").getValue()));
-//            speed = Double.parseDouble(String.valueOf(task.child("Safety/Speed").getValue()));
-//            changeColor(speed,passengers);
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull DatabaseError error) {
-//
-//        }
-//    });
+
     handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 
         @Override
@@ -136,8 +126,6 @@ public void updateUI(){
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formatted = format.format(date);
 
-//         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//          String val =sdf.format(new Date(d));
  epoch_display.setText(formatted);
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
@@ -149,6 +137,7 @@ public void updateUI(){
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+
                   epoch=(String.valueOf(task.getResult().child("TimeStamp").getValue()));
                   Log.d("test",epoch);
                 changeColor(speed,passengers);
@@ -210,10 +199,50 @@ public void changeColor(double speed,int passengers){
 
      busSpinner.setOnItemSelectedListener(this);
 
-     updateUI();
+
+
 return view;
     }
 
+    public void speech(){
+        Intent intent
+                = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
+
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
+        }
+        catch (Exception e) {
+            Toast
+                    .makeText(getContext(), " " + e.getMessage(),
+                            Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,
+                                    @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
+            if (resultCode == getActivity().RESULT_OK && data != null) {
+
+                ArrayList<String> result = data.getStringArrayListExtra(
+                        RecognizerIntent.EXTRA_RESULTS);
+                busNum = Integer.parseInt(result.get(0));
+                Log.d("Speech", "onActivityResult: "+result);
+                Log.d("Speech", "onActivityResult: "+busNum);
+                updateUI();
+                textView.setText(String.valueOf(busNum));
+//                tv_Speech_to_text.setText(
+//                        Objects.requireNonNull(result).get(0));
+            }
+        }
+    }
     public void buses() {
         handler.postDelayed(new Runnable() {
             @Override
@@ -253,7 +282,30 @@ return view;
         busSpinner.setAdapter(adapter);
     }
 
+
+    public void downloads(){
+        database.child("Documents/UserManual").addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String dwnLink = dataSnapshot.getValue().toString();
+                Log.d("downlaod", "onDataChange: " +dwnLink);
+                editor.putString("userManualDwnLink",dwnLink);
+                editor.apply();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void retriveUserData() {
+        downloads();
+
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
@@ -307,6 +359,7 @@ return view;
         Log.d("TAG", "onNothingSelected: ");
     }
     public void updateText() {
+        speech();
         textView.setText(String.valueOf(busNum));
     }
 
