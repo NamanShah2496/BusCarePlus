@@ -27,6 +27,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -57,6 +58,7 @@ public class MapsFragment extends Fragment {
     private GoogleMap map;
     DatabaseReference database;
     MarkerOptions markerOptions;
+    CameraPosition cam;
     int busNum;
     //    SupportMapFragment mapFragment;
     double lat, lng;
@@ -131,6 +133,8 @@ public class MapsFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 //                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
+                cam = map.getCameraPosition();
+
                 map.clear();
 //                Log.d("Maps", "onDataChange: "+rootPath);
                 lat = Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Location/Lat").getValue()));
@@ -140,7 +144,7 @@ public class MapsFragment extends Fragment {
 
                 map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
 
-                map.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
+                map.moveCamera(CameraUpdateFactory.zoomTo(cam.zoom));
                 map.moveCamera(CameraUpdateFactory.newLatLng(updated));
             }
 

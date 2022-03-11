@@ -86,7 +86,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     TextView textView,epoch_display;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
-    List<Integer> names;
+    List<Integer> names,dynamicList;
+    int pos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,29 +98,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
         homeViewModel.getText();
         localData = new LocalData();
-
+        dynamicList = new ArrayList<>();
         names = new ArrayList<>();
         retriveUserData();
     }
 
 public void updateUI(){
-//    database.child(rootPath+"/Data/"+busNum).addValueEventListener(new ValueEventListener() {
-//        @Override
-//        public void onDataChange(DataSnapshot task) {
-//
-//            Log.d("Maps", "onDataChange: Lats "+ task.child("Location/Lat").getValue());
-//            temperatureReading = Double.parseDouble(String.valueOf(task.child("Maintenance/Temperature").getValue()));
-//            carbonReading = Integer.parseInt(String.valueOf(task.child("Maintenance/Co2").getValue()));
-//            passengers = Integer.parseInt(String.valueOf(task.child("Safety/Passengers").getValue()));
-//            speed = Double.parseDouble(String.valueOf(task.child("Safety/Speed").getValue()));
-//            changeColor(speed,passengers);
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull DatabaseError error) {
-//
-//        }
-//    });
+
     handler.postDelayed(() -> database.child(rootPath+"/Data/"+busNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 
         @Override
@@ -136,8 +121,6 @@ public void updateUI(){
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formatted = format.format(date);
 
-//         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//          String val =sdf.format(new Date(d));
  epoch_display.setText(formatted);
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
@@ -196,7 +179,7 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        buses();
+
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
@@ -205,7 +188,8 @@ public void changeColor(double speed,int passengers){
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-     fetchLocalData();
+        fetchLocalData();
+        buses();
 
 
      busSpinner.setOnItemSelectedListener(this);
@@ -247,12 +231,30 @@ return view;
             busNum = Integer.parseInt(task1.getKey());
             names.add(busNum);
 
+
         }
+        createBusList(names);
+        names = dynamicList;
+
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+
         busSpinner.setAdapter(adapter);
     }
 
+    public void createBusList(List<Integer> names){
+//        dynamicList.clear();
+        int temp = names.get(pos);
+        Log.d("dynamic", "createBusList: " +temp);
+
+        dynamicList.add(temp);
+        names.remove(pos);
+        for(int i=0;i<names.size();i++){
+            dynamicList.add(names.get(i));
+        }
+        Log.d("dynamic", "createBusList: "+ dynamicList);
+
+    }
     public void retriveUserData() {
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -277,6 +279,7 @@ return view;
     }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
+
         editor.putInt("busNo",busNum);
         editor.apply();
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
@@ -284,7 +287,7 @@ return view;
     }
 
     public void fetchLocalData(){
-
+        pos = prefs.getInt("pos",0);
         passengerLimit = prefs.getString("capacityval","20");
         speedLimit = prefs.getString("speedval","40");
         isMetric = prefs.getString("metricB","false");
@@ -298,6 +301,10 @@ return view;
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("Spinner", "onItemSelected:position "+ position);
+
+        editor.putInt("pos",position);
+        editor.apply();
         busSelected();
         updateText();
     }
