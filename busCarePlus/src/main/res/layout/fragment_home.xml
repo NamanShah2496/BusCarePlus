@@ -64,8 +64,9 @@
 
     <TextView
         android:id="@+id/busno"
-        android:layout_width="143dp"
-        android:layout_height="80dp"
+        android:layout_width="93dp"
+        android:layout_height="55dp"
+        android:background="@color/menu_blue"
         android:text="@string/bus_927"
         android:textAlignment="center"
         android:textColor="@color/yellow"
@@ -109,16 +110,16 @@
         android:id="@+id/epoch"
         android:layout_width="173dp"
         android:layout_height="49dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="636dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="600dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="602dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="600dp"
         android:text="@string/last_update"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
