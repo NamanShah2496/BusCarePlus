@@ -23,7 +23,6 @@
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/naroon</item>
-
         <item name="android:background">@color/black</item>
         <item name="cardBackgroundColor">@color/black</item>
         <item name="android:textColor">@color/white</item>

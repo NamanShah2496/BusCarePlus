@@ -102,7 +102,8 @@ public class MaintenanceFragment extends Fragment {
     public void changeView(double temp,double carbon){
         temperatureTextView.setText(String.valueOf(temp));
         carbonTextView.setText(String.valueOf(carbon));
-
+        temperatureTextView.append(" °C");
+        carbonTextView.append(" ppm");
         thermometer.setMinAndMaxFrame(60,60);
         if(temp>24) {
             temperatureTextView.setTextColor(Color.RED);

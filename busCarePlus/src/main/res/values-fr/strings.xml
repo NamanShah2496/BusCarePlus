@@ -135,7 +135,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="max_people">Maximum de personnes:</string>
     <string name="speed_of_bus">Vitesse du bus</string>
     <string name="number_of_people">Nombre de personnes:</string>
-    <string name="temperature_in_celsius">Température (en Celsius):</string>
+    <string name="temperature_in_celsius">Température:</string>
     <string name="carbondioxide_levels">Niveaux de dioxyde de carbone:</string>
     <string name="empty_review">Veuillez remplir tous les champs obligatoires.</string>
     <string name="save_btn_label">Enregistrer</string>
