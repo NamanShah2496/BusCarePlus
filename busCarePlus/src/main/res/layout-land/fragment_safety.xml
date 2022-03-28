@@ -58,11 +58,11 @@
 
     <TextView
         android:id="@+id/safetySpeedReadings"
-        android:layout_width="82dp"
-        android:layout_height="41dp"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="22dp"
         android:textStyle="italic"
+        android:background="@color/menu_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.234"
@@ -87,17 +87,17 @@
 
     <TextView
         android:id="@+id/safetyPassengersReading"
-        android:layout_width="94dp"
-        android:layout_height="44dp"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/menu_blue"
         android:textSize="22dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintHorizontal_bias="0.753"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintVertical_bias="0.958" />
 
     <TextView
         android:id="@+id/speedometerLabel"
@@ -105,8 +105,8 @@
         android:layout_height="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.704" />
+        app:layout_constraintVertical_bias="0.65" />
 </androidx.constraintlayout.widget.ConstraintLayout>

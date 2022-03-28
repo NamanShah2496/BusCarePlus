@@ -16,10 +16,10 @@
         android:src="@drawable/ic_launcher_thermo_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.638" />
 
     <ImageButton
         android:id="@+id/carbonBtn"
@@ -30,10 +30,10 @@
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.638" />
 
     <ImageButton
         android:id="@+id/speedBtn"
@@ -44,10 +44,10 @@
         android:src="@drawable/ic_launcher_speed_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.638" />
 
     <Spinner
         android:id="@+id/busoption"
@@ -57,16 +57,17 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.033"
+        app:layout_constraintVertical_bias="0.077"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/busno"
-        android:layout_width="143dp"
-        android:layout_height="80dp"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:background="@color/menu_blue"
         android:text="@string/bus_927"
         android:textAlignment="center"
         android:textColor="@color/yellow"
@@ -74,10 +75,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintVertical_bias="0.217" />
 
     <ImageButton
         android:id="@+id/passengersBtn"
@@ -88,10 +89,10 @@
         android:src="@drawable/ic_launcher_people_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.638" />
 
     <TextView
         android:id="@+id/textView"
@@ -111,11 +112,12 @@
         android:id="@+id/epoch"
         android:layout_width="173dp"
         android:layout_height="49dp"
-        android:layout_marginStart="392dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.975" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,10 +126,10 @@
         android:text="@string/last_update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/epoch"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintVertical_bias="0.882" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

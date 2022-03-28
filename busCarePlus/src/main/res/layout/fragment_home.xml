@@ -64,12 +64,12 @@
 
     <TextView
         android:id="@+id/busno"
-        android:layout_width="93dp"
-        android:layout_height="55dp"
-        android:background="@color/menu_blue"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
         android:text="@string/bus_927"
         android:textAlignment="center"
         android:textColor="@color/yellow"
+        android:background="@color/menu_blue"
         android:textSize="38sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,19 +110,24 @@
         android:id="@+id/epoch"
         android:layout_width="173dp"
         android:layout_height="49dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="600dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.899" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginStart="48dp"
         android:text="@string/last_update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/epoch"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.865" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

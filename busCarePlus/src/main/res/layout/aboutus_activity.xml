@@ -65,15 +65,15 @@
         android:id="@+id/ans_2"
         android:layout_width="373dp"
         android:layout_height="77dp"
+        android:scrollbars="vertical"
         android:text="@string/ans_2"
         android:textSize="15sp"
-        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="0.299" />
 
     <Button
         android:id="@+id/naman_link"
@@ -140,20 +140,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433" />
+        app:layout_constraintVertical_bias="0.413" />
 
     <ImageView
         android:id="@+id/namanimage"
         android:layout_width="113dp"
         android:layout_height="120dp"
+        android:contentDescription="@string/content_description_of_naman"
         app:layout_constraintBottom_toTopOf="@+id/naman_link"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintHorizontal_bias="0.852"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
-        app:layout_constraintVertical_bias="0.421"
-        app:srcCompat="@drawable/profile"
-        android:contentDescription="@string/content_description_of_naman" />
+        app:layout_constraintVertical_bias="0.333"
+        app:srcCompat="@drawable/profile" />
 
     <ImageView
         android:id="@+id/jaskiratimage"

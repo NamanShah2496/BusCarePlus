@@ -13,10 +13,10 @@
         android:layout_height="163dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561"
+        app:layout_constraintVertical_bias="0.463"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
         app:lottie_url="https://assets5.lottiefiles.com/packages/lf20_buzt1erl.json" />
@@ -34,20 +34,20 @@
         app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="207dp"
-        android:layout_height="179dp"
+        android:layout_width="184dp"
+        android:layout_height="163dp"
         android:background="@color/white"
         android:src="@drawable/ic_launcher_co2_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
+        app:layout_constraintVertical_bias="0.463" />
 
     <TextView
         android:id="@+id/carbonDioxideTV"
@@ -59,37 +59,39 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <TextView
         android:id="@+id/MaintainanceThermoValueTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:background="@color/menu_blue"
+        android:textAlignment="center"
         android:textSize="22dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintVertical_bias="0.879" />
 
     <TextView
         android:id="@+id/MaintainanceCarbonValueTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:background="@color/menu_blue"
+        android:textAlignment="center"
         android:textSize="22dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintVertical_bias="0.878" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
