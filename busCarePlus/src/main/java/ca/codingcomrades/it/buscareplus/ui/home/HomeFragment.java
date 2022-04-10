@@ -86,8 +86,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     TextView textView,epoch_display;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
-    List<Integer> names,dynamicList;
-    int pos;
+    List<Integer> names;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,7 +97,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
         homeViewModel.getText();
         localData = new LocalData();
-        dynamicList = new ArrayList<>();
+
         names = new ArrayList<>();
         retriveUserData();
     }
@@ -132,6 +131,7 @@ public void updateUI(){
                   carbonReading = Integer.parseInt(String.valueOf(task.getResult().child("Maintenance/Co2").getValue()));
                   passengers = Integer.parseInt(String.valueOf(task.getResult().child("Safety/Passengers").getValue()));
                   speed = Double.parseDouble(String.valueOf(task.getResult().child("Safety/Speed").getValue()));
+
                   epoch=(String.valueOf(task.getResult().child("TimeStamp").getValue()));
                   Log.d("test",epoch);
                 changeColor(speed,passengers);
@@ -179,7 +179,7 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-
+        buses();
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
@@ -188,8 +188,7 @@ public void changeColor(double speed,int passengers){
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-        fetchLocalData();
-        buses();
+     fetchLocalData();
 
 
      busSpinner.setOnItemSelectedListener(this);
@@ -231,31 +230,35 @@ return view;
             busNum = Integer.parseInt(task1.getKey());
             names.add(busNum);
 
-
         }
-        createBusList(names);
-        names = dynamicList;
-
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-
         busSpinner.setAdapter(adapter);
     }
 
-    public void createBusList(List<Integer> names){
-//        dynamicList.clear();
-        int temp = names.get(pos);
-        Log.d("dynamic", "createBusList: " +temp);
+    public void downloads(){
+        database.child("Documents/UserManual").addValueEventListener(new ValueEventListener() {
 
-        dynamicList.add(temp);
-        names.remove(pos);
-        for(int i=0;i<names.size();i++){
-            dynamicList.add(names.get(i));
-        }
-        Log.d("dynamic", "createBusList: "+ dynamicList);
 
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String dwnLink = dataSnapshot.getValue().toString();
+                Log.d("downlaod", "onDataChange: " +dwnLink);
+                editor.putString("userManualDwnLink",dwnLink);
+                editor.apply();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
+
     public void retriveUserData() {
+        downloads();
+
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
@@ -279,7 +282,6 @@ return view;
     }
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
-
         editor.putInt("busNo",busNum);
         editor.apply();
         Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
@@ -287,7 +289,7 @@ return view;
     }
 
     public void fetchLocalData(){
-        pos = prefs.getInt("pos",0);
+
         passengerLimit = prefs.getString("capacityval","20");
         speedLimit = prefs.getString("speedval","40");
         isMetric = prefs.getString("metricB","false");
@@ -301,10 +303,6 @@ return view;
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("Spinner", "onItemSelected:position "+ position);
-
-        editor.putInt("pos",position);
-        editor.apply();
         busSelected();
         updateText();
     }

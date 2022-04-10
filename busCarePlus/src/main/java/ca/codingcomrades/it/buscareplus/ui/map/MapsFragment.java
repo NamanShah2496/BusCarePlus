@@ -27,8 +27,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -60,10 +58,11 @@ public class MapsFragment extends Fragment {
     private GoogleMap map;
     DatabaseReference database;
     MarkerOptions markerOptions;
-    CameraPosition cam;
     int busNum;
+    CameraPosition cam;;
     //    SupportMapFragment mapFragment;
     double lat, lng;
+
 //    double lat=43.7446603;
 //    double lng = -79.5940434;
 
@@ -132,18 +131,14 @@ public class MapsFragment extends Fragment {
         database.child(rootPath).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-//                String value = String.valueOf(dataSnapshot.child("TestData/"+busNum).getValue());
-                cam = map.getCameraPosition();
 
+                cam = map.getCameraPosition();
                 map.clear();
 //                Log.d("Maps", "onDataChange: "+rootPath);
                 lat = Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Location/Lat").getValue()));
                 lng =  Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Location/Long").getValue()));
                 LatLng updated = new LatLng(lat, lng);
 
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_marker));
 
                 map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
 
