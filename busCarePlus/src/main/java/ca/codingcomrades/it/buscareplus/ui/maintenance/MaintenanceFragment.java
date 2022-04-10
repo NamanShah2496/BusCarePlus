@@ -74,6 +74,7 @@ public class MaintenanceFragment extends Fragment {
         database = FirebaseDatabase.getInstance().getReference();
         fetchLocalData();
         getData();
+        
         return view;
 
     }

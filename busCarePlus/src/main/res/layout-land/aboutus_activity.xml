@@ -158,7 +158,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
         app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="@drawable/profile"
+        app:srcCompat="@drawable/profile_image_naman"
         android:contentDescription="@string/content_description_of_naman"/>
 
     <ImageView
@@ -171,7 +171,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.769"
-        app:srcCompat="@drawable/jk"
+        app:srcCompat="@drawable/profile_image_jasa"
         android:contentDescription="@string/content_description_of_jaskirat"/>
 
     <ImageView
@@ -184,7 +184,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team"
         app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="@drawable/vish"
+        app:srcCompat="@drawable/profile_image_vish"
         android:contentDescription="@string/content_description_of_vishesh"/>
 
     <ImageView
@@ -197,6 +197,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.769"
-        app:srcCompat="@drawable/ary"
+        app:srcCompat="@drawable/profile_image_cool_chacha"
         android:contentDescription="@string/content_description_of_aryan"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

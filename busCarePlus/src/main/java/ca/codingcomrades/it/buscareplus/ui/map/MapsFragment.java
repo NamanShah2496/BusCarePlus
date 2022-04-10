@@ -27,6 +27,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -141,6 +143,7 @@ public class MapsFragment extends Fragment {
                 lng =  Double.parseDouble(String.valueOf(dataSnapshot.child("/Data/"+busNum+"/Location/Long").getValue()));
                 LatLng updated = new LatLng(lat, lng);
 
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_marker));
 
                 map.addMarker(markerOptions.position(updated).title("Marker of Live location"));
 

@@ -70,6 +70,7 @@
         android:text="@string/bus_927"
         android:textAlignment="center"
         android:textColor="@color/yellow"
+
         android:textSize="38sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

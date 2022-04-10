@@ -182,6 +182,7 @@ public class FeedbackActivity extends AppCompatActivity {
     class MyTask extends AsyncTask<Integer, Integer, String> {
         @Override
         protected String doInBackground(Integer... params) {
+
             for (; count <= params[0]; count++) {
                 try {
                     Thread.sleep(1);
