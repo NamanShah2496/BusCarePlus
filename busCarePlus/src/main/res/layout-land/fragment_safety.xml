@@ -60,7 +60,6 @@
         android:id="@+id/safetySpeedReadings"
         android:layout_width="82dp"
         android:layout_height="41dp"
-
         android:textSize="22dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +88,6 @@
         android:id="@+id/safetyPassengersReading"
         android:layout_width="94dp"
         android:layout_height="44dp"
-
         android:textSize="22dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
