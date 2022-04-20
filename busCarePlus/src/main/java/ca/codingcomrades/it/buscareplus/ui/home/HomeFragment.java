@@ -179,7 +179,7 @@ public void changeColor(double speed,int passengers){
         view = inflater.inflate(R.layout.fragment_home,container,false);
 
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
-        buses();
+
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
         editor = prefs.edit();
      textView = view.findViewById(R.id.busno);
@@ -188,13 +188,21 @@ public void changeColor(double speed,int passengers){
         passengersBtn = view.findViewById(R.id.passengersBtn);
         temperatureBtn =view.findViewById(R.id.temperatureBtn);
         carbonBtn = view.findViewById(R.id.carbonBtn);
-     fetchLocalData();
+
 
 
      busSpinner.setOnItemSelectedListener(this);
 
-     updateUI();
+
 return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        buses();
+        fetchLocalData();
+        updateUI();
     }
 
     public void buses() {
@@ -257,8 +265,12 @@ return view;
     }
 
     public void retriveUserData() {
-        downloads();
-
+        try {
+            downloads();
+        }
+        catch(Exception e)  {
+            Log.d("Exceptions", "retriveUserData: ");
+        }
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 

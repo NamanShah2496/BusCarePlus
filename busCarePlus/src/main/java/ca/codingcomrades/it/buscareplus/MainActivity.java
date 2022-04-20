@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id  = item.getItemId();
         if( id == R.id.help){
-            Onclick2();
+            callHelp();
             return true;
         }
         else if(id == R.id.myaccountImage){
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
         }
         else if (id == R.id.feedback){
-            Onclick1();
+            callFeedback();
             return true;
         }
         else if (id == R.id.logout){
@@ -196,11 +196,11 @@ public class MainActivity extends AppCompatActivity{
         Intent intent = new Intent(this, MyAccount.class);
         startActivity(intent);
     }
-    public void Onclick1(){
+    public void callFeedback(){
         Intent intent = new Intent(this, FeedbackActivity.class);
         startActivity(intent);
     }
-    public void Onclick2(){
+    public void callHelp(){
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }

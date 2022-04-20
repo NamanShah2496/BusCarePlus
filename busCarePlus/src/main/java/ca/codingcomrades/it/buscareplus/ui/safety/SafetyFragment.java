@@ -43,7 +43,7 @@ public class SafetyFragment extends Fragment {
     LottieAnimationView people;
     String rootPath;
     SpeedGauge speedoMeterView;
-    TextView speedTextView,passengersTextView,speedLabel;
+    TextView speedTextView,passengersTextView,speedLabel,speedLabel_2;
     DatabaseReference database;
     SharedPreferences prefs;
     int busNum =927;
@@ -65,6 +65,7 @@ public class SafetyFragment extends Fragment {
         prefs = getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
 
         speedLabel = view.findViewById(R.id.speedometerLabel);
+        speedLabel_2 = view.findViewById(R.id.speedometerLabel_2);
         speedoMeterView =view.findViewById(R.id.speedoMeter);
         speedTextView = view.findViewById(R.id.safetySpeedReadings);
         passengersTextView = view.findViewById(R.id.safetyPassengersReading);
@@ -110,6 +111,7 @@ public class SafetyFragment extends Fragment {
            Log.d("speed", "changeView: Its inside");
             speedoMeterView.setSpeed((float) speed);
             speedLabel.setText("km/h");
+            speedLabel_2.setText("km/h");
             speedoMeterView.changeLimit(Integer.parseInt(speedVal));
             speedTextView.setText(String.valueOf(speed));
             if (speed>Integer.parseInt(speedVal))
@@ -122,6 +124,7 @@ public class SafetyFragment extends Fragment {
             speedTextView.setText(String.valueOf((float)speed/1.6));
             speedoMeterView.changeLimit(Integer.parseInt(speedVal));
             speedLabel.setText("m.p.h");
+            speedLabel_2.setText("m.p.h");
             int fres = (int)(speed*0.621371);
             if (fres>Integer.parseInt(speedVal))
                 speedTextView.setTextColor(Color.RED);
