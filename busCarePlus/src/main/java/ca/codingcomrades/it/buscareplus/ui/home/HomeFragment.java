@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         localData = new LocalData();
 
         names = new ArrayList<>();
-        retriveUserData();
+
     }
 
 public void updateUI(){
@@ -177,7 +177,7 @@ public void changeColor(double speed,int passengers){
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home,container,false);
-
+     Log.d("Rotation", "onCreateView: ");
         busSpinner = (Spinner)view.findViewById(R.id.busoption);
 
         prefs = getActivity().getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
@@ -200,6 +200,8 @@ return view;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        retriveUserData();
+        Log.d("Rotation", "onViewCreated: ");
         buses();
         fetchLocalData();
         updateUI();
