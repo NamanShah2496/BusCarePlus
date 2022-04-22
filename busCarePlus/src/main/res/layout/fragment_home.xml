@@ -67,7 +67,7 @@
         android:layout_width="93dp"
         android:layout_height="55dp"
         android:background="@color/menu_blue"
-        android:text="@string/bus_927"
+
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="38sp"

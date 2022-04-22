@@ -80,9 +80,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     double speed,temperatureReading;
     double speed_mph;
     int passengers,carbonReading;
+    int busSpinPos;
     String epoch="";
     Spinner busSpinner;
     Button busbutton;
+    Boolean isInternet;
     TextView textView,epoch_display;
     int busNum=927;
     String isMetric,speedLimit,passengerLimit;
@@ -200,12 +202,21 @@ return view;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        retriveUserData();
-        Log.d("Rotation", "onViewCreated: ");
-        buses();
         fetchLocalData();
-        updateUI();
-    }
+
+       if(isInternet) {
+           retriveUserData();
+           Log.d("Rotation", "onViewCreated: ");
+           buses();
+           updateUI();
+       }else{
+
+           textView.setText("--");
+
+           Log.d("internet", "onViewCreated: No Internet");
+       }
+
+       }
 
     public void buses() {
         handler.postDelayed(new Runnable() {
@@ -234,6 +245,7 @@ return view;
         }, 1000);
     }
     public void busUpdated(Task <DataSnapshot> task){
+
         names.clear();
         for (DataSnapshot task1 : task.getResult().getChildren()) {
             Log.d("Firebase", "busUpdated: task: "+task1);
@@ -244,6 +256,8 @@ return view;
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.color_spinner_layout, names);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         busSpinner.setAdapter(adapter);
+        busSpinner.setSelection(busSpinPos);
+
     }
 
     public void downloads(){
@@ -297,13 +311,15 @@ return view;
     public void busSelected(){
         busNum = Integer.parseInt(busSpinner.getSelectedItem().toString());
         editor.putInt("busNo",busNum);
+        editor.putInt("busSpinPos",busSpinner.getSelectedItemPosition());
         editor.apply();
-        Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItem());
-        Log.d("Shared", "busSelected: "+ prefs.getInt("busNo",45));
+        Log.d("Spinner  ", "busSelected: "+busSpinner.getSelectedItemPosition());
+        Log.d("Shared", "busSelected: "+ prefs.getInt("busNo",511));
     }
 
     public void fetchLocalData(){
-
+        isInternet = prefs.getBoolean("isInternet",false);
+        busSpinPos = prefs.getInt("busSpinPos",1);
         passengerLimit = prefs.getString("capacityval","20");
         speedLimit = prefs.getString("speedval","40");
         isMetric = prefs.getString("metricB","false");

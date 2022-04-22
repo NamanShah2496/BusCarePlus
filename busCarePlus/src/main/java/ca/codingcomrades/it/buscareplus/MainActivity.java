@@ -41,6 +41,8 @@ import ca.codingcomrades.it.buscareplus.menu.MyAccount;
 
 
 public class MainActivity extends AppCompatActivity{
+    SharedPreferences.Editor editor;
+    SharedPreferences prefs;
     Snackbar snackbar;
     LocalData data = new LocalData();
     Handler handler = new Handler();
@@ -70,7 +72,9 @@ public class MainActivity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        snackbar = Snackbar.make(binding.getRoot(), "Not Connected to Internet!", Snackbar.LENGTH_INDEFINITE);
+        snackbar = Snackbar.make(binding.getRoot(), "Not Connected to Internet! Refresh app when connected", Snackbar.LENGTH_INDEFINITE);
+        prefs = this.getSharedPreferences("SHARED_PREFS",Context.MODE_PRIVATE);
+        editor = prefs.edit();
         checkInternet();
 
 //        Fragment fragment = new MapsFragment();
@@ -216,20 +220,29 @@ public class MainActivity extends AppCompatActivity{
      handler.postDelayed((new Runnable() {
         @Override
         public void run() {
+            boolean prevFlag;
             if(!usr.isInternetAvailable(getApplicationContext(), binding.getRoot())){
                 if(flag){
                     flag = false;
+                    prevFlag =false;
+                    editor.putBoolean("isInternet",flag);
                     snackbar.show();
                 }}
             else{
                     snackbar.dismiss();
                     flag =true;
-
+                    prevFlag = true;
+                editor.putBoolean("isInternet",flag);
                 Log.d("internet", "run: We have internet");
+                if(!prevFlag){
+                    recreate();
+                }
+
             }
+            editor.apply();
             checkInternet();
         }
-     } ),1000);
+     } ),3000);
 }
 
 }
