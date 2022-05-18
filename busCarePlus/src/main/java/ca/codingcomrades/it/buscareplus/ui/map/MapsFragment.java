@@ -112,7 +112,7 @@ public class MapsFragment extends Fragment {
         prefs = getActivity().getSharedPreferences("SHARED_PREFS", Context.MODE_PRIVATE);
 
         fetchLocalData();
-//        getData();
+
         return inflater.inflate(R.layout.fragment_maps, container, false);
     }
 
@@ -151,7 +151,7 @@ public class MapsFragment extends Fragment {
 
             }
         });
-    }
+   }
     public void fetchLocalData(){
         busNum = prefs.getInt("busNo",927);
         rootPath = prefs.getString("accessPath","Canada/TTC");
