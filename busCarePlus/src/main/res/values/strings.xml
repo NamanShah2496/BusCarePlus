@@ -15,7 +15,7 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-<!--    <string name="menu_gallery">Gallery</string>-->
+    <!--    <string name="menu_gallery">Gallery</string>-->
     <string name="menu_safety">Safety</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
@@ -144,6 +144,8 @@ Jaskirat Singh , N01403975 , Section RNB
     <string name="last_update">Last Updated at</string>
     <string name="user_manual">User Manual</string>
     <string name="path">accessPath</string>
-    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiYnVzY2FyZSIsImEiOiJjbDNjNjc3eW4wMWdxM2twMnMxYWNvbWVmIn0.KZXcuat0nurw1i6QD9Sfbw</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYnVzY2FyZSIsImEiOiJjbDNjNjc3eW4wMWdxM2twMnMxYWNvbWVmIn0.KZXcuat0nurw1i6QD9Sfbw</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

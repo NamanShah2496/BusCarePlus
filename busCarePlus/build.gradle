@@ -49,6 +49,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.11.0'
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-services:4.8.0'
     testImplementation 'androidx.test:core:1.4.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:1.10.19'
@@ -64,6 +67,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'in.unicodelabs.sorbh:kdgaugeview:1.0.0'
+
 //    implementation 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
